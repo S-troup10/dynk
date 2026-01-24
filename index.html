@@ -867,28 +867,37 @@
         }
 
         .circle-shell {
-          width: min(620px, 95vw);
-          height: min(620px, 95vw);
+          width: min(520px, 90vw);
+          height: min(520px, 90vw);
         }
 
         .circle-item {
-          width: 110px;
+          width: 96px;
           transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
-            translateY(-240px) rotate(calc(-36deg * var(--i)));
+            translateY(-195px) rotate(calc(-36deg * var(--i)));
         }
 
         .circle-item:hover {
           transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
-            translateY(-240px) rotate(calc(-36deg * var(--i))) scale(1.08);
+            translateY(-195px) rotate(calc(-36deg * var(--i))) scale(1.06);
         }
 
         .circle-icon {
-          width: 80px;
-          height: 80px;
+          width: 66px;
+          height: 66px;
         }
 
         .circle-icon i {
-          font-size: 2rem;
+          font-size: 1.6rem;
+        }
+
+        .circle-label {
+          font-size: 0.7rem;
+          letter-spacing: 0.16em;
+        }
+
+        .circle-center img {
+          width: min(240px, 60vw);
         }
 
         .quote-carousel {
