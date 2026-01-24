@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DYNK</title>
+    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: rgba(5, 5, 5, 1);
+        --paper: rgba(252, 252, 252, 1);
+        --veil: rgba(252, 252, 252, 0.08);
+        --mist: rgba(252, 252, 252, 0.2);
+        --glow: rgba(252, 252, 252, 0.7);
+        --pulse: rgba(252, 252, 252, 0.45);
+        --ember: rgba(255, 165, 82, 0.18);
+        --ember-soft: rgba(255, 165, 82, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Montserrat", "Segoe UI", sans-serif;
+        color: var(--paper);
+        background:
+          radial-gradient(
+            800px 400px at 10% 0%,
+            rgba(252, 252, 252, 0.1),
+            transparent 60%
+          ),
+          radial-gradient(
+            1200px 600px at 90% 0%,
+            rgba(252, 252, 252, 0.12),
+            transparent 65%
+          ),
+          radial-gradient(
+            580px 520px at 23% 40%,
+            rgba(252, 252, 252, 0.1),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 700px at 95% 6%,
+            rgba(252, 252, 252, 0.01),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #080808 0%, #050505 35%, #020202 100%);
+        min-height: 100vh;
+        letter-spacing: 0.01em;
+        overflow-x: hidden;
+      }
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+        mix-blend-mode: soft-light;
+        z-index: 1;
+      }
+
+      .grain.pos2 {
+        opacity: 0.6;
+        transform: translateY(1000px);
+        color: red;
+      }
+
+      header {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32px clamp(24px, 6vw, 80px);
+      }
+
+      .logo {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-family: "Montserrat", "Segoe UI", sans-serif;
+        font-size: clamp(22px, 3.2vw, 32px);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .logo-sub {
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        font-weight: 500;
+        color: rgba(252, 252, 252, 0.55);
+      }
+
+      .nav {
+        display: flex;
+        gap: 24px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+      }
+
+      .nav span {
+        opacity: 0.7;
+      }
+
+      main {
+        position: relative;
+        z-index: 2;
+        padding: 72px clamp(32px, 8vw, 140px) 140px;
+        display: grid;
+        gap: 120px;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        align-items: center;
+        gap: clamp(32px, 8vw, 120px);
+        min-height: 64vh;
+      }
+
+      .hero {
+        display: grid;
+        gap: 24px;
+        max-width: 720px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        color: var(--mist);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Montserrat", "Segoe UI", sans-serif;
+        font-size: clamp(40px, 7vw, 82px);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+
+      .lead {
+        max-width: 520px;
+        font-size: clamp(16px, 2.2vw, 20px);
+        line-height: 1.6;
+        color: var(--mist);
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        border-radius: 999px;
+        border: 1px solid var(--mist);
+        color: var(--paper);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.35em;
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .cta:hover {
+        border-color: var(--glow);
+        box-shadow: 0 0 40px rgba(252, 252, 252, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 22px;
+        margin-top: 18px;
+      }
+
+      .stat {
+        padding: 18px 20px;
+        border-radius: 16px;
+        background: rgba(252, 252, 252, 0.04);
+        border: 1px solid rgba(252, 252, 252, 0.1);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 20px;
+        letter-spacing: 0.08em;
+      }
+
+      .stat span {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        color: var(--mist);
+      }
+
+      .signal {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        padding: 40px 0;
+      }
+
+      .signal-card {
+        padding: 26px 28px;
+        border-radius: 18px;
+        border: 1px solid rgba(252, 252, 252, 0.12);
+        background: linear-gradient(
+          160deg,
+          rgba(252, 252, 252, 0.1),
+          rgba(252, 252, 252, 0.02)
+        );
+        backdrop-filter: blur(10px);
+      }
+
+      .signal-card strong {
+        display: block;
+        font-size: 22px;
+        letter-spacing: 0.1em;
+      }
+
+      .signal-card span {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        color: var(--mist);
+      }
+
+      .feature-rail {
+        display: grid;
+        gap: 28px;
+        padding: 60px 0;
+      }
+
+      .circle-section {
+        position: relative;
+        padding: 10px 0 70px;
+      }
+
+      .circle-shell {
+        position: relative;
+        width: min(1000px, 95vw);
+        height: min(860px, 95vw);
+        margin: 0 auto;
+      }
+
+      .circle-shell .orbit {
+        inset: 10%;
+        opacity: 0.55;
+        border: 1px solid rgba(252, 252, 252, 0.18);
+        box-shadow:
+          inset 0 0 80px rgba(252, 252, 252, 0.08),
+          0 0 80px rgba(255, 165, 82, 0.08);
+      }
+
+      .circle-shell::before {
+        content: "";
+        position: absolute;
+        inset: 16%;
+        border-radius: 50%;
+        border: 1px dashed rgba(252, 252, 252, 0.14);
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .circle-shell::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 50% 40%,
+          rgba(255, 165, 82, 0.12),
+          transparent 55%
+        );
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .circle-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .circle-center img {
+        width: min(320px, 46vw);
+        border-radius: 28px;
+        filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45))
+          drop-shadow(0 0 20px rgba(255, 255, 255, 0.08));
+      }
+
+      .circle-item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 140px;
+        transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
+          translateY(-340px) rotate(calc(-36deg * var(--i)));
+        text-align: center;
+        transition: transform 0.2s ease;
+      }
+
+      .circle-item:hover {
+        transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
+          translateY(-340px) rotate(calc(-36deg * var(--i))) scale(1.08);
+      }
+
+      .circle-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 1rem;
+        background: linear-gradient(145deg, #0c0c0c, #050505);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+          0 12px 36px rgba(0, 0, 0, 0.5),
+          0 0 28px rgba(255, 165, 82, 0.22);
+        border: 1px solid rgba(252, 252, 252, 0.22);
+      }
+
+      .circle-icon i {
+        font-size: 2.1rem;
+        color: rgba(252, 252, 252, 0.9);
+      }
+
+      .circle-label {
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--paper);
+        opacity: 0.85;
+      }
+
+      .feature-rail h2 {
+        margin: 0;
+        font-size: clamp(20px, 3vw, 32px);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .feature-track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(240px, 1fr);
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .feature-track::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .feature-track::-webkit-scrollbar-thumb {
+        background: rgba(252, 252, 252, 0.2);
+        border-radius: 999px;
+      }
+
+      .feature-card {
+        scroll-snap-align: start;
+        padding: 26px;
+        border-radius: 20px;
+        border: 1px solid rgba(252, 252, 252, 0.12);
+        background: linear-gradient(
+          140deg,
+          rgba(252, 252, 252, 0.08),
+          rgba(252, 252, 252, 0.02)
+        );
+      }
+
+      .feature-card h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--mist);
+        line-height: 1.6;
+      }
+
+      .quote-section {
+        display: grid;
+        gap: 24px;
+        padding: 60px 0 50px;
+        position: relative;
+      }
+
+      .quote-section h2 {
+        margin: 0;
+        font-size: clamp(18px, 2.8vw, 30px);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .quote-section::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -40px;
+        height: 120px;
+        background: linear-gradient(
+          180deg,
+          rgba(12, 12, 12, 0),
+          rgba(12, 12, 12, 0.6),
+          rgba(12, 12, 12, 0)
+        );
+        pointer-events: none;
+      }
+
+      .quote-section::after {
+        content: "";
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        top: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(252, 252, 252, 0.22),
+          transparent
+        );
+        pointer-events: none;
+      }
+
+      .quote-carousel {
+        position: relative;
+        width: min(900px, 100%);
+        height: 320px;
+        margin: 0 auto;
+        padding-top: 8px;
+      }
+
+      .quote-slides {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .quote-slide {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: min(520px, 78vw);
+        height: 260px;
+        transform: translateX(-50%);
+        transition: all 0.4s ease;
+        opacity: 0;
+      }
+
+      .quote-card {
+        height: 100%;
+        position: relative;
+        padding: 28px;
+        border-radius: 22px;
+        border: 1px solid rgba(252, 252, 252, 0.2);
+        background: linear-gradient(160deg, #121212, #060606);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      }
+
+      .quote-card::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border-radius: 18px;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(252, 252, 252, 0.12),
+          transparent
+        );
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .quote-card blockquote {
+        margin: 0 0 18px;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .quote-meta {
+        font-size: 11px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+
+      .quote-slide.center {
+        opacity: 1;
+        z-index: 3;
+      }
+
+      .quote-slide.left {
+        transform: translateX(-92%) scale(0.85);
+        opacity: 1;
+        z-index: 2;
+      }
+
+      .quote-slide.right {
+        transform: translateX(-8%) scale(0.85);
+        opacity: 1;
+        z-index: 2;
+      }
+
+      .quote-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        border: 1px solid rgba(252, 252, 252, 0.2);
+        background: rgba(10, 10, 10, 0.85);
+        color: var(--paper);
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        cursor: pointer;
+        user-select: none;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .quote-arrow:hover {
+        border-color: var(--glow);
+        box-shadow: 0 0 24px rgba(252, 252, 252, 0.12);
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      .quote-arrow.left {
+        left: -56px;
+      }
+
+      .quote-arrow.right {
+        right: -56px;
+      }
+
+      .showcase {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: clamp(32px, 8vw, 120px);
+        align-items: center;
+        padding: 80px 0 40px;
+      }
+
+      .showcase-copy {
+        display: grid;
+        gap: 20px;
+        max-width: 520px;
+      }
+
+      .showcase-kicker {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        color: var(--mist);
+      }
+
+      .showcase-title {
+        margin: 0;
+        font-size: clamp(26px, 4vw, 46px);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+      }
+
+      .showcase-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .showcase-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(252, 252, 252, 0.12);
+        background: rgba(252, 252, 252, 0.03);
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .showcase-item span {
+        color: var(--mist);
+      }
+
+      .divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--mist),
+          transparent
+        );
+        margin: 40px 0;
+      }
+
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: space-between;
+        align-items: center;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 0.28em;
+        color: rgba(252, 252, 252, 0.55);
+      }
+
+      .hero-media {
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+
+      .hero-media img {
+        width: min(100%, 720px);
+        max-height: 820px;
+        object-fit: contain;
+        filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.55))
+          drop-shadow(0 0 40px rgba(252, 252, 252, 0.08));
+        animation: float 10s ease-in-out infinite;
+      }
+
+      .phone-media img {
+        width: min(100%, 420px);
+        max-height: 560px;
+      }
+
+      .orbit {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(252, 252, 252, 0.15);
+        box-shadow: inset 0 0 60px rgba(252, 252, 252, 0.08);
+      }
+
+      .orbit {
+        right: -160px;
+        top: 120px;
+        width: 300px;
+        height: 300px;
+        opacity: 0.3;
+      }
+
+      .orbit::after {
+        content: "";
+        position: absolute;
+        inset: 40px;
+        border-radius: 50%;
+        border: 1px dashed rgba(252, 252, 252, 0.3);
+      }
+
+      .pulse {
+        position: absolute;
+        left: 30%;
+        bottom: -55%;
+        width: 160px;
+        height: 160px;
+        border-radius: 40px;
+        background: linear-gradient(120deg, var(--veil), transparent);
+        transform: rotate(20deg);
+        animation: pulse 8s ease-in-out infinite;
+      }
+
+      .pulse.pos2 {
+        left: auto;
+        left: 35%;
+        top: 50%;
+        bottom: auto;
+        width: 180px;
+        height: 180px;
+        border-radius: 32px;
+        background: linear-gradient(
+          120deg,
+          rgba(252, 252, 252, 0.06),
+          transparent
+        );
+        transform: rotate(-12deg);
+        animation-duration: 10s;
+      }
+
+      .lux-glow {
+        position: absolute;
+        left: -20%;
+        bottom: -45%;
+        width: 500px;
+        height: 700px;
+        background: radial-gradient(circle, var(--ember), transparent 65%);
+        filter: blur(2px);
+        opacity: 0.85;
+        pointer-events: none;
+      }
+
+      .lux-glow.pos1 {
+        left: auto;
+        right: -15%;
+        top: 30%;
+        width: 600px;
+        height: 600px;
+        opacity: 0;
+      }
+
+      .lux-glow.pos2 {
+        left: 60%;
+        bottom: -80%;
+        width: 700px;
+        height: 700px;
+        opacity: 0.75;
+        filter: blur(6px);
+      }
+
+      .lux-sheen {
+        position: absolute;
+        right: 8%;
+        bottom: 6%;
+        width: 520px;
+        height: 220px;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          var(--ember-soft),
+          transparent
+        );
+        transform: skewY(-6deg);
+        pointer-events: none;
+      }
+
+      .lux-sheen.pos2 {
+        left: 10%;
+        right: auto;
+        bottom: -105%;
+        width: 420px;
+        height: 160px;
+        opacity: 0.7;
+        transform: skewY(6deg);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: rise 1s ease forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 0.2s;
+      }
+      .delay-2 {
+        animation-delay: 0.4s;
+      }
+      .delay-3 {
+        animation-delay: 0.6s;
+      }
+      .delay-4 {
+        animation-delay: 0.8s;
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-18px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: translateY(0) rotate(20deg);
+        }
+        50% {
+          opacity: 0.7;
+          transform: translateY(-8px) rotate(20deg);
+        }
+      }
+
+      @media (max-width: 700px) {
+        header {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .orbit {
+          right: -200px;
+          top: 220px;
+          width: 260px;
+          height: 260px;
+        }
+
+        .orbit-1 {
+          left: -140px;
+          top: 520px;
+          width: 180px;
+          height: 180px;
+        }
+
+        .orbit-2 {
+          right: 8%;
+          bottom: 8%;
+          width: 200px;
+          height: 200px;
+        }
+
+        .hero-wrap {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .hero-media img {
+          width: min(100%, 480px);
+        }
+
+        .showcase {
+          grid-template-columns: 1fr;
+          padding: 0%;
+        }
+
+        .feature-track {
+          grid-auto-columns: minmax(220px, 80%);
+        }
+
+        .circle-shell {
+          width: min(620px, 95vw);
+          height: min(620px, 95vw);
+        }
+
+        .circle-item {
+          width: 110px;
+          transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
+            translateY(-240px) rotate(calc(-36deg * var(--i)));
+        }
+
+        .circle-item:hover {
+          transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
+            translateY(-240px) rotate(calc(-36deg * var(--i))) scale(1.08);
+        }
+
+        .circle-icon {
+          width: 80px;
+          height: 80px;
+        }
+
+        .circle-icon i {
+          font-size: 2rem;
+        }
+
+        .quote-carousel {
+          height: 300px;
+        }
+
+        .quote-slide {
+          height: 240px;
+        }
+
+        .quote-arrow.left {
+          left: -12px;
+        }
+
+        .quote-arrow.right {
+          right: -12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="grain pos2" aria-hidden="true"></div>
+    <header class="reveal">
+      <div class="logo">
+        <span>DYNK</span>
+        <span class="logo-sub">OWN IT, GROW IT</span>
+      </div>
+      <nav class="nav">
+        <span>blurb to go here (somthing like )</span>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-wrap reveal delay-1">
+        <div class="hero">
+          <div class="eyebrow">The future of money</div>
+          <h1>Own it. Grow it</h1>
+          <p class="lead">
+            DYNK is more than a token - it’s a Solana-powered ecosystem uniting
+            wallets, NFTs, conversions, and referrals under one experience.
+          </p>
+          <a class="cta" href="#">Sign Up</a>
+          <div class="stats">
+            <div class="stat">
+              <strong>1¢</strong>
+              <span>Transaction fees</span>
+            </div>
+            <div class="stat">
+              <strong>1000</strong>
+              <span>Founder Wallets</span>
+            </div>
+            <div class="stat">
+              <strong>9000 </strong>
+              <span>Treasury wallets</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="coin2.png" alt="DYNK coin" />
+        </div>
+      </section>
+
+      <section class="showcase reveal delay-4">
+        <div class="hero-media phone-media">
+          <img src="phone.png" alt="DYNK wallet on phone" />
+        </div>
+        <div class="showcase-copy">
+          <div class="showcase-kicker">NFT wallets</div>
+          <h2 class="showcase-title">The future of money.</h2>
+          <p class="lead">
+            One view for collectors. One currency for motion. One rail that
+            keeps everything quiet.
+          </p>
+          <div class="showcase-grid">
+            <div class="showcase-item">
+              Snapshot vaults <span>Encrypted</span>
+            </div>
+            <div class="showcase-item">Currency rails <span>Instant</span></div>
+            <div class="showcase-item">
+              Private transfers <span>Silent</span>
+            </div>
+          </div>
+          <a class="cta" href="#">Request Access</a>
+        </div>
+      </section>
+
+      <section class="circle-section reveal delay-2">
+        <div class="circle-shell">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="circle-center">
+            <img src="d.png" alt="Dynk logo" />
+          </div>
+
+          <div class="circle-item" style="--i: 0">
+            <div class="circle-icon"><i class="fas fa-crown"></i></div>
+            <p class="circle-label">Transactions</p>
+          </div>
+          <div class="circle-item" style="--i: 1">
+            <div class="circle-icon"><i class="fas fa-shield-halved"></i></div>
+            <p class="circle-label">Safe Storage</p>
+          </div>
+          <div class="circle-item" style="--i: 2">
+            <div class="circle-icon"><i class="fas fa-diamond"></i></div>
+            <p class="circle-label">NFT</p>
+          </div>
+          <div class="circle-item" style="--i: 3">
+            <div class="circle-icon"><i class="fas fa-award"></i></div>
+            <p class="circle-label">Rewards</p>
+          </div>
+          <div class="circle-item" style="--i: 4">
+            <div class="circle-icon"><i class="fas fa-chess-knight"></i></div>
+            <p class="circle-label">AI Agent</p>
+          </div>
+          <div class="circle-item" style="--i: 5">
+            <div class="circle-icon"><i class="fas fa-handshake"></i></div>
+            <p class="circle-label">Distribution</p>
+          </div>
+          <div class="circle-item" style="--i: 6">
+            <div class="circle-icon"><i class="fas fa-globe-europe"></i></div>
+            <p class="circle-label">Global</p>
+          </div>
+          <div class="circle-item" style="--i: 7">
+            <div class="circle-icon"><i class="fas fa-location-dot"></i></div>
+            <p class="circle-label">Local</p>
+          </div>
+          <div class="circle-item" style="--i: 8">
+            <div class="circle-icon"><i class="fas fa-lock"></i></div>
+            <p class="circle-label">Private</p>
+          </div>
+          <div class="circle-item" style="--i: 9">
+            <div class="circle-icon"><i class="fas fa-landmark"></i></div>
+            <p class="circle-label">Merchant</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-section reveal delay-3">
+        <h2>World Economic Forum on crypto</h2>
+        <div class="quote-carousel" data-quote-carousel>
+          <button
+            class="quote-arrow left"
+            data-quote-prev
+            aria-label="Previous"
+          >
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="quote-arrow right" data-quote-next aria-label="Next">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+          <div class="quote-slides" data-quote-slides></div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <footer>
+        <span>Est. 2026</span>
+        <span>Dynk Protocol</span>
+        <span>Transactions Engineered</span>
+      </footer>
+    </main>
+
+    <div class="orbit" aria-hidden="true"></div>
+
+    <div class="pulse" aria-hidden="true"></div>
+    <div class="pulse pos2" aria-hidden="true"></div>
+
+    <div class="lux-glow" aria-hidden="true"></div>
+    <div class="lux-glow pos2" aria-hidden="true"></div>
+    <div class="lux-glow pos1" aria-hidden="true"></div>
+    <div class="lux-sheen" aria-hidden="true"></div>
+    <div class="lux-sheen pos2" aria-hidden="true"></div>
+    <script src="main.js"></script>
+  </body>
+</html>
