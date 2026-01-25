@@ -95,6 +95,11 @@
         z-index: 1;
       }
 
+      .no-margin {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
       .grain.pos2 {
         opacity: 0.6;
         transform: translateY(1000px);
@@ -150,8 +155,7 @@
       main {
         position: relative;
         z-index: 2;
-        padding: 72px clamp(32px, 8vw, 140px) 140px;
-        padding-bottom: 2rem;
+        padding: 72px clamp(32px, 8vw, 140px) 0;
         display: grid;
         gap: 130px;
       }
@@ -665,7 +669,7 @@
       .quote-section {
         display: grid;
         gap: 24px;
-        padding: 60px 0 50px;
+        padding: 120px 0 50px;
         position: relative;
       }
 
@@ -673,6 +677,46 @@
         margin: 0;
         font-size: clamp(18px, 2.8vw, 30px);
         letter-spacing: 0.18em;
+      }
+
+      .quote-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: clamp(36px, 7vw, 96px);
+        align-items: center;
+        padding-left: clamp(60px, 8vw, 160px);
+      }
+
+      .quote-copy {
+        display: grid;
+        gap: 18px;
+        max-width: 480px;
+        justify-self: start;
+        order: 2;
+        z-index: 1;
+        padding-left: clamp(8px, 2vw, 24px);
+      }
+
+      .quote-carousel {
+        order: 1;
+        z-index: 2;
+        overflow: visible;
+        margin-left: clamp(8px, 2vw, 24px);
+      }
+
+      .quote-copy .showcase-title {
+        margin: 0;
+        font-size: clamp(26px, 4vw, 46px);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+      }
+
+      .quote-subtitle {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--mist);
       }
 
       .quote-section::before {
@@ -709,9 +753,9 @@
 
       .quote-carousel {
         position: relative;
-        width: min(900px, 100%);
-        height: 320px;
-        margin: 0 auto;
+        width: min(480px, 100%);
+        height: 240px;
+        margin: 0;
         padding-top: 8px;
       }
 
@@ -725,8 +769,8 @@
         position: absolute;
         top: 0;
         left: 50%;
-        width: min(520px, 78vw);
-        height: 260px;
+        width: min(380px, 70vw);
+        height: 190px;
         transform: translateX(-50%);
         transition: all 0.4s ease;
         opacity: 0;
@@ -777,14 +821,14 @@
       }
 
       .quote-slide.left {
-        transform: translateX(-92%) scale(0.85);
-        opacity: 1;
+        transform: translateX(-104%) scale(0.82);
+        opacity: 0.8;
         z-index: 2;
       }
 
       .quote-slide.right {
-        transform: translateX(-8%) scale(0.85);
-        opacity: 1;
+        transform: translateX(4%) scale(0.82);
+        opacity: 0.8;
         z-index: 2;
       }
 
@@ -803,6 +847,7 @@
         font-size: 22px;
         cursor: pointer;
         user-select: none;
+        z-index: 5;
         transition:
           transform 0.3s ease,
           border-color 0.3s ease,
@@ -816,11 +861,11 @@
       }
 
       .quote-arrow.left {
-        left: -56px;
+        left: -18px;
       }
 
       .quote-arrow.right {
-        right: -56px;
+        right: -18px;
       }
 
       .showcase {
@@ -1072,15 +1117,15 @@
           var(--mist),
           transparent
         );
-        margin: 40px 0;
+        margin: 28px 0 16px;
       }
 
       footer {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 24px;
+        gap: 32px;
         align-items: start;
-        padding: 10px 0 0;
+        padding: 14px 0 26px;
         text-transform: uppercase;
         font-size: 11px;
         letter-spacing: 0.22em;
@@ -1089,13 +1134,14 @@
 
       .footer-col {
         display: grid;
-        gap: 8px;
+        gap: 16px;
       }
 
       .footer-title {
         font-size: 12px;
         letter-spacing: 0.28em;
         color: rgba(252, 252, 252, 0.8);
+        margin-bottom: 4px;
       }
 
       .footer-link {
@@ -1109,7 +1155,8 @@
       }
 
       .footer-bottom {
-        margin-top: 18px;
+        margin-top: 16px;
+        padding-bottom: 18px;
         text-align: center;
         text-transform: uppercase;
         font-size: 10px;
@@ -1320,7 +1367,7 @@
 
       @media (max-width: 1100px) {
         main {
-          padding: 64px clamp(24px, 6vw, 80px) 110px;
+          padding: 64px clamp(24px, 6vw, 80px) 0;
         }
 
         .hero-wrap,
@@ -1348,7 +1395,7 @@
         }
 
         main {
-          padding: 56px clamp(20px, 5vw, 56px) 96px;
+          padding: 56px clamp(20px, 5vw, 56px) 0;
         }
 
         .nav {
@@ -1378,6 +1425,16 @@
           transform: none;
         }
 
+        .quote-layout {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .quote-copy {
+          max-width: 100%;
+          justify-self: start;
+        }
+
         .stats {
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
@@ -1392,7 +1449,7 @@
         }
 
         main {
-          padding: 48px 20px 80px;
+          padding: 48px 20px 0;
         }
 
         .nav {
@@ -1684,7 +1741,7 @@
         <div class="showcase-copy">
           <div class="showcase-kicker">NFT wallets</div>
           <h2 class="showcase-title">The Future of Money.</h2>
-          <p class="lead">
+          <p class="lead no-margin">
             One view for collectors. One currency for motion. One rail that
             keeps everything quiet.
           </p>
@@ -1929,21 +1986,30 @@
           </div>
         </div>
       </section>
-
+      <section>
       <section class="quote-section reveal delay-3">
-        <h2 style="text-align: center">World Economic Forum on Crypto</h2>
-        <div class="quote-carousel" data-quote-carousel>
-          <button
-            class="quote-arrow left"
-            data-quote-prev
-            aria-label="Previous"
-          >
-            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-          </button>
-          <button class="quote-arrow right" data-quote-next aria-label="Next">
-            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-          </button>
-          <div class="quote-slides" data-quote-slides></div>
+        <div class="quote-layout">
+          <div class="quote-carousel" data-quote-carousel>
+            <button
+              class="quote-arrow left"
+              data-quote-prev
+              aria-label="Previous"
+            >
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="quote-arrow right" data-quote-next aria-label="Next">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+            <div class="quote-slides" data-quote-slides></div>
+          </div>
+          <div class="quote-copy">
+            <div class="showcase-kicker">Signal from the room</div>
+            <h2 class="showcase-title">World Economic Forum on Crypto</h2>
+            <p class="lead no-margin">
+              A live snapshot of how leaders describe ownership, value transfer,
+              and the infrastructure powering the next wave of wallets.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -1969,7 +2035,7 @@
           <span>Global Operations</span>
         </div>
       </footer>
-      <div style="margin-top: 4rem" class="footer-bottom">© 2026 Dynk</div>
+      <div style="margin-top: 100px; padding-bottom: 25px;" class="footer-bottom">© 2026 Dynk</div>
     </main>
 
     <div class="orbit1" aria-hidden="true"></div>
@@ -2012,7 +2078,9 @@
         </ul>
       </div>
     </div>
+    </section>
     <script src="main.js"></script>
   </body>
 </html>
+
 
