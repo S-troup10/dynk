@@ -56,6 +56,16 @@
             rgba(252, 252, 252, 0.01),
             transparent 60%
           ),
+          radial-gradient(
+            900px 700px at 4% 67%,
+            rgba(252, 252, 252, 0.1),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 900px at 68% 60%,
+            rgba(252, 252, 252, 0.01),
+            transparent 60%
+          ),
           linear-gradient(180deg, #080808 0%, #050505 35%, #020202 100%);
         min-height: 100vh;
         letter-spacing: 0.01em;
@@ -121,7 +131,7 @@
         z-index: 2;
         padding: 72px clamp(32px, 8vw, 140px) 140px;
         display: grid;
-        gap: 120px;
+        gap: 20px;
       }
 
       .hero-wrap {
@@ -248,49 +258,69 @@
         gap: 28px;
         padding: 60px 0;
       }
-
       .circle-section {
         position: relative;
-        padding: 10px 0 70px;
+        padding: 10px 0 40px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+        gap: clamp(32px, 8vw, 120px);
+        align-items: center;
+      }
+
+      .circle-copy {
+        display: grid;
+        gap: 18px;
+        max-width: 520px;
+      }
+
+      .circle-title {
+        margin: 0;
+        font-size: clamp(24px, 4vw, 46px);
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .circle-sub {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        color: var(--mist);
       }
 
       .circle-shell {
         position: relative;
-        width: min(1000px, 95vw);
-        height: min(860px, 95vw);
-        margin: 0 auto;
+        --radius: clamp(210px, 35vw, 320px);
+        --item: clamp(110px, 14vw, 150px);
+        --icon: clamp(72px, 10vw, 100px);
+        width: calc((var(--radius) * 2) + var(--item));
+        height: calc((var(--radius) * 2) + var(--item));
+        margin: 0 auto 0 0;
+        justify-self: end;
+        transform: translateX(-128px);
       }
 
       .circle-shell .orbit {
-        inset: 10%;
-        opacity: 0.55;
-        border: 1px solid rgba(252, 252, 252, 0.18);
-        box-shadow:
-          inset 0 0 80px rgba(252, 252, 252, 0.08),
-          0 0 80px rgba(255, 165, 82, 0.08);
-      }
-
-      .circle-shell::before {
-        content: "";
         position: absolute;
-        inset: 16%;
+        inset: 18%;
+        opacity: 0.4;
         border-radius: 50%;
-        border: 1px dashed rgba(252, 252, 252, 0.14);
-        opacity: 0.6;
+        border: 1px solid rgba(252, 252, 252, 0.14);
+        box-shadow: inset 0 0 60px rgba(252, 252, 252, 0.06);
         pointer-events: none;
       }
 
-      .circle-shell::after {
-        content: "";
+      .circle-ring {
         position: absolute;
-        inset: 0;
+        top: 50%;
+        left: 50%;
+        width: calc(var(--radius) * 2);
+        height: calc(var(--radius) * 2);
+        transform: translate(-50%, -52%);
         border-radius: 50%;
-        background: radial-gradient(
-          circle at 50% 40%,
-          rgba(255, 165, 82, 0.12),
-          transparent 55%
-        );
-        opacity: 0.6;
+        border: 1px solid rgba(252, 252, 252, 0.2);
+        box-shadow: 0 0 60px rgba(252, 252, 252, 0.06);
         pointer-events: none;
       }
 
@@ -303,55 +333,230 @@
       }
 
       .circle-center img {
-        width: min(320px, 46vw);
-        border-radius: 28px;
-        filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45))
-          drop-shadow(0 0 20px rgba(255, 255, 255, 0.08));
+        width: min(640px, 96vw);
+        border-radius: 0;
+        display: block;
+      }
+
+      .circle-flip {
+        position: relative;
+        width: min(640px, 96vw);
+        height: min(640px, 96vw);
+        transform-style: preserve-3d;
+        transition: transform 0.7s ease;
+      }
+
+      .circle-flip.is-flipped {
+        transform: rotateY(180deg);
+      }
+
+      .circle-face {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        backface-visibility: hidden;
+      }
+
+      .circle-face img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .circle-face.back {
+        transform: rotateY(180deg);
+      }
+
+      .circle-back {
+        display: grid;
+        place-items: center;
+        width: min(390px, 74%);
+        height: min(330px, 62%);
+        padding: 28px;
+        text-align: left;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid rgba(252, 252, 252, 0.2);
+        background: linear-gradient(160deg, #121212, #060606);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+        transform: translateY(-10px);
+        position: relative;
+      }
+
+      .circle-back::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border-radius: 18px;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(252, 252, 252, 0.12),
+          transparent
+        );
+        opacity: 0.55;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .circle-back-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        display: grid;
+        align-content: center;
+        gap: 12px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        position: relative;
+        z-index: 1;
+      }
+
+      .circle-back-inner > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .circle-back h3 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .circle-back p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--mist);
+        line-height: 1.6;
+      }
+
+      .circle-quote {
+        margin: 4px 0 0;
+        padding-left: 14px;
+        border-left: 1px solid rgba(252, 252, 252, 0.24);
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(252, 252, 252, 0.86);
+      }
+
+      .circle-quote-meta {
+        font-size: 10px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--mist);
       }
 
       .circle-item {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 140px;
+        width: var(--item);
         transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
-          translateY(-340px) rotate(calc(-36deg * var(--i)));
+          translateY(calc(var(--radius) * -1)) rotate(calc(-36deg * var(--i)));
         text-align: center;
-        transition: transform 0.2s ease;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
       }
 
       .circle-item:hover {
         transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
-          translateY(-340px) rotate(calc(-36deg * var(--i))) scale(1.08);
+          translateY(calc(var(--radius) * -1)) rotate(calc(-36deg * var(--i)))
+          scale(1.08);
       }
 
       .circle-icon {
-        width: 100px;
-        height: 100px;
+        width: var(--icon);
+        height: var(--icon);
         margin: 0 auto 1rem;
-        background: linear-gradient(145deg, #0c0c0c, #050505);
+        background: linear-gradient(145deg, #0f0f0f, #050505);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow:
-          0 12px 36px rgba(0, 0, 0, 0.5),
-          0 0 28px rgba(255, 165, 82, 0.22);
-        border: 1px solid rgba(252, 252, 252, 0.22);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+        border: 1px solid rgba(252, 252, 252, 0.2);
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.25s ease;
       }
 
       .circle-icon i {
-        font-size: 2.1rem;
+        font-size: calc(var(--icon) * 0.22);
+        color: rgba(252, 252, 252, 0.9);
+      }
+
+      .circle-item:hover .circle-icon {
+        border-color: rgba(252, 252, 252, 0.9);
+        border-width: 2px;
+        box-shadow:
+          0 18px 36px rgba(0, 0, 0, 0.5),
+          0 0 24px rgba(252, 252, 252, 0.18);
+        transform: translateY(-2px) scale(1.03);
+      }
+
+      .circle-label {
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--paper);
+        opacity: 0.8;
+      }
+
+      .circle-center img {
+        width: min(400px, 56vw);
+      }
+
+      .circle-item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--item);
+        transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
+          translateY(calc(var(--radius) * -1)) rotate(calc(-36deg * var(--i)));
+        text-align: center;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+
+      .circle-item:hover {
+        transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
+          translateY(calc(var(--radius) * -1)) rotate(calc(-36deg * var(--i)))
+          scale(1.08);
+      }
+
+      .circle-icon {
+        width: var(--icon);
+        height: var(--icon);
+        margin: 0 auto 1rem;
+        background: linear-gradient(145deg, #0f0f0f, #050505);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+        border: 1px solid rgba(252, 252, 252, 0.2);
+      }
+
+      .circle-icon i {
+        font-size: calc(var(--icon) * 0.22);
         color: rgba(252, 252, 252, 0.9);
       }
 
       .circle-label {
-        font-weight: 700;
-        font-size: 0.85rem;
-        letter-spacing: 0.2em;
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--paper);
-        opacity: 0.85;
+        opacity: 0.8;
       }
 
       .feature-rail h2 {
@@ -867,28 +1072,13 @@
         }
 
         .circle-shell {
-          width: min(520px, 90vw);
-          height: min(520px, 90vw);
+          --radius: clamp(150px, 36vw, 200px);
+          --item: clamp(86px, 18vw, 110px);
+          --icon: clamp(58px, 14vw, 76px);
         }
 
-        .circle-item {
-          width: 96px;
-          transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
-            translateY(-195px) rotate(calc(-36deg * var(--i)));
-        }
-
-        .circle-item:hover {
-          transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
-            translateY(-195px) rotate(calc(-36deg * var(--i))) scale(1.06);
-        }
-
-        .circle-icon {
-          width: 66px;
-          height: 66px;
-        }
-
-        .circle-icon i {
-          font-size: 1.6rem;
+        .circle-section {
+          grid-template-columns: 1fr;
         }
 
         .circle-label {
@@ -897,7 +1087,17 @@
         }
 
         .circle-center img {
-          width: min(240px, 60vw);
+          width: min(190px, 56vw);
+        }
+
+        .circle-back {
+          width: min(300px, 82%);
+          height: min(260px, 64%);
+          padding: 20px;
+        }
+
+        .circle-back-inner {
+          gap: 10px;
         }
 
         .quote-carousel {
@@ -927,7 +1127,7 @@
         <span class="logo-sub">OWN IT, GROW IT</span>
       </div>
       <nav class="nav">
-        <span>blurb to go here (somthing like )</span>
+        <span>Where innovation meets ownership</span>
       </nav>
     </header>
 
@@ -986,57 +1186,163 @@
       </section>
 
       <section class="circle-section reveal delay-2">
+        <div class="circle-copy">
+          <div class="circle-sub">The Big Picture</div>
+          <h2 class="circle-title">
+            A 10-step protocol for sovereign freedom.
+          </h2>
+          <p class="lead">
+            Each node maps to a discreet layer of custody, liquidity, and
+            transfer. Together they form a single, private path from asset to
+            settlement.
+          </p>
+        </div>
         <div class="circle-shell">
           <div class="orbit" aria-hidden="true"></div>
+          <div class="circle-ring" aria-hidden="true"></div>
           <div class="circle-center">
-            <img src="d.png" alt="Dynk logo" />
+            <div class="circle-flip" id="circleFlip">
+              <div class="circle-face front">
+                <img src="darkCoin.png" alt="Dynk logo" />
+              </div>
+              <div class="circle-face back">
+                <div class="circle-back" id="circleBack">
+                  <div class="circle-back-inner">
+                    <h3 id="circleBackTitle">Protocol</h3>
+                    <p id="circleBackText">
+                      A discreet layer in the Dynk architecture.
+                    </p>
+                    <blockquote class="circle-quote" id="circleBackQuote">
+                      "Insert WEF quote here."
+                    </blockquote>
+                    <div class="circle-quote-meta" id="circleBackQuoteMeta">
+                      Influential voice - WEF
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="circle-item" style="--i: 0">
-            <div class="circle-icon"><i class="fas fa-crown"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 0"
+            data-title="Transactions"
+            data-text="Instant, quiet transfers with assured settlement."
+            data-quote="Replace with a WEF quote about fast, trusted payments."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon">
+              <i class="fas fa-arrow-right-arrow-left"></i>
+            </div>
             <p class="circle-label">Transactions</p>
           </div>
-          <div class="circle-item" style="--i: 1">
-            <div class="circle-icon"><i class="fas fa-shield-halved"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 1"
+            data-title="Safe Storage"
+            data-text="Vaulted custody with discrete access tiers."
+            data-quote="Replace with a WEF quote about resilient custody."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon"><i class="fas fa-shield"></i></div>
             <p class="circle-label">Safe Storage</p>
           </div>
-          <div class="circle-item" style="--i: 2">
-            <div class="circle-icon"><i class="fas fa-diamond"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 2"
+            data-title="NFT"
+            data-text="Gallery-grade custody for high-value collectibles."
+            data-quote="Replace with a WEF quote about digital ownership."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon"><i class="fas fa-gem"></i></div>
             <p class="circle-label">NFT</p>
           </div>
-          <div class="circle-item" style="--i: 3">
-            <div class="circle-icon"><i class="fas fa-award"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 3"
+            data-title="Rewards"
+            data-text="Programmatic incentives with predictable yield."
+            data-quote="Replace with a WEF quote about aligned incentives."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon">
+              <i class="fas fa-circle-dollar-to-slot"></i>
+            </div>
             <p class="circle-label">Rewards</p>
           </div>
-          <div class="circle-item" style="--i: 4">
-            <div class="circle-icon"><i class="fas fa-chess-knight"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 4"
+            data-title="AI Agent"
+            data-text="Personalized routing and quiet optimization."
+            data-quote="Replace with a WEF quote about responsible AI."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon"><i class="fas fa-atom"></i></div>
             <p class="circle-label">AI Agent</p>
           </div>
-          <div class="circle-item" style="--i: 5">
-            <div class="circle-icon"><i class="fas fa-handshake"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 5"
+            data-title="Distribution"
+            data-text="Private distribution rails with controlled visibility."
+            data-quote="Replace with a WEF quote about secure distribution."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon"><i class="fas fa-sitemap"></i></div>
             <p class="circle-label">Distribution</p>
           </div>
-          <div class="circle-item" style="--i: 6">
-            <div class="circle-icon"><i class="fas fa-globe-europe"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 6"
+            data-title="Global"
+            data-text="Borderless reach with local compliance layers."
+            data-quote="Replace with a WEF quote about global access."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon"><i class="fas fa-earth-americas"></i></div>
             <p class="circle-label">Global</p>
           </div>
-          <div class="circle-item" style="--i: 7">
+          <div
+            class="circle-item"
+            style="--i: 7"
+            data-title="Local"
+            data-text="Localized rails for immediate in-market transfer."
+            data-quote="Replace with a WEF quote about local resilience."
+            data-quote-meta="Influential voice - WEF"
+          >
             <div class="circle-icon"><i class="fas fa-location-dot"></i></div>
             <p class="circle-label">Local</p>
           </div>
-          <div class="circle-item" style="--i: 8">
+          <div
+            class="circle-item"
+            style="--i: 8"
+            data-title="Private"
+            data-text="Privacy-first flows with minimal footprint."
+            data-quote="Replace with a WEF quote about privacy and trust."
+            data-quote-meta="Influential voice - WEF"
+          >
             <div class="circle-icon"><i class="fas fa-lock"></i></div>
             <p class="circle-label">Private</p>
           </div>
-          <div class="circle-item" style="--i: 9">
-            <div class="circle-icon"><i class="fas fa-landmark"></i></div>
+          <div
+            class="circle-item"
+            style="--i: 9"
+            data-title="Merchant"
+            data-text="Premium merchant rails with quiet reconciliation."
+            data-quote="Replace with a WEF quote about merchant adoption."
+            data-quote-meta="Influential voice - WEF"
+          >
+            <div class="circle-icon"><i class="fas fa-store"></i></div>
             <p class="circle-label">Merchant</p>
           </div>
         </div>
       </section>
 
       <section class="quote-section reveal delay-3">
-        <h2>World Economic Forum on crypto</h2>
+        <h2 style="text-align: center">World Economic Forum on crypto</h2>
         <div class="quote-carousel" data-quote-carousel>
           <button
             class="quote-arrow left"

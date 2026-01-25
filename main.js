@@ -67,3 +67,38 @@ if (quoteCarousel && quoteSlides && nextBtn && prevBtn) {
   prevBtn.addEventListener("click", prev);
   update();
 }
+
+const circleFlip = document.getElementById("circleFlip");
+const circleBackTitle = document.getElementById("circleBackTitle");
+const circleBackText = document.getElementById("circleBackText");
+const circleBackQuote = document.getElementById("circleBackQuote");
+const circleBackQuoteMeta = document.getElementById("circleBackQuoteMeta");
+const circleItems = document.querySelectorAll(".circle-item");
+
+if (
+  circleFlip &&
+  circleBackTitle &&
+  circleBackText &&
+  circleBackQuote &&
+  circleBackQuoteMeta &&
+  circleItems.length
+) {
+  const defaultQuote = "Insert WEF quote here.";
+  const defaultQuoteMeta = "Influential voice - WEF";
+
+  circleItems.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      circleBackTitle.textContent = item.dataset.title || "Protocol";
+      circleBackText.textContent =
+        item.dataset.text || "A discreet layer in the Dynk architecture.";
+      circleBackQuote.textContent = `"${item.dataset.quote || defaultQuote}"`;
+      circleBackQuoteMeta.textContent =
+        item.dataset.quoteMeta || defaultQuoteMeta;
+      circleFlip.classList.add("is-flipped");
+    });
+
+    item.addEventListener("mouseleave", () => {
+      circleFlip.classList.remove("is-flipped");
+    });
+  });
+}
