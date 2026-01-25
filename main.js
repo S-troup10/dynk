@@ -330,6 +330,3 @@ if (parallaxItems.length && !reducedMotion.matches) {
 
   onScroll();
 }
-
-
-
