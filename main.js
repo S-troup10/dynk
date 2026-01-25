@@ -1,4 +1,4 @@
-﻿const quotes = [
+const quotes = [
   {
     text:
       "The point of this technology is that you can move assets extremely quickly, peer-to-peer and get them, without borders, all over the world.",
@@ -9,8 +9,65 @@
     meta: "Jennifer Johnson - WEF Davos 2025",
   },
   {
+    text: "We need to make crypto easier to use.",
+    meta: "Brian Armstrong - WEF Davos 2025",
+  },
+  {
+    text:
+      "Most people don't understand how electricity works, but they can flip on a light switch.",
+    meta: "Brian Armstrong - WEF Davos 2025",
+  },
+  {
+    text: "Clear, clean, such that everybody could understand it.",
+    meta: "Lesetja Kganyago - WEF Davos 2025",
+  },
+  {
+    text: "I'm always surprised by how big the crypto space is.",
+    meta: "Jennifer Johnson - WEF Davos 2025",
+  },
+  {
+    text: "Crypto is really in its infancy.",
+    meta: "Brian Armstrong - WEF Davos 2025",
+  },
+  {
+    text: "It actually improves the local economy.",
+    meta: "Denelle Dixon - WEF Davos 2025",
+  },
+  {
+    text: "The key is to harness the benefits while managing the risks.",
+    meta: "Christine Lagarde - IMF 2018",
+  },
+  {
     text: "I believe we should consider the possibility to issue digital currency.",
-    meta: "Christine Lagarde - WEF 2018",
+    meta: "Christine Lagarde - IMF 2018",
+  },
+  {
+    text:
+      "We expect it to be cheap and safe, protected against criminals and prying eyes.",
+    meta: "Christine Lagarde - IMF 2018",
+  },
+  {
+    text:
+      "We have built a planetary nervous system for information, but no circulatory system for value.",
+    meta: "Jeremy Allaire - WEF 2025",
+  },
+  {
+    text: "The internet has never been able to encode these rights natively.",
+    meta: "Jeremy Allaire - WEF 2025",
+  },
+  {
+    text: "AI is emerging as a new kind of operating system.",
+    meta: "Jeremy Allaire - WEF 2025",
+  },
+  {
+    text:
+      "The long-term impact is going to increase economic freedom in the world.",
+    meta: "Brian Armstrong - WEF Davos 2025",
+  },
+  {
+    text:
+      "The modern global economy rests on two pillars: ownership rights and value exchange.",
+    meta: "Jeremy Allaire - WEF 2025",
   },
 ];
 
@@ -83,8 +140,8 @@ if (
   circleBackQuoteMeta &&
   circleItems.length
 ) {
-  const defaultQuote = "Insert WEF quote here.";
-  const defaultQuoteMeta = "Influential voice - WEF";
+  const defaultQuote = "The key is to harness the benefits while managing the risks.";
+  const defaultQuoteMeta = "Christine Lagarde - IMF 2018";
 
   circleItems.forEach((item) => {
     item.addEventListener("mouseenter", () => {
@@ -102,3 +159,54 @@ if (
     });
   });
 }
+
+const showcaseModalTrigger = document.querySelector("[data-showcase-modal]");
+const showcaseModal = document.querySelector("[data-modal]");
+const showcaseModalClose = document.querySelector("[data-modal-close]");
+
+if (showcaseModalTrigger && showcaseModal && showcaseModalClose) {
+  const isMobile = () => window.matchMedia("(max-width: 700px)").matches;
+
+  const openModal = () => {
+    showcaseModal.classList.add("is-open");
+    showcaseModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    showcaseModalClose.focus();
+  };
+
+  const closeModal = () => {
+    showcaseModal.classList.remove("is-open");
+    showcaseModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  showcaseModalTrigger.addEventListener("click", (event) => {
+    if (!isMobile()) {
+      return;
+    }
+    event.preventDefault();
+    openModal();
+  });
+
+  showcaseModalClose.addEventListener("click", closeModal);
+
+  showcaseModal.addEventListener("click", (event) => {
+    if (event.target === showcaseModal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && showcaseModal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (!isMobile() && showcaseModal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+}
+
+
