@@ -1,7 +1,6 @@
 const quotes = [
   {
-    text:
-      "The point of this technology is that you can move assets extremely quickly, peer-to-peer and get them, without borders, all over the world.",
+    text: "The point of this technology is that you can move assets extremely quickly, peer-to-peer and get them, without borders, all over the world.",
     meta: "Denelle Dixon - WEF Davos 2025",
   },
   {
@@ -13,8 +12,7 @@ const quotes = [
     meta: "Brian Armstrong - WEF Davos 2025",
   },
   {
-    text:
-      "Most people don't understand how electricity works, but they can flip on a light switch.",
+    text: "Most people don't understand how electricity works, but they can flip on a light switch.",
     meta: "Brian Armstrong - WEF Davos 2025",
   },
   {
@@ -42,13 +40,11 @@ const quotes = [
     meta: "Christine Lagarde - IMF 2018",
   },
   {
-    text:
-      "We expect it to be cheap and safe, protected against criminals and prying eyes.",
+    text: "We expect it to be cheap and safe, protected against criminals and prying eyes.",
     meta: "Christine Lagarde - IMF 2018",
   },
   {
-    text:
-      "We have built a planetary nervous system for information, but no circulatory system for value.",
+    text: "We have built a planetary nervous system for information, but no circulatory system for value.",
     meta: "Jeremy Allaire - WEF 2025",
   },
   {
@@ -60,13 +56,11 @@ const quotes = [
     meta: "Jeremy Allaire - WEF 2025",
   },
   {
-    text:
-      "The long-term impact is going to increase economic freedom in the world.",
+    text: "The long-term impact is going to increase economic freedom in the world.",
     meta: "Brian Armstrong - WEF Davos 2025",
   },
   {
-    text:
-      "The modern global economy rests on two pillars: ownership rights and value exchange.",
+    text: "The modern global economy rests on two pillars: ownership rights and value exchange.",
     meta: "Jeremy Allaire - WEF 2025",
   },
 ];
@@ -140,7 +134,8 @@ if (
   circleBackQuoteMeta &&
   circleItems.length
 ) {
-  const defaultQuote = "The key is to harness the benefits while managing the risks.";
+  const defaultQuote =
+    "The key is to harness the benefits while managing the risks.";
   const defaultQuoteMeta = "Christine Lagarde - IMF 2018";
 
   circleItems.forEach((item) => {
@@ -208,5 +203,133 @@ if (showcaseModalTrigger && showcaseModal && showcaseModalClose) {
     }
   });
 }
+
+const showcaseAccordion = document.querySelector("[data-showcase-accordion]");
+const showcaseCopy = document.querySelector(".showcase-copy");
+
+if (showcaseAccordion) {
+  const items = Array.from(showcaseAccordion.querySelectorAll(".showcase-item"));
+  const panels = items
+    .map((item) => item.querySelector(".showcase-panel"))
+    .filter(Boolean);
+  const openPadding = 26;
+  const openMargin = 10;
+  const openBorder = 2;
+  const openExtra = openPadding + openMargin + openBorder;
+
+  const updatePanelHeights = () => {
+    panels.forEach((panel) => {
+      const panelHeight = panel.scrollHeight + openExtra;
+      panel.style.setProperty("--panel-height", `${panelHeight}px`);
+    });
+
+    if (showcaseCopy && panels.length) {
+      const openItems = items.filter((item) => item.classList.contains("is-open"));
+      showcaseAccordion.classList.add("is-measuring");
+      openItems.forEach((item) => setClosed(item));
+      showcaseCopy.style.minHeight = "";
+      const baseHeight = showcaseCopy.getBoundingClientRect().height;
+      openItems.forEach((item) => setOpen(item));
+      showcaseAccordion.classList.remove("is-measuring");
+      const maxPanelHeight = Math.max(
+        ...panels.map((panel) =>
+          parseFloat(panel.style.getPropertyValue("--panel-height")) || 0
+        )
+      );
+      showcaseCopy.style.minHeight = `${Math.ceil(
+        baseHeight + maxPanelHeight
+      )}px`;
+    }
+  };
+
+  const setClosed = (item) => {
+    const toggle = item.querySelector(".showcase-toggle");
+    const panel = item.querySelector(".showcase-panel");
+    if (!toggle || !panel) {
+      return;
+    }
+    item.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    panel.setAttribute("aria-hidden", "true");
+  };
+
+  const setOpen = (item) => {
+    const toggle = item.querySelector(".showcase-toggle");
+    const panel = item.querySelector(".showcase-panel");
+    if (!toggle || !panel) {
+      return;
+    }
+    item.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    panel.setAttribute("aria-hidden", "false");
+  };
+
+  items.forEach((item) => {
+    const toggle = item.querySelector(".showcase-toggle");
+    const panel = item.querySelector(".showcase-panel");
+    if (!toggle || !panel) {
+      return;
+    }
+
+    toggle.setAttribute("aria-expanded", "false");
+    panel.setAttribute("aria-hidden", "true");
+
+    toggle.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+      items.forEach((other) => setClosed(other));
+      if (!isOpen) {
+        setOpen(item);
+      }
+    });
+  });
+  updatePanelHeights();
+  window.addEventListener("resize", updatePanelHeights);
+}
+
+const parallaxItems = Array.from(document.querySelectorAll("[data-parallax]"));
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (parallaxItems.length && !reducedMotion.matches) {
+  let ticking = false;
+  const baseOffsets = new Map();
+
+  parallaxItems.forEach((item) => {
+    baseOffsets.set(item, item.getBoundingClientRect().top + window.scrollY);
+  });
+
+  const updateParallax = () => {
+    const scrollY = window.scrollY;
+    const viewportH = window.innerHeight;
+
+    parallaxItems.forEach((item) => {
+      const speed = parseFloat(item.dataset.speed || "0.08");
+      const base = baseOffsets.get(item) || 0;
+      const progress = (scrollY + viewportH * 0.5 - base) / viewportH;
+      const translate = Math.max(Math.min(progress * 40 * speed, 32), -32);
+      item.style.transform = `translate3d(0, ${translate}px, 0)`;
+    });
+
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => {
+    baseOffsets.clear();
+    parallaxItems.forEach((item) => {
+      baseOffsets.set(item, item.getBoundingClientRect().top + window.scrollY);
+    });
+    onScroll();
+  });
+
+  onScroll();
+}
+
 
 
