@@ -36,6 +36,7 @@
         height: auto;
       }
 
+      html,
       body {
         margin: 0;
         font-family: "Montserrat", sans-serif;
@@ -75,6 +76,14 @@
         min-height: 100vh;
         letter-spacing: 0.01em;
         overflow-x: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar {
+        width: 0;
+        height: 0;
       }
 
       .grain {
@@ -144,7 +153,7 @@
         padding: 72px clamp(32px, 8vw, 140px) 140px;
         padding-bottom: 2rem;
         display: grid;
-        gap: 20px;
+        gap: 130px;
       }
 
       .hero-wrap {
@@ -847,21 +856,117 @@
         gap: 12px;
       }
 
+      .showcase-accordion {
+        display: grid;
+        gap: 12px;
+      }
+
+      .showcase-accordion.is-measuring .showcase-panel,
+      .showcase-accordion.is-measuring .showcase-toggle i,
+      .showcase-accordion.is-measuring .showcase-item {
+        transition: none !important;
+      }
+
       .showcase-item {
+        position: relative;
+        border-radius: 999px;
+        border: 1px solid rgba(252, 252, 252, 0.12);
+        background: #0b0b0b;
+        overflow: visible;
+        transition:
+          border-color 0.35s ease,
+          box-shadow 0.35s ease,
+          background 0.35s ease;
+      }
+
+      .showcase-toggle {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 12px;
         padding: 12px 16px;
-        border-radius: 999px;
-        border: 1px solid rgba(252, 252, 252, 0.12);
-        background: rgba(252, 252, 252, 0.03);
+        padding-right: 44px;
+        padding-left: 20px;
+        background: transparent;
+        border: none;
+        color: rgba(252, 252, 252, 0.92);
+        text-transform: uppercase;
         font-size: 12px;
         letter-spacing: 0.2em;
-        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
       }
 
-      .showcase-item span {
-        color: var(--mist);
+      .showcase-item:not(.is-open) .showcase-toggle {
+        min-height: 52px;
+        padding-top: 0;
+        padding-bottom: 0;
+        transform: translateY(2px);
+      }
+
+      .showcase-toggle span {
+        margin-left: auto;
+        color: rgba(252, 252, 252, 0.65);
+      }
+
+      .showcase-toggle i {
+        color: rgba(252, 252, 252, 0.6);
+        font-size: 0.9em;
+        transition:
+          transform 0.35s ease,
+          color 0.35s ease;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .showcase-item.is-open {
+        border-radius: 18px;
+        border-color: rgba(252, 252, 252, 0.28);
+        background: #111111;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      .showcase-item.is-open .showcase-toggle i {
+        transform: translateY(-50%) rotate(180deg);
+        color: rgba(252, 252, 252, 0.85);
+      }
+
+      .showcase-panel {
+        display: grid;
+        gap: 10px;
+        margin-top: 0;
+        padding: 0 16px;
+        color: rgba(252, 252, 252, 0.78);
+        font-size: 13px;
+        line-height: 1.6;
+        text-transform: none;
+        letter-spacing: 0.02em;
+        border-radius: 16px;
+        border: 0 solid rgba(252, 252, 252, 0.18);
+        background: #0b0b0b;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-4px);
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.2s ease,
+          transform 0.35s ease,
+          padding 0.35s ease,
+          margin 0.35s ease,
+          border-width 0.35s ease;
+      }
+      .showcase-item.is-open .showcase-panel {
+        margin-top: 10px;
+        padding: 12px 16px 14px;
+        border-width: 1px;
+        max-height: var(--panel-height, 240px);
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .showcase-modal-trigger {
@@ -1019,7 +1124,7 @@
       }
 
       .hero-media img {
-        width: min(100%, 720px);
+        width: min(75%, 720px);
         max-height: 820px;
         object-fit: contain;
         filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.55))
@@ -1333,12 +1438,16 @@
           gap: 24px;
         }
 
-        .showcase-item {
+        .showcase-toggle {
           flex-direction: column;
           align-items: flex-start;
           gap: 6px;
           font-size: 11px;
           letter-spacing: 0.16em;
+        }
+
+        .showcase-toggle span {
+          margin-left: 0;
         }
 
         .feature-track {
@@ -1475,7 +1584,7 @@
           letter-spacing: 0.18em;
         }
 
-        .showcase-item {
+        .showcase-toggle {
           font-size: 10px;
           letter-spacing: 0.14em;
         }
@@ -1524,15 +1633,17 @@
       <section class="hero-wrap reveal delay-1">
         <div class="hero">
           <div class="eyebrow">The future of money</div>
-          <h1>Own it. Grow it</h1>
+          <h1>Own it, Grow it</h1>
           <p class="lead">
-            DYNK is more than a token - it’s a Solana-powered ecosystem uniting
-            wallets, NFTs, conversions, and referrals under one experience.
+            DYNK is the next step in the evolution of modern day economic
+            infrastructure - it’s a Solana-powered ecosystem uniting NFTs
+            wallets, instantaneous transactions, and monetised distribution
+            seamlessly packaged into one digital experience
           </p>
-          <a class="cta" href="#">S</a>
+          <a class="cta" href="#">Get Your Wallet →</a>
           <div class="stats">
             <div class="stat">
-              <strong>1¢</strong>
+              <strong><b>1</b>¢</strong>
               <span>Transaction fees</span>
             </div>
             <div class="stat">
@@ -1561,19 +1672,46 @@
             One view for collectors. One currency for motion. One rail that
             keeps everything quiet.
           </p>
-          <div class="showcase-grid">
+          <div class="showcase-accordion" data-showcase-accordion>
             <div class="showcase-item">
-              Snapshot vaults <span>Encrypted</span>
+              <button class="showcase-toggle" type="button">
+                NFTs <span>Wallets</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="showcase-panel">
+                The NFTs themselves live inside the wallet, acting as
+                vault‑grade containers for ownership and access.
+              </div>
             </div>
-            <div class="showcase-item">Currency rails <span>Instant</span></div>
             <div class="showcase-item">
-              Private transfers <span>Silent</span>
+              <button class="showcase-toggle" type="button">
+                Founder wallets <span>1000</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="showcase-panel">
+                A limited set of 1,000 founder wallets reserved for the first
+                wave of core holders.
+              </div>
+            </div>
+            <div class="showcase-item">
+              <button class="showcase-toggle" type="button">
+                Treasury wallets <span>9000</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="showcase-panel">
+                9,000 treasury wallets allocated for liquidity, rewards, and
+                long‑term growth.
+              </div>
             </div>
           </div>
-          <button class="cta showcase-modal-trigger" type="button" data-showcase-modal>
+          <button
+            class="cta showcase-modal-trigger"
+            type="button"
+            data-showcase-modal
+          >
             View Wallet Details
           </button>
-          <a class="cta" href="#">Request Access</a>
+          <a class="cta" href="#">Get Your Wallet →</a>
         </div>
       </section>
 
@@ -1831,8 +1969,18 @@
     <div class="lux-sheen" aria-hidden="true"></div>
     <div class="lux-sheen pos2" aria-hidden="true"></div>
     <div class="modal" data-modal aria-hidden="true">
-      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" type="button" data-modal-close aria-label="Close">
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          data-modal-close
+          aria-label="Close"
+        >
           <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
         <div class="modal-kicker">NFT wallets</div>
