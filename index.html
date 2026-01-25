@@ -1444,10 +1444,26 @@
           gap: 6px;
           font-size: 11px;
           letter-spacing: 0.16em;
+          padding-left: 18px;
+          padding-right: 40px;
         }
 
         .showcase-toggle span {
           margin-left: 0;
+        }
+
+        .showcase-item:not(.is-open) .showcase-toggle {
+          min-height: 0;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          transform: translateY(0);
+        }
+
+        .showcase-panel {
+          font-size: 12px;
+          line-height: 1.55;
+          padding-left: 14px;
+          padding-right: 14px;
         }
 
         .feature-track {
@@ -1999,3 +2015,4 @@
     <script src="main.js"></script>
   </body>
 </html>
+
