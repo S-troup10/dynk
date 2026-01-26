@@ -114,8 +114,14 @@ if (quoteCarousel && quoteSlides && nextBtn && prevBtn) {
     update();
   };
 
-  nextBtn.addEventListener("click", next);
-  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    next();
+  });
+  prevBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    prev();
+  });
   update();
 }
 
@@ -137,22 +143,126 @@ if (
   const defaultQuote =
     "The key is to harness the benefits while managing the risks.";
   const defaultQuoteMeta = "Christine Lagarde - IMF 2018";
+  const canHover = window.matchMedia("(hover: hover)").matches;
+  let activeItem = null;
+  const isMobile = () => window.matchMedia("(max-width: 700px)").matches;
+  const circleModal = document.querySelector("[data-circle-modal]");
+  const circleModalClose = document.querySelector("[data-circle-modal-close]");
+  const circleModalTitle = document.getElementById("circleModalTitle");
+  const circleModalText = document.getElementById("circleModalText");
+  const circleModalQuote = document.getElementById("circleModalQuote");
+  const circleModalMeta = document.getElementById("circleModalMeta");
+
+  const getItemContent = (item) => ({
+    title: item.dataset.title || "Protocol",
+    text: item.dataset.text || "A discreet layer in the Dynk architecture.",
+    quote: item.dataset.quote || defaultQuote,
+    meta: item.dataset.quoteMeta || defaultQuoteMeta,
+  });
+
+  const applyToBack = (content) => {
+    circleBackTitle.textContent = content.title;
+    circleBackText.textContent = content.text;
+    circleBackQuote.textContent = `"${content.quote}"`;
+    circleBackQuoteMeta.textContent = content.meta;
+  };
+
+  const applyToModal = (content) => {
+    if (!circleModalTitle || !circleModalText || !circleModalQuote || !circleModalMeta) {
+      return;
+    }
+    circleModalTitle.textContent = content.title;
+    circleModalText.textContent = content.text;
+    circleModalQuote.textContent = `"${content.quote}"`;
+    circleModalMeta.textContent = content.meta;
+  };
+
+  const openItem = (item) => {
+    applyToBack(getItemContent(item));
+    circleFlip.classList.add("is-flipped");
+    activeItem = item;
+  };
+
+  const closeItem = () => {
+    circleFlip.classList.remove("is-flipped");
+    activeItem = null;
+  };
 
   circleItems.forEach((item) => {
     item.addEventListener("mouseenter", () => {
-      circleBackTitle.textContent = item.dataset.title || "Protocol";
-      circleBackText.textContent =
-        item.dataset.text || "A discreet layer in the Dynk architecture.";
-      circleBackQuote.textContent = `"${item.dataset.quote || defaultQuote}"`;
-      circleBackQuoteMeta.textContent =
-        item.dataset.quoteMeta || defaultQuoteMeta;
-      circleFlip.classList.add("is-flipped");
+      if (!canHover) {
+        return;
+      }
+      openItem(item);
     });
 
     item.addEventListener("mouseleave", () => {
-      circleFlip.classList.remove("is-flipped");
+      if (!canHover) {
+        return;
+      }
+      closeItem();
+    });
+
+    item.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (isMobile() && circleModal) {
+        const content = getItemContent(item);
+        applyToModal(content);
+        circleModal.classList.add("is-open");
+        circleModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        if (circleModalClose) {
+          circleModalClose.focus();
+        }
+        return;
+      }
+      if (activeItem === item) {
+        closeItem();
+        return;
+      }
+      openItem(item);
     });
   });
+
+  document.addEventListener("click", (event) => {
+    if (
+      event.target.closest(".circle-item") ||
+      event.target.closest("#circleFlip")
+    ) {
+      return;
+    }
+    closeItem();
+  });
+
+  if (circleModal) {
+    const closeCircleModal = () => {
+      circleModal.classList.remove("is-open");
+      circleModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    if (circleModalClose) {
+      circleModalClose.addEventListener("click", closeCircleModal);
+    }
+
+    circleModal.addEventListener("click", (event) => {
+      if (event.target === circleModal) {
+        closeCircleModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && circleModal.classList.contains("is-open")) {
+        closeCircleModal();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (!isMobile() && circleModal.classList.contains("is-open")) {
+        closeCircleModal();
+      }
+    });
+  }
 }
 
 const showcaseModalTrigger = document.querySelector("[data-showcase-modal]");
@@ -204,6 +314,48 @@ if (showcaseModalTrigger && showcaseModal && showcaseModalClose) {
   });
 }
 
+const walletModalTriggers = Array.from(
+  document.querySelectorAll("[data-wallet-modal]")
+);
+const walletModal = document.querySelector("[data-wallet-modal-dialog]");
+const walletModalClose = document.querySelector("[data-wallet-modal-close]");
+
+if (walletModalTriggers.length && walletModal && walletModalClose) {
+  const openWalletModal = () => {
+    walletModal.classList.add("is-open");
+    walletModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    walletModalClose.focus();
+  };
+
+  const closeWalletModal = () => {
+    walletModal.classList.remove("is-open");
+    walletModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  walletModalTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openWalletModal();
+    });
+  });
+
+  walletModalClose.addEventListener("click", closeWalletModal);
+
+  walletModal.addEventListener("click", (event) => {
+    if (event.target === walletModal) {
+      closeWalletModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && walletModal.classList.contains("is-open")) {
+      closeWalletModal();
+    }
+  });
+}
+
 const showcaseAccordion = document.querySelector("[data-showcase-accordion]");
 const showcaseCopy = document.querySelector(".showcase-copy");
 
@@ -212,25 +364,41 @@ if (showcaseAccordion) {
   const panels = items
     .map((item) => item.querySelector(".showcase-panel"))
     .filter(Boolean);
-  const openPadding = 26;
-  const openMargin = 10;
-  const openBorder = 2;
-  const openExtra = openPadding + openMargin + openBorder;
+  const getPanelHeight = (panel) => {
+    const item = panel.closest(".showcase-item");
+    if (!item) {
+      return panel.scrollHeight;
+    }
+    const wasOpen = item.classList.contains("is-open");
+    if (!wasOpen) {
+      item.classList.add("is-open");
+    }
+    const styles = window.getComputedStyle(panel);
+    const padding =
+      parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+    const margin = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
+    const border =
+      parseFloat(styles.borderTopWidth) + parseFloat(styles.borderBottomWidth);
+    const height = panel.scrollHeight + padding + margin + border;
+    if (!wasOpen) {
+      item.classList.remove("is-open");
+    }
+    return height;
+  };
 
   const updatePanelHeights = () => {
+    showcaseAccordion.classList.add("is-measuring");
     panels.forEach((panel) => {
-      const panelHeight = panel.scrollHeight + openExtra;
+      const panelHeight = getPanelHeight(panel);
       panel.style.setProperty("--panel-height", `${panelHeight}px`);
     });
 
     if (showcaseCopy && panels.length) {
       const openItems = items.filter((item) => item.classList.contains("is-open"));
-      showcaseAccordion.classList.add("is-measuring");
       openItems.forEach((item) => setClosed(item));
       showcaseCopy.style.minHeight = "";
       const baseHeight = showcaseCopy.getBoundingClientRect().height;
       openItems.forEach((item) => setOpen(item));
-      showcaseAccordion.classList.remove("is-measuring");
       const maxPanelHeight = Math.max(
         ...panels.map((panel) =>
           parseFloat(panel.style.getPropertyValue("--panel-height")) || 0
@@ -240,6 +408,7 @@ if (showcaseAccordion) {
         baseHeight + maxPanelHeight
       )}px`;
     }
+    showcaseAccordion.classList.remove("is-measuring");
   };
 
   const setClosed = (item) => {
