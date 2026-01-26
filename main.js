@@ -65,6 +65,29 @@ const quotes = [
   },
 ];
 
+const bindTap = (element, handler) => {
+  let lastTouchTime = 0;
+
+  const onTouchEnd = (event) => {
+    lastTouchTime = Date.now();
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    handler(event);
+  };
+
+  const onClick = (event) => {
+    if (Date.now() - lastTouchTime < 500) {
+      event.preventDefault();
+      return;
+    }
+    handler(event);
+  };
+
+  element.addEventListener("touchend", onTouchEnd, { passive: false });
+  element.addEventListener("click", onClick);
+};
+
 const quoteCarousel = document.querySelector("[data-quote-carousel]");
 const quoteSlides = document.querySelector("[data-quote-slides]");
 const nextBtn = document.querySelector("[data-quote-next]");
@@ -206,7 +229,7 @@ if (
       closeItem();
     });
 
-    item.addEventListener("click", (event) => {
+    bindTap(item, (event) => {
       event.preventDefault();
       if (useModal() && circleModal) {
         const content = getItemContent(item);
@@ -246,7 +269,10 @@ if (
     };
 
     if (circleModalClose) {
-      circleModalClose.addEventListener("click", closeCircleModal);
+      bindTap(circleModalClose, (event) => {
+        event.preventDefault();
+        closeCircleModal();
+      });
     }
 
     circleModal.addEventListener("click", (event) => {
@@ -292,7 +318,7 @@ if (showcaseModalTrigger && showcaseModal && showcaseModalClose) {
     document.body.style.overflow = "";
   };
 
-  showcaseModalTrigger.addEventListener("click", (event) => {
+  bindTap(showcaseModalTrigger, (event) => {
     if (!isMobile()) {
       return;
     }
@@ -300,7 +326,10 @@ if (showcaseModalTrigger && showcaseModal && showcaseModalClose) {
     openModal();
   });
 
-  showcaseModalClose.addEventListener("click", closeModal);
+  bindTap(showcaseModalClose, (event) => {
+    event.preventDefault();
+    closeModal();
+  });
 
   showcaseModal.addEventListener("click", (event) => {
     if (event.target === showcaseModal) {
@@ -342,13 +371,16 @@ if (walletModalTriggers.length && walletModal && walletModalClose) {
   };
 
   walletModalTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", (event) => {
+    bindTap(trigger, (event) => {
       event.preventDefault();
       openWalletModal();
     });
   });
 
-  walletModalClose.addEventListener("click", closeWalletModal);
+  bindTap(walletModalClose, (event) => {
+    event.preventDefault();
+    closeWalletModal();
+  });
 
   walletModal.addEventListener("click", (event) => {
     if (event.target === walletModal) {
@@ -506,4 +538,3 @@ if (parallaxItems.length && !reducedMotion.matches) {
 
   onScroll();
 }
-
