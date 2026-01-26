@@ -145,7 +145,10 @@ if (
   const defaultQuoteMeta = "Christine Lagarde - IMF 2018";
   const canHover = window.matchMedia("(hover: hover)").matches;
   let activeItem = null;
-  const isMobile = () => window.matchMedia("(max-width: 700px)").matches;
+  const isTouch = () =>
+    window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  const useModal = () =>
+    isTouch() || window.matchMedia("(max-width: 900px)").matches;
   const circleModal = document.querySelector("[data-circle-modal]");
   const circleModalClose = document.querySelector("[data-circle-modal-close]");
   const circleModalTitle = document.getElementById("circleModalTitle");
@@ -205,9 +208,10 @@ if (
 
     item.addEventListener("click", (event) => {
       event.preventDefault();
-      if (isMobile() && circleModal) {
+      if (useModal() && circleModal) {
         const content = getItemContent(item);
         applyToModal(content);
+        circleFlip.classList.remove("is-flipped");
         circleModal.classList.add("is-open");
         circleModal.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
@@ -258,8 +262,11 @@ if (
     });
 
     window.addEventListener("resize", () => {
-      if (!isMobile() && circleModal.classList.contains("is-open")) {
+      if (!useModal() && circleModal.classList.contains("is-open")) {
         closeCircleModal();
+      }
+      if (useModal()) {
+        circleFlip.classList.remove("is-flipped");
       }
     });
   }
@@ -499,3 +506,4 @@ if (parallaxItems.length && !reducedMotion.matches) {
 
   onScroll();
 }
+
