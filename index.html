@@ -1446,6 +1446,17 @@
         }
       }
 
+      @media (hover: none), (pointer: coarse) {
+        .circle-flip,
+        .circle-flip.is-flipped {
+          transform: none !important;
+        }
+
+        .circle-face.back {
+          display: none;
+        }
+      }
+
       @media (max-width: 1100px) {
         main {
           padding: 15px clamp(24px, 6vw, 80px) 0;
