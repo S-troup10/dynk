@@ -1,67 +1,67 @@
 const quotes = [
   {
-    text: "The point of this technology is that you can move assets extremely quickly, peer-to-peer and get them, without borders, all over the world.",
-    meta: "Denelle Dixon - WEF Davos 2025",
+    text: "It is only together that we can find solid and lasting solutions to the major challenges of our time.",
+    meta: "Guy Parmelin - WEF Davos 2026",
   },
   {
-    text: "What this technology does is it has a source of truth.",
-    meta: "Jennifer Johnson - WEF Davos 2025",
+    text: "Technology is never inherently good or bad; it is what we make it.",
+    meta: "Guy Parmelin - WEF Davos 2026",
   },
   {
-    text: "We need to make crypto easier to use.",
-    meta: "Brian Armstrong - WEF Davos 2025",
+    text: "Long-term thinking is necessary in any situation.",
+    meta: "Guy Parmelin - WEF Davos 2026",
   },
   {
-    text: "Most people don't understand how electricity works, but they can flip on a light switch.",
-    meta: "Brian Armstrong - WEF Davos 2025",
+    text: "Solidarity and humanity are not part of the digital vocabulary.",
+    meta: "Guy Parmelin - WEF Davos 2026",
   },
   {
-    text: "Clear, clean, such that everybody could understand it.",
-    meta: "Lesetja Kganyago - WEF Davos 2025",
+    text: "I've come to this year's World Economic Forum with truly phenomenal news from America.",
+    meta: "Donald J. Trump - WEF Davos 2026",
   },
   {
-    text: "I'm always surprised by how big the crypto space is.",
-    meta: "Jennifer Johnson - WEF Davos 2025",
+    text: "Our economy is booming.",
+    meta: "Donald J. Trump - WEF Davos 2026",
   },
   {
-    text: "Crypto is really in its infancy.",
-    meta: "Brian Armstrong - WEF Davos 2025",
+    text: "We're leading the world in AI by a lot.",
+    meta: "Donald J. Trump - WEF Davos 2026",
   },
   {
-    text: "It actually improves the local economy.",
-    meta: "Denelle Dixon - WEF Davos 2025",
+    text: "I want Europe to do great.",
+    meta: "Donald J. Trump - WEF Davos 2026",
   },
   {
-    text: "The key is to harness the benefits while managing the risks.",
-    meta: "Christine Lagarde - IMF 2018",
+    text: "We accept neither the law of the strongest nor a purely moral stance.",
+    meta: "Emmanuel Macron - WEF Davos 2026",
   },
   {
-    text: "I believe we should consider the possibility to issue digital currency.",
-    meta: "Christine Lagarde - IMF 2018",
+    text: "We are reaching a time of instability, of imbalances.",
+    meta: "Emmanuel Macron - WEF Davos 2026",
   },
   {
-    text: "We expect it to be cheap and safe, protected against criminals and prying eyes.",
-    meta: "Christine Lagarde - IMF 2018",
+    text: "A world without rules, where international law is trampled underfoot.",
+    meta: "Emmanuel Macron - WEF Davos 2026",
   },
   {
-    text: "We have built a planetary nervous system for information, but no circulatory system for value.",
-    meta: "Jeremy Allaire - WEF 2025",
+    text: "France and Europe must defend an effective multilateralism.",
+    meta: "Emmanuel Macron - WEF Davos 2026",
   },
   {
-    text: "The internet has never been able to encode these rights natively.",
-    meta: "Jeremy Allaire - WEF 2025",
+    text: "NATO is constructed like this: that the US, Canada and the European NATO Allies work completely integrated.",
+    meta: "Mark Rutte - WEF Davos 2026",
   },
   {
-    text: "AI is emerging as a new kind of operating system.",
-    meta: "Jeremy Allaire - WEF 2025",
+    text: "For the protection of both the US and Europe, it's crucial that NATO is there.",
+    meta: "Mark Rutte - WEF Davos 2026",
   },
   {
-    text: "The long-term impact is going to increase economic freedom in the world.",
-    meta: "Brian Armstrong - WEF Davos 2025",
+    text: "The US is spending 3.5% of GDP on core defence; we are spending in Europe average 2% on defence.",
+    meta: "Mark Rutte - WEF Davos 2026",
   },
   {
-    text: "The modern global economy rests on two pillars: ownership rights and value exchange.",
-    meta: "Jeremy Allaire - WEF 2025",
+    text: "No way. Without Donald Trump, this would never have happened.",
+    meta: "Mark Rutte - WEF Davos 2026",
   },
 ];
 
@@ -538,3 +538,4 @@ if (parallaxItems.length && !reducedMotion.matches) {
 
   onScroll();
 }
+
