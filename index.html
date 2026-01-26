@@ -20,7 +20,7 @@
         --ink: rgba(5, 5, 5, 1);
         --paper: rgba(252, 252, 252, 1);
         --veil: rgba(252, 252, 252, 0.08);
-        --mist: rgba(252, 252, 252, 0.2);
+        --mist: rgba(252, 252, 252, 0.28);
         --glow: rgba(252, 252, 252, 0.7);
         --pulse: rgba(252, 252, 252, 0.45);
         --ember: rgba(255, 128, 0, 0.18);
@@ -98,6 +98,7 @@
       .no-margin {
         margin: 0 !important;
         padding: 0 !important;
+        font-size: 16px !important;
       }
 
       .grain.pos2 {
@@ -130,7 +131,7 @@
         font-size: 10px;
         letter-spacing: 0.22em;
         font-weight: 500;
-        color: rgba(252, 252, 252, 0.55);
+        color: rgba(252, 252, 252, 0.64);
       }
 
       .logo-img {
@@ -149,13 +150,13 @@
       }
 
       .nav span {
-        opacity: 0.7;
+        opacity: 0.82;
       }
 
       main {
         position: relative;
         z-index: 2;
-        padding: 72px clamp(32px, 8vw, 140px) 0;
+        padding: 30px clamp(32px, 8vw, 140px) 0;
         display: grid;
         gap: 130px;
       }
@@ -170,7 +171,7 @@
 
       .hero {
         display: grid;
-        gap: 24px;
+        gap: 16px;
         max-width: 720px;
       }
 
@@ -194,6 +195,10 @@
         font-size: clamp(16px, 2.2vw, 20px);
         line-height: 1.6;
         color: var(--mist);
+      }
+
+      p.lead {
+        margin: 0;
       }
 
       .cta {
@@ -228,6 +233,9 @@
       }
 
       .stat {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 6px;
         padding: 18px 20px;
         border-radius: 16px;
         background: rgba(252, 252, 252, 0.04);
@@ -236,15 +244,17 @@
 
       .stat strong {
         display: block;
-        font-size: 20px;
+        font-size: 17px;
+        font-weight: 500;
         letter-spacing: 0.08em;
+        color: var(--mist);
       }
 
       .stat span {
         font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 0.22em;
-        color: var(--mist);
+        color: var(--paper);
       }
 
       .signal {
@@ -343,6 +353,16 @@
         font-size: 13px;
         text-transform: uppercase;
         letter-spacing: 0.4em;
+        color: var(--mist);
+      }
+
+      .circle-mobile-hint {
+        display: none;
+        margin: 12px auto 0;
+        text-align: center;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
         color: var(--mist);
       }
 
@@ -524,6 +544,11 @@
         transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)))
           translateY(calc(var(--radius) * -1)) rotate(calc(-36deg * var(--i)))
           scale(1.08);
+      }
+
+      .circle-item {
+        cursor: pointer;
+        touch-action: manipulation;
       }
 
       .circle-icon {
@@ -878,7 +903,7 @@
 
       .showcase-copy {
         display: grid;
-        gap: 20px;
+        gap: 0px !important;
         max-width: 520px;
       }
 
@@ -930,9 +955,9 @@
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        padding: 12px 16px;
-        padding-right: 44px;
-        padding-left: 20px;
+        padding: 0 12px;
+        padding-right: 32px;
+        padding-left: 24px;
         background: transparent;
         border: none;
         color: rgba(252, 252, 252, 0.92);
@@ -940,19 +965,20 @@
         font-size: 12px;
         letter-spacing: 0.2em;
         cursor: pointer;
+        min-height: 38px;
         position: relative;
       }
 
       .showcase-item:not(.is-open) .showcase-toggle {
-        min-height: 52px;
+        min-height: 38px;
         padding-top: 0;
         padding-bottom: 0;
-        transform: translateY(2px);
+        transform: translateY(0);
       }
 
       .showcase-toggle span {
         margin-left: auto;
-        color: rgba(252, 252, 252, 0.65);
+        color: rgba(252, 252, 252, 0.74);
       }
 
       .showcase-toggle i {
@@ -983,8 +1009,8 @@
         display: grid;
         gap: 10px;
         margin-top: 0;
-        padding: 0 16px;
-        color: rgba(252, 252, 252, 0.78);
+        padding: 0 10px;
+        color: rgba(252, 252, 252, 0.86);
         font-size: 13px;
         line-height: 1.6;
         text-transform: none;
@@ -1007,12 +1033,13 @@
       }
       .showcase-item.is-open .showcase-panel {
         margin-top: 10px;
-        padding: 12px 16px 14px;
+        padding: 8px 12px 10px;
         border-width: 1px;
         max-height: var(--panel-height, 240px);
         opacity: 1;
         transform: translateY(0);
       }
+
 
       .showcase-modal-trigger {
         display: none;
@@ -1026,17 +1053,28 @@
       .modal {
         position: fixed;
         inset: 0;
-        display: none;
+        display: flex;
         align-items: center;
         justify-content: center;
         padding: 24px;
-        background: rgba(4, 4, 4, 0.75);
+        background: radial-gradient(
+            120% 120% at 50% 10%,
+            rgba(252, 252, 252, 0.08),
+            rgba(8, 8, 8, 0.85) 50%,
+            rgba(2, 2, 2, 0.95) 100%
+          );
         backdrop-filter: blur(8px);
         z-index: 40;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
       }
 
       .modal.is-open {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
 
       .modal-card {
@@ -1047,6 +1085,14 @@
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         padding: 22px;
         position: relative;
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+        transition: transform 0.45s ease, opacity 0.45s ease;
+      }
+
+      .modal.is-open .modal-card {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
 
       .modal-kicker {
@@ -1068,6 +1114,15 @@
         line-height: 1.6;
         font-size: 14px;
       }
+
+      .wallet-modal .modal-card {
+        width: min(94vw, 520px);
+        padding: 40px 24px 24px;
+        border: 1px solid rgba(252, 252, 252, 0.2);
+        background: linear-gradient(160deg, #20211f, #060606);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+
 
       .modal-list {
         list-style: none;
@@ -1091,6 +1146,32 @@
 
       .modal-list span {
         color: var(--mist);
+      }
+
+      .modal-email {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 16px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(252, 252, 252, 0.22);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        color: var(--paper);
+        background: linear-gradient(120deg, rgba(16, 16, 16, 0.9), #050505);
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .modal-email:hover {
+        border-color: var(--glow);
+        box-shadow: 0 0 28px rgba(252, 252, 252, 0.12);
+        transform: translateY(-1px);
       }
 
       .modal-close {
@@ -1129,7 +1210,7 @@
         text-transform: uppercase;
         font-size: 11px;
         letter-spacing: 0.22em;
-        color: rgba(252, 252, 252, 0.55);
+        color: rgba(252, 252, 252, 0.64);
       }
 
       .footer-col {
@@ -1145,7 +1226,7 @@
       }
 
       .footer-link {
-        color: rgba(252, 252, 252, 0.6);
+        color: rgba(252, 252, 252, 0.7);
         text-decoration: none;
         letter-spacing: 0.16em;
       }
@@ -1161,7 +1242,7 @@
         text-transform: uppercase;
         font-size: 10px;
         letter-spacing: 0.24em;
-        color: rgba(252, 252, 252, 0.5);
+        color: rgba(252, 252, 252, 0.6);
       }
 
       .hero-media {
@@ -1367,7 +1448,7 @@
 
       @media (max-width: 1100px) {
         main {
-          padding: 64px clamp(24px, 6vw, 80px) 0;
+          padding: 15px clamp(24px, 6vw, 80px) 0;
         }
 
         .hero-wrap,
@@ -1445,11 +1526,12 @@
           flex-direction: column;
           gap: 16px;
           align-items: flex-start;
-          padding: 24px 20px;
+          padding: 20px 16px;
         }
 
         main {
-          padding: 48px 20px 0;
+          padding: 28px 16px 0;
+          gap: 48px;
         }
 
         .nav {
@@ -1458,14 +1540,20 @@
           font-size: 11px;
           letter-spacing: 0.18em;
           max-width: 320px;
+          display: none;
         }
 
         .hero {
-          gap: 18px;
+          gap: 16px;
         }
 
         .lead {
           max-width: 100%;
+        }
+
+        .hero-media img,
+        .phone-media img {
+          animation: none;
         }
 
         .cta {
@@ -1473,46 +1561,60 @@
           letter-spacing: 0.22em;
         }
 
+        .hero-wrap {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          min-height: auto;
+        }
+
         .stats {
-          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-          gap: 16px;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
+          margin-top: 12px;
+          text-align: center;
         }
 
         .stat {
-          padding: 14px 16px;
+          padding: 10px 8px;
         }
 
         .stat strong {
-          font-size: 18px;
+          font-size: 16px;
         }
 
         .stat span {
-          letter-spacing: 0.16em;
+          font-size: 9px;
+          letter-spacing: 0.12em;
         }
 
         .showcase {
-          padding: 48px 0 24px;
-          gap: 24px;
+          padding: 24px 0 12px;
+          gap: 20px;
+        }
+
+        .showcase-accordion {
+          gap: 10px;
         }
 
         .showcase-toggle {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 6px;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
           font-size: 11px;
           letter-spacing: 0.16em;
-          padding-left: 18px;
-          padding-right: 40px;
+          padding-left: 20px;
+          padding-right: 38px;
+          min-height: 44px;
         }
 
         .showcase-toggle span {
-          margin-left: 0;
+          margin-left: auto;
         }
 
         .showcase-item:not(.is-open) .showcase-toggle {
-          min-height: 0;
-          padding-top: 10px;
-          padding-bottom: 10px;
+          min-height: 44px;
+          padding-top: 0;
+          padding-bottom: 0;
           transform: translateY(0);
         }
 
@@ -1528,26 +1630,44 @@
         }
 
         .circle-shell {
-          --radius: clamp(140px, 36vw, 200px);
-          --item: clamp(78px, 18vw, 108px);
-          --icon: clamp(54px, 14vw, 74px);
-          width: min(100%, calc((var(--radius) * 2) + var(--item)));
+          --radius: clamp(120px, 32vw, 180px);
+          --item: clamp(64px, 16vw, 90px);
+          --icon: clamp(46px, 12vw, 64px);
+          width: min(92vw, calc((var(--radius) * 2) + var(--item)));
           height: auto;
           aspect-ratio: 1 / 1;
+          display: grid;
+          place-items: center;
+          justify-self: center;
+          margin: 0 auto;
+          transform: none;
+        }
+
+        .circle-shell .orbit {
+          transform: translateY(10px);
+        }
+
+        .circle-ring {
+          transform: translate(-50%, -48%);
         }
 
         .circle-section {
           grid-template-columns: 1fr;
-          gap: 32px;
-          padding: 0 0 32px;
+          gap: 24px;
+          padding: 8px 0 20px;
+          justify-items: center;
         }
 
         .circle-shell {
-          display: none;
+          display: grid;
+        }
+
+        .circle-mobile-hint {
+          display: block;
         }
 
         .circle-list {
-          display: grid;
+          display: none;
         }
 
         .phone-media {
@@ -1558,13 +1678,38 @@
           display: inline-flex;
         }
 
+        .circle-item {
+          display: grid;
+          place-items: center;
+        }
+
+        .circle-icon {
+          margin-bottom: 0;
+        }
+
         .circle-label {
-          font-size: 0.7rem;
-          letter-spacing: 0.16em;
+          position: absolute;
+          left: 50%;
+          top: calc(100% + 2px);
+          transform: translateX(-50%);
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          line-height: 1.1;
+          white-space: nowrap;
+        }
+
+        .circle-item[style*="--i: 0"] .circle-label,
+        .circle-item[style*="--i: 1"] .circle-label,
+        .circle-item[style*="--i: 2"] .circle-label,
+        .circle-item[style*="--i: 8"] .circle-label,
+        .circle-item[style*="--i: 9"] .circle-label {
+          top: auto;
+          bottom: calc(100% + 2px);
         }
 
         .circle-center img {
-          width: min(200px, 60vw);
+          width: min(160px, 46vw);
+          transform: translateY(-6px);
         }
 
         .circle-back {
@@ -1577,13 +1722,27 @@
           gap: 10px;
         }
 
+        .quote-section {
+          padding: 48px 0 24px;
+          gap: 18px;
+        }
+
+        .quote-layout {
+          gap: 20px;
+          padding-left: 0;
+        }
+
         .quote-carousel {
-          height: auto;
-          padding-bottom: 60px;
+          height: 240px;
+          padding-bottom: 48px;
+          width: 100%;
+          max-width: 420px;
+          margin: 0 auto;
+          margin-left: 0;
         }
 
         .quote-slides {
-          height: auto;
+          height: 100%;
         }
 
         .quote-slide {
@@ -1595,7 +1754,7 @@
         }
 
         .quote-slide.center {
-          position: relative;
+          position: absolute;
         }
 
         .quote-slide.left,
@@ -1618,6 +1777,7 @@
           width: 40px;
           height: 40px;
           font-size: 18px;
+          touch-action: manipulation;
         }
 
         .quote-arrow.left {
@@ -1628,11 +1788,59 @@
           right: 12px;
         }
 
+        .quote-copy {
+          order: 1;
+        }
+
+        .quote-carousel {
+          order: 2;
+        }
+
         .orbit1,
         .pulse,
         .lux-glow,
         .lux-sheen {
           display: none;
+        }
+
+        footer {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+          font-size: 9px;
+          letter-spacing: 0.18em;
+        }
+
+        .footer-title {
+          font-size: 10px;
+          letter-spacing: 0.2em;
+        }
+
+        .divider {
+          margin: 18px 0 12px;
+        }
+
+        .modal-card {
+          padding: 18px;
+        }
+
+        .modal-kicker {
+          margin-bottom: 6px;
+        }
+
+        .modal-card h3 {
+          margin: 6px 0 10px;
+        }
+
+        .modal-card p {
+          margin: 0 0 12px;
+        }
+
+        .circle-quote {
+          margin-top: 10px;
+        }
+
+        .circle-quote-meta {
+          margin-top: 6px;
         }
       }
 
@@ -1680,8 +1888,8 @@
         }
 
         .circle-label {
-          font-size: 0.65rem;
-          letter-spacing: 0.12em;
+          font-size: 8px;
+          letter-spacing: 0.1em;
         }
 
         .quote-card {
@@ -1698,7 +1906,7 @@
         <img class="logo-img" src="DYNK.png" alt="DYNK logo" />
       </div>
       <nav class="nav">
-        <span>Where innovation meets ownership</span>
+        <span>Own it , Grow it</span>
       </nav>
     </header>
 
@@ -1706,14 +1914,14 @@
       <section class="hero-wrap reveal delay-1">
         <div class="hero">
           <div class="eyebrow">The future of money</div>
-          <h1>Own it, Grow it</h1>
-          <p class="lead">
-            DYNK is the next step in the evolution of modern day economic
-            infrastructure - it’s a Solana-powered ecosystem uniting NFTs
-            wallets, instantaneous transactions, and monetised distribution
-            seamlessly packaged into one digital experience
+          <h1>The Ultimate Digital Wallet</h1>
+          
+          <p style="font-size: 18px;" class="lead">
+            DYNK is your step into the economic
+            future - it’s a Solana-powered ecosystem uniting 
+            instantaneous transactions and monetised distribution
+            seamlessly packaged into one digital ecosystem.
           </p>
-          <a class="cta" href="#">Get Your Wallet →</a>
           <div class="stats">
             <div class="stat">
               <strong><b>1</b>¢</strong>
@@ -1728,6 +1936,7 @@
               <span>Treasury wallets</span>
             </div>
           </div>
+          <a class="cta" href="#" data-wallet-modal>Get Your Wallet →</a>
         </div>
         <div class="hero-media">
           <img src="coin2.png" alt="DYNK coin" />
@@ -1742,8 +1951,11 @@
           <div class="showcase-kicker">NFT wallets</div>
           <h2 class="showcase-title">The Future of Money.</h2>
           <p class="lead no-margin">
-            One view for collectors. One currency for motion. One rail that
-            keeps everything quiet.
+            Worlds biggest Distribution of Wealth and Governance.<br>
+
+Portable ownership packed with rewards and monetised distribution.<br>
+
+Security built with transactional convenience.
           </p>
           <div class="showcase-accordion" data-showcase-accordion>
             <div class="showcase-item">
@@ -1752,8 +1964,8 @@
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div class="showcase-panel">
-                The NFTs themselves live inside the wallet, acting as
-                vault‑grade containers for ownership and access.
+                A Reward based NFT wallet creating a tradable asset,
+                   while maintaining the security through non custodial holding
               </div>
             </div>
             <div class="showcase-item">
@@ -1762,8 +1974,9 @@
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div class="showcase-panel">
-                A limited set of 1,000 founder wallets reserved for the first
-                wave of core holders.
+                The unique opportunity to be part of the DYNK founder team through acquiring one of the first wallets numbered from 0001-1000.
+Founder wallets come packed with rewards and opportunities and guarantees throughout the distribution and transactional phases.
+Every treasury wallet will be linked back to a specific Founder Wallet
               </div>
             </div>
             <div class="showcase-item">
@@ -1772,19 +1985,15 @@
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div class="showcase-panel">
-                9,000 treasury wallets allocated for liquidity, rewards, and
-                long‑term growth.
+                Treasury Wallets will have the opportunity to grow their wallet and be part of the treasury ecosystem through rewards that are packed into their wallet.
+A range of Treasury Wallets numbered 1001-10,000 are available giving multiple entry points to be part of the DYNK journey 
+Every distributed transactional wallet will be linked to either a founder wallet of a treasury wallet 
               </div>
             </div>
           </div>
-          <button
-            class="cta showcase-modal-trigger"
-            type="button"
-            data-showcase-modal
+          <a class="cta" style="margin-top: 10px; padding-top: 0; padding-bottom: 0; text-indent: 6px;" href="#" data-wallet-modal
+            >Get Your Wallet →</a
           >
-            View Wallet Details
-          </button>
-          <a class="cta" href="#">Get Your Wallet →</a>
         </div>
       </section>
 
@@ -1795,14 +2004,12 @@
             The 10-step Protocol for Sovereign Freedom.
           </h2>
           <p class="lead">
-            Each node maps to a discreet layer of custody, liquidity, and
-            transfer. Together they form a single, private path from asset to
-            settlement.
-          </p>
+            
+            Dynk is inevitable. <br> Be apart of the story , or read about it later.
           <div class="circle-list">
             <div class="circle-card">
               <h3>Transactions</h3>
-              <p>Instant, quiet transfers with assured settlement.</p>
+              <p>Dynk offers 1c transaction fees</p>
             </div>
             <div class="circle-card">
               <h3>Safe Storage</h3>
@@ -1874,9 +2081,9 @@
             class="circle-item"
             style="--i: 0"
             data-title="Transactions"
-            data-text="Instant, quiet transfers with assured settlement."
-            data-quote="The point of this technology is that you can move assets extremely quickly, peer-to-peer and get them, without borders, all over the world."
-            data-quote-meta="Denelle Dixon - WEF Davos 2025"
+            data-text="All transactions on the Dynk network are capped at one cent"
+            data-quote="Cheap stablecoin transactions continue to be one of the most important sources of large-scale value that crypto provides today."
+            data-quote-meta="Vitalik Buterin - Co Founder Ethereum"
           >
             <div class="circle-icon">
               <i class="fas fa-arrow-right-arrow-left"></i>
@@ -1887,9 +2094,9 @@
             class="circle-item"
             style="--i: 1"
             data-title="Safe Storage"
-            data-text="Vaulted custody with discrete access tiers."
-            data-quote="We expect it to be cheap and safe, protected against criminals and prying eyes."
-            data-quote-meta="Christine Lagarde - IMF 2018"
+            data-text="NFT non-custodial wallets ensures you have complete control of your own assets"
+            data-quote="If its not about self custody, why even Crypto?"
+            data-quote-meta="Pascal Gautheir - CEO of Ledger"
           >
             <div class="circle-icon"><i class="fas fa-shield"></i></div>
             <p class="circle-label">Safe Storage</p>
@@ -1898,9 +2105,9 @@
             class="circle-item"
             style="--i: 2"
             data-title="NFT"
-            data-text="Gallery-grade custody for high-value collectibles."
-            data-quote="The modern global economy rests on two pillars: ownership rights and value exchange."
-            data-quote-meta="Jeremy Allaire - WEF 2025"
+            data-text="NFTs turn your wallet into tradable assets"
+            data-quote="The possibilities of NFTs are endless, since they can be used to log ownership of any unique asset."
+            data-quote-meta="Alex Atallah - Co-founder of OpenSea"
           >
             <div class="circle-icon"><i class="fas fa-gem"></i></div>
             <p class="circle-label">NFT</p>
@@ -1909,9 +2116,9 @@
             class="circle-item"
             style="--i: 3"
             data-title="Rewards"
-            data-text="Programmatic incentives with predictable yield."
-            data-quote="The long-term impact is going to increase economic freedom in the world."
-            data-quote-meta="Brian Armstrong - WEF Davos 2025"
+            data-text="Transaction fees are distributed amongst the treasury"
+            data-quote="billionaires might have capital, but creators have contextual influence. they’re plugged into the hivemind. it’s asymmetric as hell—attention is a currency that bypasses traditional status hierarchies."
+            data-quote-meta="signüll - online creator"
           >
             <div class="circle-icon">
               <i class="fas fa-circle-dollar-to-slot"></i>
@@ -1922,9 +2129,9 @@
             class="circle-item"
             style="--i: 4"
             data-title="AI Agent"
-            data-text="Personalized routing and quiet optimization."
-            data-quote="AI is emerging as a new kind of operating system."
-            data-quote-meta="Jeremy Allaire - WEF 2025"
+            data-text="In the not so distant future, our lives will be organized by our AI agent which will be connected to your Dynk wallet"
+            data-quote="The native currency for AI agents is going to be crypto"
+            data-quote-meta="ChangPeng Zhao (CZ) - Former CEO of Binance"
           >
             <div class="circle-icon"><i class="fas fa-atom"></i></div>
             <p class="circle-label">AI Agent</p>
@@ -1933,9 +2140,9 @@
             class="circle-item"
             style="--i: 5"
             data-title="Distribution"
-            data-text="Private distribution rails with controlled visibility."
-            data-quote="Their role is simple and profound: to provide a neutral, tamper-resistant and programmable environment for money, assets, contracts and governance to exist natively online."
-            data-quote-meta="Jeremy Allaire - WEF 2025"
+            data-text="A connected and rewarded network"
+            data-quote="The future is already here – it's just not very evenly distributed."
+            data-quote-meta="William Gibson - Godfather of Cyberpunk"
           >
             <div class="circle-icon"><i class="fas fa-sitemap"></i></div>
             <p class="circle-label">Distribution</p>
@@ -1945,8 +2152,8 @@
             style="--i: 6"
             data-title="Global"
             data-text="Borderless reach with local compliance layers."
-            data-quote="If we can actually inject good financial infrastructure to every country in the world for anybody who has a smartphone."
-            data-quote-meta="Brian Armstrong - WEF Davos 2025"
+            data-quote="The existing fiat monetary order is breaking down... Fiat currencies and debt as a storehold of wealth are not being held by central banks in the same way they were in the recent past"
+            data-quote-meta="Ray Dalio - Founder of Bridgewater Associates"
           >
             <div class="circle-icon"><i class="fas fa-earth-americas"></i></div>
             <p class="circle-label">Global</p>
@@ -1955,9 +2162,9 @@
             class="circle-item"
             style="--i: 7"
             data-title="Local"
-            data-text="Localized rails for immediate in-market transfer."
-            data-quote="It actually improves the local economy."
-            data-quote-meta="Denelle Dixon - WEF Davos 2025"
+            data-text="Spend and get rewarded at your local retailers"
+            data-quote="The best customer service is if the customer doesn't need to call you, doesn't need to talk to you. It just works."
+            data-quote-meta="Jeff Bezos - CEO Amazon"
           >
             <div class="circle-icon"><i class="fas fa-location-dot"></i></div>
             <p class="circle-label">Local</p>
@@ -1966,9 +2173,9 @@
             class="circle-item"
             style="--i: 8"
             data-title="Private"
-            data-text="Privacy-first flows with minimal footprint."
-            data-quote="We reach for cash to protect our privacy for legitimate reasons."
-            data-quote-meta="Christine Lagarde - IMF 2018"
+            data-text="Privacy is secured through taking control over your own assets"
+            data-quote="Not your keys, not your coins."
+            data-quote-meta="Andreas M. Antonopoulos Bitcoin educator and Author"
           >
             <div class="circle-icon"><i class="fas fa-lock"></i></div>
             <p class="circle-label">Private</p>
@@ -1977,14 +2184,15 @@
             class="circle-item"
             style="--i: 9"
             data-title="Merchant"
-            data-text="Premium merchant rails with quiet reconciliation."
-            data-quote="What this technology does is it has a source of truth."
-            data-quote-meta="Jennifer Johnson - WEF Davos 2025"
+            data-text="Allows merchants to engage directly with consumers to market and sell"
+            data-quote="If you're a merchant over here in the shopping mall, every time somebody uses a credit card, you end up paying the credit card company 2%. You could drop that to almost zero by using Bitcoin or another crypto."
+            data-quote-meta="Brian Armstrong - CEO of Coinbase"
           >
             <div class="circle-icon"><i class="fas fa-store"></i></div>
             <p class="circle-label">Merchant</p>
           </div>
         </div>
+        <div class="circle-mobile-hint">Click on each to see more info</div>
       </section>
       <section>
       <section class="quote-section reveal delay-3">
@@ -1994,10 +2202,16 @@
               class="quote-arrow left"
               data-quote-prev
               aria-label="Previous"
+              type="button"
             >
               <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             </button>
-            <button class="quote-arrow right" data-quote-next aria-label="Next">
+            <button
+              class="quote-arrow right"
+              data-quote-next
+              aria-label="Next"
+              type="button"
+            >
               <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </button>
             <div class="quote-slides" data-quote-slides></div>
@@ -2006,8 +2220,7 @@
             <div class="showcase-kicker">Signal from the room</div>
             <h2 class="showcase-title">World Economic Forum on Crypto</h2>
             <p class="lead no-margin">
-              A live snapshot of how leaders describe ownership, value transfer,
-              and the infrastructure powering the next wave of wallets.
+              The world is now awoken, as evidenced by the commentary at the world economic forum 2026. 
             </p>
           </div>
         </div>
@@ -2027,7 +2240,7 @@
           <a class="footer-link" href="mailto:contact@dynk.io"
             >contact@dynk.io</a
           >
-          <a class="footer-link" href="tel:+61280000000">+61 0000 0000</a>
+          
         </div>
         <div class="footer-col">
           <div class="footer-title">Location</div>
@@ -2078,9 +2291,65 @@
         </ul>
       </div>
     </div>
+    <div class="modal circle-modal" data-circle-modal aria-hidden="true">
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="circleModalTitle"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          data-circle-modal-close
+          aria-label="Close"
+        >
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <div class="modal-kicker">Protocol</div>
+        <h3 id="circleModalTitle">Protocol</h3>
+        <p id="circleModalText">A discreet layer in the Dynk architecture.</p>
+        <blockquote class="circle-quote" id="circleModalQuote">
+          "The key is to harness the benefits while managing the risks."
+        </blockquote>
+        <div class="circle-quote-meta" id="circleModalMeta">
+          Christine Lagarde - IMF 2018
+        </div>
+      </div>
+    </div>
+    <div class="modal wallet-modal" data-wallet-modal-dialog aria-hidden="true">
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="walletModalTitle"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          data-wallet-modal-close
+          aria-label="Close"
+        >
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <div class="modal-kicker">Founder wallets</div>
+        <h3 id="walletModalTitle">Applications Now Open</h3>
+        <p>
+          We are currently taking applications to buy Founder Wallets. If you want to be apart the future, send us an email at contact@dynk.io.
+        </p>
+        <a class="modal-email" href="mailto:contact@dynk.io">
+          contact@dynk.io
+        </a>
+      </div>
+    </div>
     </section>
     <script src="main.js"></script>
   </body>
 </html>
+
+
+
+
+
 
 
