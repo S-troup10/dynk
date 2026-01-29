@@ -894,6 +894,158 @@
         right: -18px;
       }
 
+      .board-section {
+        display: grid;
+        gap: 24px;
+        padding: 0 0 0;
+        position: relative;
+      }
+
+      .board-header {
+        display: grid;
+        gap: 12px;
+        max-width: 560px;
+      }
+
+      .board-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+        margin-top: 6px;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+
+      .board-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .board-legend-swatch {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        border: 1px solid rgba(252, 252, 252, 0.28);
+        background: rgba(252, 252, 252, 0.06);
+      }
+
+      .board-legend-swatch.sold {
+        background: rgba(64, 214, 140, 0.55);
+        border-color: rgba(64, 214, 140, 0.65);
+      }
+
+      .board-shell {
+        position: relative;
+        border-radius: 26px;
+        padding: clamp(12px, 2vw, 20px);
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .board-shell::after {
+        content: none;
+      }
+
+      .board-shell.is-locked .board-viewport {
+        filter: saturate(0.85) brightness(0.92);
+      }
+
+      .board-viewport {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        overflow: hidden;
+        background: transparent;
+        z-index: 1;
+      }
+
+      .board-shell.is-active .board-viewport {
+        cursor: grab;
+      }
+
+      .board-shell.is-active .board-viewport:active {
+        cursor: grabbing;
+      }
+
+      .board-canvas {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform-origin: 0 0;
+        will-change: transform;
+      }
+
+      .board-grid {
+        display: grid;
+        gap: 0;
+        background: transparent;
+      }
+
+      .board-tile {
+        width: var(--board-tile, 14px);
+        height: var(--board-tile, 14px);
+        border-radius: 0;
+        border: 1px solid rgba(252, 252, 252, 0.22);
+        background: rgba(252, 252, 252, 0.06);
+        color: var(--paper);
+        font-size: var(--board-label, 7px);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.3);
+        user-select: none;
+        overflow: hidden;
+      }
+
+      .board-tile[data-status="available"] {
+        background: rgba(252, 252, 252, 0.06);
+      }
+
+      .board-tile[data-status="sold"] {
+        background: rgba(64, 214, 140, 0.55);
+      }
+
+      .board-tile.is-empty {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        pointer-events: none;
+      }
+
+      .board-grid.is-compact .board-tile span {
+        display: none;
+      }
+
+      .board-overlay {
+        display: none;
+      }
+
+      .board-overlay span {
+        display: block;
+      }
+
+      .board-overlay small {
+        display: block;
+        margin-top: 10px;
+        font-size: 10px;
+        letter-spacing: 0.24em;
+        color: var(--mist);
+      }
+
+      .board-shell.is-active .board-overlay {
+        display: none;
+      }
+
       .showcase {
         display: grid;
         grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -1528,6 +1680,18 @@
           justify-self: start;
         }
 
+        .board-section {
+          padding: 40px 0 0;
+        }
+
+        .board-header {
+          max-width: 100%;
+        }
+
+        .board-viewport {
+          height: clamp(220px, 68vw, 420px);
+        }
+
         .stats {
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
@@ -1872,6 +2036,15 @@
           letter-spacing: 0.14em;
         }
 
+        .board-overlay {
+          font-size: 11px;
+          letter-spacing: 0.18em;
+        }
+
+        .board-overlay small {
+          letter-spacing: 0.14em;
+        }
+
         .cta {
           font-size: 11px;
           letter-spacing: 0.18em;
@@ -2206,7 +2379,6 @@ Every distributed transactional wallet will be linked to either a founder wallet
         </div>
         <div class="circle-mobile-hint">Click on each to see more info</div>
       </section>
-      <section>
       <section class="quote-section reveal delay-3">
         <div class="quote-layout">
           <div class="quote-carousel" data-quote-carousel>
@@ -2238,7 +2410,32 @@ Every distributed transactional wallet will be linked to either a founder wallet
         </div>
       </section>
 
-      <div class="divider"></div>
+      <section class="board-section reveal delay-3">
+        <div class="board-header">
+          <div class="showcase-kicker">Founder wallets sold</div>
+          <h2 class="showcase-title">Founder Wallet Board</h2>
+          <p class="lead no-margin">
+           View who has bought founder wallets
+          </p>
+          <div class="board-legend">
+            <div class="board-legend-item">
+              <span class="board-legend-swatch"></span> Untaken
+            </div>
+            <div class="board-legend-item">
+              <span class="board-legend-swatch sold"></span> Sold
+            </div>
+          </div>
+        </div>
+        <div class="board-shell is-locked" data-board-shell>
+          <div class="board-viewport" data-board-viewport>
+            <div class="board-canvas" data-board-canvas>
+              <div class="board-grid" data-board-grid></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider" style="margin-top: 0;"></div>
 
       <footer>
         <div class="footer-col">
@@ -2358,6 +2555,7 @@ Every distributed transactional wallet will be linked to either a founder wallet
     <script src="main.js"></script>
   </body>
 </html>
+
 
 
 
