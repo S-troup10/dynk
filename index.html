@@ -830,8 +830,13 @@
 
       .quote-card blockquote {
         margin: 0 0 18px;
-        font-size: 16px;
-        line-height: 1.7;
+        font-size: clamp(12px, 2.1vw, 16px);
+        line-height: 1.6;
+      }
+
+      .quote-card blockquote.is-long {
+        font-size: clamp(11px, 1.6vw, 14px);
+        line-height: 1.45;
       }
 
       .quote-meta {
