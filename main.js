@@ -8,23 +8,23 @@ const quotes = [
     meta: "Bill Winters - WEF Davos 2026",
   },
   {
-    text: "Bitcoin is a decentralized protocol. There's actually no issuer of it. So, in the sense that central banks have independence, Bitcoin is even more independent. No country, company, or individual controls it in the world.",
-    meta: "Brian Armstrong - WEF Davos 2026",
+    text: "The pace of adoption will be heavily influenced by regulation, but this will not change the direction of travel.",
+    meta: "Bill Winters - WEF Davos 2026",
   },
   {
-    text: "We're seeing use grow in cross-border trade settlement; we're seeing use grow in trade finance; we're seeing the biggest e-commerce platforms like Stripe and Shopify adding USDC payment acceptance in their own platforms.",
+    text: "We're seeing use grow in cross-border trade settlement.",
     meta: "Jeremy Allaire - WEF Davos 2026",
   },
   {
-    text: "In a growing world of agent-driven activity, a proliferation of payment protocols using stablecoins is emerging. Taking out a Visa card or firing up a bank wire is absurd, we need a medium of exchange that can scale to fractions of a cent, with speed and interoperability across applications and devices.",
-    meta: "Jeremy Allaire - WEF Davos 2026",
+    text: "Tokens are going to be used for two things: they'll be used as a medium of exchange... and they'll be used as a store of value.",
+    meta: "Bill Winters - WEF Davos 2026",
   },
   {
-    text: "1.5 billion people globally do not have access to a bank account, 650 million people on the African continent. With a smartphone, you have access to stablecoin, so you can actually save in a currency that is not exposed to the fluctuations of inflation and making you poorer. That's a big contribution of stablecoin.",
+    text: "With a smartphone, you have access to stablecoin.",
     meta: "Vera Songwe - WEF Davos 2026",
   },
   {
-    text: "As stablecoins create the potential for additional uptake in jurisdictions that have weak fiscal and monetary frameworks for dollars, or for other currencies, that creates a competitive pressure on those countries themselves in order to improve their fiscal and monetary frameworks.",
+    text: "As stablecoins create the potential for additional uptake, that creates a competitive pressure on those countries themselves.",
     meta: "Dan Katz - WEF Davos 2026",
   },
   {
@@ -71,6 +71,9 @@ if (quoteCarousel && quoteSlides && nextBtn && prevBtn) {
 
     const blockquote = document.createElement("blockquote");
     blockquote.textContent = `"${text}"`;
+    if (text.length > 150) {
+      blockquote.classList.add("is-long");
+    }
 
     const metaEl = document.createElement("div");
     metaEl.className = "quote-meta";
@@ -817,5 +820,6 @@ if (boardShell && boardViewport && boardCanvas && boardGrid) {
     },
   };
 }
+
 
 
