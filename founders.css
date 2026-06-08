@@ -4,9 +4,9 @@
 
 /* ── HERO ── */
 .f-hero {
-  position: relative; min-height: 100vh; min-height: 100dvh;
+  position: relative;
   display: flex; align-items: center; justify-content: center;
-  padding: 140px 40px 100px; overflow: hidden; text-align: center;
+  padding: 120px 40px 80px; overflow: hidden; text-align: center;
 }
 
 .f-hero-glow {
@@ -47,6 +47,7 @@
   font-size: clamp(52px, 9vw, 104px);
   font-weight: 900; letter-spacing: 0.02em; line-height: 0.97;
   color: #1A1A1A;
+  max-width: 900px;
 }
 .f-hero-sub {
   font-size: clamp(16px, 1.8vw, 20px);
@@ -414,7 +415,7 @@
   .wallet-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 600px) {
-  .f-hero { padding: 100px 20px 60px; min-height: 80vh; }
+  .f-hero { padding: 80px 20px 60px; }
   .fp-revenue-grid { grid-template-columns: 1fr; }
   .wallet-grid { grid-template-columns: 1fr !important; }
 }
