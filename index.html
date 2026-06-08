@@ -245,6 +245,27 @@
   </div>
 </section>
 
+<!-- WAITLIST -->
+<section class="sec-waitlist" id="waitlist-section">
+  <div class="waitlist-bg"></div>
+  <div class="waitlist-inner">
+    <p class="waitlist-label">Early Access</p>
+    <h2 class="waitlist-headline">Be the first to own<br>a DYNK wallet.</h2>
+    <p class="waitlist-sub">Join the waitlist and get notified when we launch. No spam — just the signal.</p>
+    <form class="waitlist-form" id="waitlistForm" onsubmit="handleWaitlistSubmit(event)">
+      <div class="waitlist-input-wrap">
+        <input type="email" class="waitlist-input" id="waitlistEmail" placeholder="Enter your email" required>
+        <button type="submit" class="waitlist-btn"><span>Join Waitlist</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      </div>
+    </form>
+    <div class="waitlist-success" id="waitlistSuccess" style="display:none;">
+      <div class="waitlist-success-icon">✓</div>
+      <p class="waitlist-success-msg">You're on the list. We'll be in touch.</p>
+    </div>
+    <p class="waitlist-note">No spam, ever. Unsubscribe anytime.</p>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
@@ -270,5 +291,27 @@
 <script src="hero.js"></script>
 <script src="sections.js"></script>
 <script src="scroll-anim.js"></script>
+<script>
+async function handleWaitlistSubmit(e) {
+  e.preventDefault();
+  var email = document.getElementById('waitlistEmail').value;
+  if (!email) return;
+  var btn = document.querySelector('.waitlist-btn');
+  btn.disabled = true;
+  try {
+    var res = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email }),
+    });
+    if (!res.ok) throw new Error();
+    document.getElementById('waitlistForm').style.display = 'none';
+    document.getElementById('waitlistSuccess').style.display = 'flex';
+  } catch {
+    alert('Something went wrong. Please try again.');
+    btn.disabled = false;
+  }
+}
+</script>
 </body>
 </html>
