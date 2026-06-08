@@ -1,0 +1,366 @@
+INVESTOR DECK · Q3 2026
+Own the Wallet.Own the Upside.
+A Solana-powered digital wallet ecosystem where the wallet itself is an ownable, tradable asset - with built-in rewards, governance, and yield.
+1¢
+Transaction fees
+2,100
+Treasury wallets
+Solana
+Built on
+1
+
+THE MARKET
+4.5 billion digital wallets.
+4.5B
+digital wallets worldwide — projected 5.6B by 2030
+Digital wallets deliver high-speed convenience, but all value flows to the provider. 4.5 billion people are the product - not the customer.
+3–5×
+Average wallets per user
+$0
+Earned by wallet holders
+$68B
+Market revenue by 2026
+$17T
+Yearly txns by 2029
+02 / 18
+DYNK
+2
+
+THE PROBLEM
+You're the product.Not the customer.
+Facebook, Google and Booking.com built trillion-dollar empires on your data — and you get nothing. Meanwhile fiat quietly erodes and crypto never reached daily use.
+$0
+EARNED
+Trillion-dollar empires monetise your data. All platform value flows to the provider.
+4.5B
+ZERO OWNERSHIP
+Your wallet grows for years, but data, identity and loyalty belong to the platform.
+21M
+CRYPTO STALLED
+A decade of hype, yet no wallet reached daily use. Fees and speed killed adoption.
+15%+
+FIAT FAILING
+Global tensions expose fiat's limits. Digital currencies are the next order.
+DYNK
+03 / 18
+3
+
+OUR SOLUTION
+The wallet IS the asset.
+DYNK turns your digital wallet into an ownable, tradable asset — with built-in rewards, governance rights, and yield.
+01
+Ownership
+Non-custodial wallet built for security. Your keys, your DYNK. No one can freeze your wallet.
+02
+Rewards
+Transaction fees spread among the treasury. Users rewarded for activity — passive yield in every action.
+03
+Crypto benefits
+Immutable, trustless transactions. Instant, cheap transfers. No intermediaries required.
+04 / 18
+DYNK
+4
+
+PROTOCOL & SOLUTIONS
+Built for scale.
+Solana processes 3,800 TPS at $0.0005 per transaction. DYNK builds on that infrastructure — charging 1¢ per transaction and creating the rails for real-world adoption at speed.
+$0.0005
+PER TRANSACTION
+Cheap & instantaneous on the fastest L1.
+400ms
+SETTLEMENT
+Monetized. Trade your wallet and token freely.
+3,800
+TPS AVERAGE
+Security driven. Your keys, your money — always.
+05 / 18
+DYNK
+5
+
+MONETISED WALLETS
+Wallets are
+now assets.
+No longer a medium for storing funds, they are revenue-generating digital assets that can be traded peer-to-peer.
+1
+Truly ownable
+Full ownership through private keys. No third party — including DYNK — can access funds.
+2
+Tradeable asset (NFT)
+Each wallet is minted as a unique NFT on Solana — a transferable asset sold on the in-app marketplace.
+3
+Yield generating
+Wallets generate yield through transaction fees, referrals and network activity.
+4
+In-app marketplace
+Buy, sell and auction NFT wallets in-app. 2,100 unique NFT wallets at launch.
+06 / 18
+DYNK
+6
+
+THE FUTURE
+An AI agent in every wallet.
+Every user gets a personal AI agent — managing finances, executing transactions, and protecting their data.
+Earns you rewards
+Your agent lets you monetize your own data — selling directly to connected merchants through DYNK.
+Fully automated
+AI-powered search lets users book, purchase and transact with anything through their personal agent.
+Personalised security
+Sensitive data stays on-device while you keep full control over every financial action.
+07 / 18
+DYNK
+7
+
+HOW IT WORKS
+The agent negotiates for you.
+1
+You ask
+“Where should I eat tonight?”   a request to your on-device agent.
+→
+2
+Agent reaches out
+It quietly contacts restaurant agents. Ensuring never to jeopardize your privacy
+→
+3
+Merchant pays you
+An empty restaurant pays you directly, or sends a deal: drink, discount, ride home. etc.
+→
+4
+Not the middleman
+Instead of paying Facebook for ads, the merchant pays the user directly
+Not even DYNK
+can see your data.
+Matching happens on your device. Only the minimum data is shared, with consent, per deal — you choose to monetize your own data
+08 / 18
+DYNK
+8
+
+OUR SOLUTION
+The foundation of the ecosystem.
+FOUNDER WALLETS
+800
+#001–800
+Maximum rewards. Revenue-generating wallet packed with 10,000 DYNK plus governance and guaranteed distribution.
+TREASURY WALLETS
+1,300
+#801–2100
+Packed with varying DYNK. Treasury wallets compete to reach 10,000 DYNK to qualify for revenue.
+TRANSACTIONAL WALLETS
+Unlimited
+#2101 + 
+Daily transactable non-custodial wallets for the everyday user. 1¢ instant transactions, globally.
+09 / 18
+DYNK
+9
+
+SUPPLY METRICS
+21,000,000 DYNK.
+Fixed at genesis.
+Total supply allocated across five categories — fixed at genesis, alterable by no party.
+21M
+Founders
+8,000,000
+38%
+Distribution
+5,250,000
+25%
+Engagement
+3,150,000
+15%
+Treasury
+2,500,000
+12%
+Exchange
+2,100,000
+10%
+10 / 18
+DYNK
+10
+
+MERCHANT OPPORTUNITY
+The merchant pays the user.
+For the first time, merchants pay users directly instead of paying platforms for access to them. Bottom-up, driven by local density.
+01
+Direct advertising
+Merchants gain hyper-personalized marketing - skipping the middleman and targeting users directly.
+
+02
+1¢ vs 2–3%
+Accepting DYNK means ~1¢ transactions instead of 2–3% card fees. Real savings at real scale.
+03
+Demand pulls them in
+When enough local users hold DYNK, merchants get asked “do you take DYNK?” — they come to us.
+04
+Bookkeeping does itself
+The merchant's wallet auto-sorts every payment into buckets -  tax, goods, rent. All of their book keeping is done automatically
+11 / 18
+DYNK
+11
+
+GO TO MARKET
+Six definitive strategies.
+From launch to global scale. Targets: 800 Founder  Wallets · 2,100 Treasury · 10M+ wallets by 2028.
+01
+Seamless onboarding
+One-click recovery and a seamless experience while staying fully non-custodial.
+02
+Founder community
+800 Founder Wallets form elite early governance.  each a brand ambassador.
+03
+Digital-native channels
+Precision campaigns on X, Discord and Telegram. Solana events and Web3 networks.
+04
+Strategic partnerships
+Connecting the DYNK wallet to merchants for easy, fast integration.
+05
+Referral & rewards
+2,100 Treasury Wallets earn yield by onboarding new wallets. Everyone benefits from the platforms growth.
+06
+AI personalised agents
+A private LLM per user — full data protection and anonymous search.
+12 / 18
+DYNK
+12
+
+COMPETITIVE POSITIONING
+We aren't building just a wallet.
+DYNK’s differentiation is not in the wallet itself — it would lose a straight fight to Phantom. And that's fine, because that's not market we are going into.
+TRADITIONAL WALLETS
+Phantom · MetaMask
+—
+Store value
+—
+Send & receive
+—
+User earns nothing
+DYNK — CATEGORY OF ONE
+A consented, user-paid commerce network
+✓
+Store value + send & receive
+✓
+Owns your data
+✓
+Earns from your activity
+✓
+Agent negotiates deals
+✓
+Wallet is a tradable asset
+The wallet is the trojan horse.  The agent is the company.
+13 / 18
+DYNK
+13
+
+Global Opportunity
+The biggest untapped market on earth.
+Emerging markets across SE Asia, Africa, and LATAM are highly active but systematically underbanked. DYNK captures this high-volume ecosystem by liquidating legacy middleman fees and routing the value directly back to users via rewards and ownership.
+1.4B
+People
+India's population and the world's second-largest smartphone base, already conditioned to digital payments.
+$3T+
+Projected Volume
+Digital payments volume projected for India alone by 2028 — and growing fast.
+65%
+Underbanked
+Of Southeast Asia adults are unbanked or underbanked. High transaction volume, zero ownership, zero yield.
+1¢
+vs 2-3%
+DYNK's transaction fee versus the card rails and payment processors these markets still depend on every day.
+DYNK
+03 / 18
+14
+
+IMPLEMENTATION & TIMELINE
+Launch to global scale in 24 months.
+PHASE 1
+Q1–Q2 2026
+Set Up
+NFT Wallet UX development
+Solana Smart Contracts
+Operational Setup
+Strategy defined
+PHASE 2 (Current)
+Q3–Q4 2026
+Team & Structure
+
+Founder sale (800)
+Treasury launch (1,300)
+Digital Wallet Live
+Rewards live
+Mobile and Web app released
+PHASE 3
+2027
+Strategy
+Transactional Wallet Rollout
+Mass distribution commences
+Governance Active
+Ai Agent integration
+PHASE 4
+2028+
+Execution
+DeFi yield products
+10M+ active wallets
+Ai Agent build out
+Merchant payment adoption
+14 / 18
+DYNK
+15
+
+REVENUE STREAMS
+How we make money.
+INITIAL RAISE
+Founder wallet sales
+800 wallets · $10,000 ea.
+SECONDARY RAISE
+Treasury wallet sales
+1,300 wallets · $1,000–$6,500 ea.
+RECURRING
+Transaction fees
+1¢/txn — ~$3.65M/yr at 1M daily txns.
+AI LAYER
+AI agent transactions
+1¢/query · premium routing · private LLM.
+REVENUE PROJECTIONS
+2026
+$7.5–12.5M
+Wallet sales + fees
+2027
+$15–25M
++ AI + token vesting
+2028
+$30–50M
++ merchants
+15 / 18
+DYNK
+16
+
+THE ASK
+What we need to make it happen.
+SEED ROUND TARGET
+$3M
+Alongside founder and treasury wallet sales, this seed round is the final catalyst to launch DYNK — fully funding the roadmap to global scale.
+USE OF FUNDS
+Product & Technology
+30%
+Contracting & Staff
+25%
+Business Dev & Marketing
+20%
+Operations & Legal
+15%
+Reserve & Treasury
+10%
+INVESTOR BENEFITS
+Equity structure
+Complimentary Founder Wallets
+Revenue-share participation rights
+Board observer seat (lead investors)
+Early token allocation    (if tokenized)
+16 / 18
+DYNK
+17
+
+Own the wallet. Own the upside.
+The future of money is ownable.
+Est. 2026   ·   Dubai, Global Operations   ·   contact@dynk.io   ·   dynk.io
+DYNK
+18
+

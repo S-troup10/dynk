@@ -1,0 +1,42 @@
+/* ═══════════════════════════════════════
+   DYNK — Scroll-Driven Animation Styles
+   Elements start invisible; scroll-anim.js 
+   drives transform/opacity continuously
+   ═══════════════════════════════════════ */
+
+/* All scroll-animated elements start invisible */
+.sec-title,
+.sec-label,
+.sec-desc,
+.w-card,
+.d-item,
+.f-stats,
+.f-pill,
+.board-counter,
+.board-cta-row,
+.wallet-showcase-phone .phone-mockup,
+.cta-center,
+.f-cta-title,
+.f-cta-desc,
+.cta-phone .phone-mockup {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Board cells start hidden */
+.board-cell {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Hero elements driven by scroll — don't interfere with entrance */
+.hero-inner,
+.hero-featured {
+  will-change: transform, opacity;
+}
+
+/* Ensure smooth sub-pixel rendering */
+[data-anim] {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
