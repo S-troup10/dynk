@@ -233,18 +233,25 @@ window.addEventListener('scroll', function() {
 }, { passive: true });
 
 // Founder form
-function handleFounderSubmit(e) {
+async function handleFounderSubmit(e) {
   e.preventDefault();
   var email = document.getElementById('founderEmail').value;
-  if (!email) return false;
-  // Store locally (in production this would hit an API)
-  var submissions = JSON.parse(localStorage.getItem('dynk_founder_emails') || '[]');
-  submissions.push({ email: email, date: new Date().toISOString() });
-  localStorage.setItem('dynk_founder_emails', JSON.stringify(submissions));
-  // Show success
-  document.getElementById('founderForm').style.display = 'none';
-  document.getElementById('founderSuccess').style.display = 'flex';
-  return false;
+  if (!email) return;
+  var btn = document.querySelector('.fp-email-btn');
+  btn.disabled = true;
+  try {
+    var res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email }),
+    });
+    if (!res.ok) throw new Error();
+    document.getElementById('founderForm').style.display = 'none';
+    document.getElementById('founderSuccess').style.display = 'flex';
+  } catch {
+    alert('Something went wrong. Please try again.');
+    btn.disabled = false;
+  }
 }
 </script>
 <script src="scroll-anim.js"></script>
