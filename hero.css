@@ -47,7 +47,7 @@ body {
 .nav-logo {
   display: flex; align-items: center; gap: 10px; text-decoration: none;
 }
-.nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+.nav-logo img { width: 120px; height: auto; object-fit: contain; }
 .nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
 .nav-logo-name {
   font-family: var(--font-heading); font-weight: 700; font-size: 17px;
