@@ -489,6 +489,9 @@
   text-decoration: none; font-size: 14px; color: var(--text-3); transition: color 0.25s;
 }
 .footer-col a:hover { color: var(--orange); }
+.footer-app-badges { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.footer-badge { display: inline-block; }
+.footer-badge-img { width: 140px; height: auto; display: block; }
 .footer-rule {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border), transparent);
@@ -543,4 +546,5 @@
   .footer-inner { padding: 0 20px; }
   .footer-cols { flex-direction: column; gap: 28px; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-badge-img { width: 130px; }
 }
