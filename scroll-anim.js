@@ -102,6 +102,47 @@
     var bcta = document.querySelector('.board-cta-row');
     if (bcta) { var r=bcta.getBoundingClientRect(); var p=clamp((vh-r.top)/(vh*0.5)); var t=ease(p); bcta.style.transform='translateY('+lerp(20,0,t)+'px)'; bcta.style.opacity=''+t; }
 
+    // ── WDARK METRICS — staggered slide up ──
+    var metrics = document.querySelectorAll('.wdark-metric');
+    for (var i = 0; i < metrics.length; i++) {
+      var el = metrics[i];
+      var r = el.getBoundingClientRect();
+      var p = clamp((vh - r.top + 30 - i * 25) / (vh * 0.45));
+      var t = ease(p);
+      el.style.transform = 'translateY(' + lerp(30, 0, t) + 'px)';
+      el.style.opacity = '' + t;
+    }
+
+    // ── WAITLIST SECTION — staggered rise ──
+    var wlItems = document.querySelectorAll('.waitlist-label, .waitlist-headline, .waitlist-sub, .waitlist-form');
+    for (var i = 0; i < wlItems.length; i++) {
+      var el = wlItems[i];
+      var r = el.getBoundingClientRect();
+      var p = clamp((vh - r.top + 20 - i * 30) / (vh * 0.5));
+      var t = ease(p);
+      el.style.transform = 'translateY(' + lerp(40, 0, t) + 'px)';
+      el.style.opacity = '' + t;
+    }
+
+    // ── DATA-ANIM SYSTEM — fade-up, slide-left, slide-right ──
+    var animEls = document.querySelectorAll('[data-anim]');
+    for (var i = 0; i < animEls.length; i++) {
+      var el = animEls[i];
+      var type = el.getAttribute('data-anim');
+      var delay = parseInt(el.getAttribute('data-delay') || '0');
+      var r = el.getBoundingClientRect();
+      var p = clamp((vh - r.top + 20 - delay * 22) / (vh * 0.5));
+      var t = ease(p);
+      if (type === 'fade-up') {
+        el.style.transform = 'translateY(' + lerp(40, 0, t) + 'px)';
+      } else if (type === 'slide-left') {
+        el.style.transform = 'translateX(' + lerp(60, 0, t) + 'px)';
+      } else if (type === 'slide-right') {
+        el.style.transform = 'translateX(' + lerp(-60, 0, t) + 'px)';
+      }
+      el.style.opacity = '' + t;
+    }
+
     // ── PHONE MOCKUPS IN SECTIONS ──
     var wPhone = document.querySelector('.wallet-showcase-phone .phone-mockup');
     if (wPhone) { var r=wPhone.getBoundingClientRect(); var p=clamp((vh-r.top+50)/(vh*0.55)); var t=ease(p); wPhone.style.transform='translateY('+lerp(60,0,t)+'px) scale('+lerp(0.88,1,t)+')'; wPhone.style.opacity=''+t; }

@@ -15,10 +15,16 @@
 .board-counter,
 .board-cta-row,
 .wallet-showcase-phone .phone-mockup,
+.wdark-metric,
+.waitlist-label,
+.waitlist-headline,
+.waitlist-sub,
+.waitlist-form,
 .cta-center,
 .f-cta-title,
 .f-cta-desc,
-.cta-phone .phone-mockup {
+.cta-phone .phone-mockup,
+[data-anim] {
   opacity: 0;
   will-change: transform, opacity;
 }
@@ -36,7 +42,8 @@
 }
 
 /* Ensure smooth sub-pixel rendering */
-[data-anim] {
+[data-anim],
+.wdark-metric {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
