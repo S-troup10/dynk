@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DYNK for Merchants — Stop Paying 3%</title>
+<link rel="icon" type="image/png" href="assets/dynk-gradient-mark.png">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hero.css">
+<link rel="stylesheet" href="sections.css">
+<link rel="stylesheet" href="scroll-anim.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+
+/* ══════════════════════════════════════════
+   MERCHANT PAGE — OVERRIDES & NEW COMPONENTS
+   ══════════════════════════════════════════ */
+
+/* ── HERO (light, warm gradient) ── */
+.m-hero {
+  position: relative;
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.m-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(140% 80% at 78% 12%, #F8C9A5 0%, rgba(248,201,165,0) 55%),
+    radial-gradient(120% 70% at 12% 8%, #FFE0CB 0%, rgba(255,224,203,0) 50%),
+    radial-gradient(140% 80% at 90% 92%, #C7D2EE 0%, rgba(199,210,238,0) 55%),
+    radial-gradient(160% 90% at 8% 90%, #DCDFEB 0%, rgba(220,223,235,0) 60%),
+    linear-gradient(180deg, #F0E5DA 0%, #E5E6EE 50%, #DBDDE8 100%);
+  pointer-events: none;
+}
+.m-hero-inner {
+  position: relative; z-index: 2;
+  flex: 1; display: flex; align-items: center;
+  max-width: 1280px; margin: 0 auto; width: 100%;
+  padding: 120px 48px 80px;
+  gap: 60px;
+}
+.m-hero-left { flex: 1; max-width: 620px; }
+.m-hero-eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.4vw, 30px);
+  font-weight: 700; color: #1A1A1A;
+  letter-spacing: 0.03em; line-height: 1.15;
+  margin-bottom: 4px;
+}
+.m-hero-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--orange);
+  box-shadow: 0 0 10px rgba(255,122,26,0.5);
+}
+.m-hero-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5.5vw, 80px);
+  font-weight: 900; color: #1A1A1A;
+  letter-spacing: 0.04em; line-height: 0.95;
+  margin: 8px 0 28px;
+}
+.m-hero-headline em { color: var(--orange); font-style: normal; display: block; }
+.m-hero-sub {
+  font-size: clamp(16px, 2vw, 20px); font-weight: 400;
+  color: #5C5E68; line-height: 1.65;
+  max-width: 500px; margin-bottom: 44px; text-wrap: pretty;
+}
+.m-hero-sub strong { color: #1A1A1A; font-weight: 600; }
+.m-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.m-hero-btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 18px 36px; border-radius: var(--r-pill);
+  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+  color: #fff; font-weight: 700; font-size: 15px;
+  text-decoration: none; letter-spacing: 0.04em;
+  box-shadow: 0 12px 40px rgba(255,122,26,0.35);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+}
+.m-hero-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 48px rgba(255,122,26,0.45);
+}
+.m-hero-btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 18px 32px; border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.5); border: 1.5px solid #C8CAD4;
+  color: #1A1A1A; font-weight: 600; font-size: 15px;
+  text-decoration: none;
+  transition: background 0.3s, border-color 0.3s;
+}
+.m-hero-btn-secondary:hover {
+  background: rgba(255,255,255,0.7);
+  border-color: #A0A3B1;
+}
+.m-hero-right {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+}
+
+/* Loss ticker — light glassmorphism card */
+.m-loss-ticker {
+  width: 360px;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 24px; padding: 32px 28px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.07), 0 2px 8px rgba(0,0,0,0.04);
+}
+.m-loss-ticker-label {
+  font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #8A8D9A;
+  margin-bottom: 10px;
+}
+.m-loss-ticker-subtitle {
+  font-size: 12px; color: #8A8D9A; margin-bottom: 20px; line-height: 1.5;
+}
+.m-loss-amount {
+  font-family: var(--font-heading); font-size: 52px; font-weight: 900;
+  color: #DC2626; line-height: 1; letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.m-loss-amount-note { font-size: 11px; color: #8A8D9A; margin-bottom: 24px; }
+.m-loss-divider {
+  height: 1px; background: rgba(0,0,0,0.07); margin: 20px 0;
+}
+.m-loss-dynk-label {
+  font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #8A8D9A;
+  margin-bottom: 10px;
+}
+.m-loss-dynk-amount {
+  font-family: var(--font-heading); font-size: 52px; font-weight: 900;
+  color: #16A34A; line-height: 1; letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.m-loss-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px; padding: 8px 14px; border-radius: var(--r-pill);
+  background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; color: #16A34A;
+}
+
+/* Bottom stats bar — light theme */
+.m-hero-bottom {
+  position: relative; z-index: 2;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  padding: 0 48px;
+}
+.m-hero-bottom-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; gap: 48px; padding: 24px 0;
+  flex-wrap: wrap;
+}
+.m-hero-stat { display: flex; flex-direction: column; gap: 4px; }
+.m-hero-stat-val {
+  font-family: var(--font-heading); font-size: 24px; font-weight: 800;
+  color: #1A1A1A; line-height: 1;
+}
+.m-hero-stat-val em { color: var(--orange); font-style: normal; }
+.m-hero-stat-label { font-size: 12px; color: #8A8D9A; letter-spacing: 0.04em; }
+.m-hero-stat-div {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
+}
+.m-built-on {
+  margin-left: auto; display: flex; align-items: center; gap: 12px;
+  font-size: 12px; color: #A0A3B1; letter-spacing: 0.06em;
+}
+
+/* ── SECTION: FEE BLEED (dark) ── */
+.sec-bleed {
+  position: relative; padding: 120px 0; overflow: hidden;
+  background: var(--ink);
+}
+.sec-bleed::before {
+  content: ''; position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.bleed-grid {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
+}
+.bleed-left { display: flex; flex-direction: column; gap: 24px; }
+/* Fee chart card */
+.bleed-chart-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 28px 28px 20px;
+}
+/* legacy — kept for bleed-saving-callout reuse */
+/* ── FEE SCALE CARD ── */
+.fee-scale-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 32px 28px;
+}
+.fsc-head-label {
+  font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+  margin-bottom: 4px;
+}
+.fsc-head-sub {
+  font-size: 12px; color: var(--text-3); margin-bottom: 24px; line-height: 1.4;
+}
+.fsc-tiers { display: flex; flex-direction: column; gap: 18px; }
+.fsc-tier { display: flex; flex-direction: column; gap: 7px; }
+.fsc-tier-top {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fsc-tier-rev {
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--text-2);
+}
+.fsc-save-pill {
+  padding: 3px 9px; border-radius: 20px;
+  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.18);
+  font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.06em; color: #22C55E;
+}
+.fsc-bar-group { display: flex; flex-direction: column; gap: 5px; }
+.fsc-bar-row { display: flex; align-items: center; gap: 10px; height: 14px; }
+.fsc-bar {
+  height: 100%; border-radius: 3px; flex-shrink: 0;
+  transform-origin: left center; transform: scaleX(0);
+  animation: fsc-grow 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+.fsc-bar--card {
+  background: rgba(255,255,255,0.13);
+}
+.fsc-bar--dynk {
+  height: 10px; margin-top: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-deep));
+  box-shadow: 0 0 10px rgba(255,122,26,0.45);
+  min-width: 28px;
+}
+.fsc-bar-val {
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  white-space: nowrap; flex-shrink: 0;
+}
+.fsc-bar-val--card { color: var(--text-3); }
+.fsc-bar-val--dynk { color: var(--orange); }
+/* Staggered grow keyframes per tier */
+@keyframes fsc-grow { to { transform: scaleX(1); } }
+.fsc-tier:nth-child(1) .fsc-bar--card { width: 10%; animation-delay: 0.15s; }
+.fsc-tier:nth-child(2) .fsc-bar--card { width: 20%; animation-delay: 0.30s; }
+.fsc-tier:nth-child(3) .fsc-bar--card { width: 50%; animation-delay: 0.45s; }
+.fsc-tier:nth-child(4) .fsc-bar--card { width: 100%; animation-delay: 0.60s; }
+.fsc-tier:nth-child(1) .fsc-bar--dynk { animation-delay: 0.55s; }
+.fsc-tier:nth-child(2) .fsc-bar--dynk { animation-delay: 0.70s; }
+.fsc-tier:nth-child(3) .fsc-bar--dynk { animation-delay: 0.85s; }
+.fsc-tier:nth-child(4) .fsc-bar--dynk { animation-delay: 1.00s; }
+.fsc-divider {
+  height: 1px; background: var(--border); margin: 20px 0;
+}
+.fsc-legend { display: flex; gap: 18px; margin-bottom: 18px; }
+.fsc-legend-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; color: var(--text-3);
+}
+.fsc-swatch {
+  width: 20px; height: 3px; border-radius: 2px; flex-shrink: 0;
+}
+.fsc-swatch--card { background: rgba(255,255,255,0.2); }
+.fsc-swatch--dynk { background: var(--orange); box-shadow: 0 0 5px rgba(255,122,26,0.5); }
+.bleed-saving-callout {
+  margin-top: 16px; padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.03));
+  border: 1px solid rgba(34,197,94,0.2); border-radius: 12px;
+  display: flex; align-items: center; gap: 14px;
+}
+.bleed-saving-icon {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: #22C55E; font-size: 16px;
+}
+.bleed-saving-text strong {
+  display: block; font-family: var(--font-display); font-size: 15px;
+  font-weight: 700; color: #22C55E; margin-bottom: 2px;
+}
+.bleed-saving-text span { font-size: 12px; color: var(--text-3); }
+
+/* ── SECTION: HOW IT SETTLES (light) ── */
+.sec-settle {
+  position: relative; padding: 120px 0; overflow: hidden;
+  background:
+    radial-gradient(140% 80% at 78% 12%, #F8C9A5 0%, rgba(248,201,165,0) 55%),
+    radial-gradient(120% 70% at 12% 8%, #FFE0CB 0%, rgba(255,224,203,0) 50%),
+    radial-gradient(140% 80% at 90% 92%, #C7D2EE 0%, rgba(199,210,238,0) 55%),
+    radial-gradient(160% 90% at 8% 90%, #DCDFEB 0%, rgba(220,223,235,0) 60%),
+    linear-gradient(180deg, #F0E5DA 0%, #E5E6EE 50%, #DBDDE8 100%);
+}
+.settle-head { text-align: center; max-width: 680px; margin: 0 auto 72px; }
+.settle-head .sec-desc { margin: 0 auto; text-align: center; }
+.settle-flow {
+  display: flex; align-items: stretch; gap: 0; justify-content: center;
+  max-width: 1000px; margin: 0 auto;
+}
+.settle-node {
+  flex: 1; text-align: center; padding: 40px 28px;
+  background: rgba(255,255,255,0.65); backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.7); border-radius: 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+.settle-node:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(0,0,0,0.1); }
+.settle-node-icon {
+  width: 64px; height: 64px; border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,122,26,0.12), rgba(255,122,26,0.04));
+  border: 1px solid rgba(255,122,26,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--orange); font-size: 26px;
+}
+.settle-node-step {
+  font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange);
+}
+.settle-node h3 {
+  font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1A1A1A;
+}
+.settle-node p { font-size: 13.5px; color: #5C5E68; line-height: 1.6; text-wrap: pretty; }
+.settle-arrow {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 8px; flex-shrink: 0; color: var(--orange); font-size: 18px;
+  opacity: 0.6;
+}
+.settle-time-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 4px; padding: 6px 14px; border-radius: var(--r-pill);
+  background: rgba(255,122,26,0.08); border: 1px solid rgba(255,122,26,0.15);
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--orange);
+}
+/* Cards below flow */
+.settle-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 48px; max-width: 1000px; margin-left: auto; margin-right: auto;
+}
+
+/* ── SECTION: REACH (dark) ── */
+.sec-reach {
+  position: relative; padding: 120px 0; overflow: hidden;
+  background: var(--ink);
+}
+.sec-reach::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 40%, rgba(255,122,26,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 80% 70%, rgba(255,80,20,0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+.sec-reach::after {
+  content: ''; position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.reach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.reach-left { display: flex; flex-direction: column; gap: 24px; }
+.reach-steps { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+.reach-step {
+  display: flex; gap: 20px; padding: 22px 0;
+  border-bottom: 1px solid var(--border); align-items: flex-start;
+}
+.reach-step:last-child { border-bottom: none; }
+.reach-step-num {
+  width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+  color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px rgba(255,122,26,0.3);
+}
+.reach-step-body h4 {
+  font-family: var(--font-display); font-size: 16px; font-weight: 600;
+  color: var(--text-1); margin-bottom: 4px;
+}
+.reach-step-body p { font-size: 13.5px; color: var(--text-2); line-height: 1.55; }
+/* Reach visual */
+.reach-visual {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.reach-map-card {
+  width: 100%; max-width: 400px;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+  border-radius: 24px; padding: 28px; overflow: hidden;
+  position: relative;
+}
+.reach-map-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,122,26,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.reach-map-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+}
+.reach-map-title {
+  font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text-1);
+}
+.reach-map-badge {
+  padding: 4px 12px; border-radius: var(--r-pill);
+  background: rgba(255,122,26,0.12); border: 1px solid rgba(255,122,26,0.25);
+  font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; color: var(--orange);
+}
+/* Pulse rings */
+.reach-pulse-wrap {
+  position: relative; width: 100%; height: 200px;
+  display: flex; align-items: center; justify-content: center;
+}
+.reach-pulse-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(255,122,26,0.15);
+  animation: reachPulse 3s ease-out infinite;
+}
+.reach-pulse-ring:nth-child(1) { width: 60px; height: 60px; animation-delay: 0s; }
+.reach-pulse-ring:nth-child(2) { width: 110px; height: 110px; animation-delay: 0.6s; }
+.reach-pulse-ring:nth-child(3) { width: 165px; height: 165px; animation-delay: 1.2s; }
+.reach-pulse-ring:nth-child(4) { width: 220px; height: 220px; animation-delay: 1.8s; opacity: 0.3; }
+.reach-pulse-core {
+  position: relative; z-index: 2;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 18px;
+  box-shadow: 0 0 30px rgba(255,122,26,0.5);
+}
+@keyframes reachPulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
+.reach-match-stat {
+  text-align: center; margin-top: 8px;
+}
+.reach-match-stat strong {
+  font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--text-1);
+  display: block; line-height: 1;
+}
+.reach-match-stat span { font-size: 12px; color: var(--text-3); margin-top: 4px; display: block; }
+.reach-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
+}
+.reach-tag {
+  padding: 6px 12px; border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  font-size: 11px; color: var(--text-2); display: flex; align-items: center; gap: 6px;
+}
+.reach-tag i { color: var(--orange); font-size: 10px; }
+
+/* ── SECTION: DASHBOARD (light) ── */
+.sec-dash {
+  position: relative; padding: 120px 0; overflow: hidden;
+  background:
+    radial-gradient(140% 80% at 78% 12%, #F8C9A5 0%, rgba(248,201,165,0) 55%),
+    radial-gradient(120% 70% at 12% 8%, #FFE0CB 0%, rgba(255,224,203,0) 50%),
+    radial-gradient(140% 80% at 90% 92%, #C7D2EE 0%, rgba(199,210,238,0) 55%),
+    radial-gradient(160% 90% at 8% 90%, #DCDFEB 0%, rgba(220,223,235,0) 60%),
+    linear-gradient(180deg, #F0E5DA 0%, #E5E6EE 50%, #DBDDE8 100%);
+}
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.dash-left { display: flex; flex-direction: column; gap: 28px; }
+.dash-features { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.dash-feature {
+  display: flex; gap: 16px; padding: 20px;
+  background: rgba(255,255,255,0.65); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.7); border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
+}
+.dash-feature:hover { transform: translateX(6px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+.dash-feature-icon {
+  width: 44px; height: 44px; border-radius: 13px; flex-shrink: 0;
+  background: rgba(255,122,26,0.1); border: 1px solid rgba(255,122,26,0.15);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--orange); font-size: 18px;
+}
+.dash-feature-body h4 {
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  color: #1A1A1A; margin-bottom: 4px;
+}
+.dash-feature-body p { font-size: 13px; color: #5C5E68; line-height: 1.55; }
+.dash-right {
+  display: flex; justify-content: center; align-items: center;
+}
+.dash-phone-wrap {
+  position: relative; width: 280px;
+}
+.dash-phone-wrap .phone-mockup { width: 100%; }
+.dash-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,122,26,0.12) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+.dash-phone-wrap .phone-mockup { position: relative; z-index: 1; }
+
+/* ── SECTION: COMPARISON (dark) ── */
+.sec-compare {
+  position: relative; padding: 120px 0; overflow: hidden;
+  background: var(--ink);
+}
+.sec-compare::before {
+  content: ''; position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.compare-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.compare-table-wrap {
+  max-width: 900px; margin: 0 auto;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+}
+.compare-table {
+  width: 100%; border-collapse: collapse;
+}
+.compare-table thead tr {
+  background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--border);
+}
+.compare-table thead th {
+  padding: 20px 28px; text-align: left;
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.compare-table thead th:first-child { color: var(--text-3); width: 40%; }
+.compare-table thead th.col-card { color: #FF6060; }
+.compare-table thead th.col-dynk { color: var(--orange); }
+.compare-table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.2s;
+}
+.compare-table tbody tr:last-child { border-bottom: none; }
+.compare-table tbody tr:hover { background: rgba(255,255,255,0.025); }
+.compare-table tbody td {
+  padding: 18px 28px; font-size: 14px; vertical-align: middle;
+}
+.compare-table tbody td:first-child {
+  color: var(--text-2); font-weight: 500;
+}
+.compare-table tbody td:not(:first-child) { text-align: left; }
+.cmp-bad { color: #FF6060; font-weight: 600; }
+.cmp-good { color: #22C55E; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.cmp-good i { font-size: 12px; }
+.cmp-neutral { color: var(--text-3); }
+
+/* ── WAITLIST (dark) ── */
+.sec-waitlist-m {
+  position: relative; padding: 140px 0; overflow: hidden; text-align: center;
+  background: var(--ink);
+}
+.sec-waitlist-m::before {
+  content: ''; position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.waitlist-m-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255,122,26,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.waitlist-m-inner {
+  position: relative; z-index: 2; max-width: 680px; margin: 0 auto; padding: 0 24px;
+}
+.waitlist-m-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange);
+  margin-bottom: 28px;
+}
+.waitlist-m-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 5.5vw, 64px); font-weight: 900;
+  color: #FFFFFF; line-height: 1.02; letter-spacing: 0.01em;
+  margin-bottom: 20px;
+}
+.waitlist-m-headline em { color: var(--orange); font-style: normal; }
+.waitlist-m-sub {
+  font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.65;
+  margin-bottom: 48px; text-wrap: pretty;
+}
+.waitlist-m-form { width: 100%; max-width: 520px; margin: 0 auto; }
+.waitlist-m-input-wrap {
+  display: flex; gap: 0; max-width: 520px; margin: 0 auto;
+  background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,122,26,0.35); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 4px 40px rgba(255,122,26,0.15);
+}
+.waitlist-m-input {
+  flex: 1; padding: 18px 22px; background: transparent; border: none; outline: none;
+  font-family: var(--font-body); font-size: 15px; color: #FFFFFF;
+}
+.waitlist-m-input::placeholder { color: rgba(255,255,255,0.3); }
+.waitlist-m-btn {
+  display: flex; align-items: center; gap: 8px; padding: 16px 24px;
+  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+  border: none; cursor: pointer; color: #fff;
+  font-family: var(--font-body); font-size: 14px; font-weight: 700;
+  white-space: nowrap; transition: opacity 0.2s;
+}
+.waitlist-m-btn:hover { opacity: 0.9; }
+.waitlist-m-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.waitlist-m-success {
+  display: none; flex-direction: column; align-items: center; gap: 14px;
+}
+.waitlist-m-success.shown { display: flex; }
+.waitlist-m-success-icon {
+  width: 56px; height: 56px; border-radius: 50%; line-height: 56px;
+  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+  font-size: 22px; color: #fff; text-align: center;
+}
+.waitlist-m-success-msg {
+  font-size: 18px; font-weight: 600; color: #FFFFFF;
+}
+.waitlist-m-note {
+  margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.25);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .m-hero-inner { padding: 120px 32px 72px; gap: 40px; }
+  .m-loss-ticker { width: 300px; }
+  .bleed-grid { grid-template-columns: 1fr; gap: 56px; }
+  .reach-grid { grid-template-columns: 1fr; gap: 56px; }
+  .dash-grid { grid-template-columns: 1fr; gap: 56px; }
+}
+@media (max-width: 860px) {
+  .m-hero-inner { flex-direction: column; padding: 100px 24px 60px; }
+  .m-hero-right { width: 100%; }
+  .m-loss-ticker { width: 100%; max-width: 400px; }
+  .m-hero-bottom { padding: 0 24px; }
+  .settle-flow { flex-direction: column; max-width: 400px; }
+  .settle-arrow { transform: rotate(90deg); }
+  .settle-cards { grid-template-columns: 1fr; }
+  .compare-table thead th, .compare-table tbody td { padding: 14px 16px; }
+}
+@media (max-width: 600px) {
+  .sec-bleed, .sec-settle, .sec-reach, .sec-dash, .sec-compare { padding: 80px 0; }
+  .sec-inner { padding: 0 20px; }
+  .m-hero-stat-div { display: none; }
+  .m-hero-bottom-inner { gap: 24px; }
+  .bleed-compare-wrap { padding: 24px 20px; }
+  .bleed-tr-lbl { width: 56px; font-size: 10px; }
+  .bleed-tr-val { width: 44px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/dynk-logo.png" alt="DYNK">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#">Merchants</a>
+      <a href="Founders.html">Founders</a>
+    </div>
+    <a href="#waitlist-section" class="nav-platform-btn">Get Early Access</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO — LIGHT, WARM GRADIENT
+     ═══════════════════════════════════════ -->
+<section class="m-hero" id="hero">
+  <div class="m-hero-bg"></div>
+
+  <div class="m-hero-inner">
+    <div class="m-hero-left">
+  
+      <p class="m-hero-eyebrow">Stop paying 3%</p>
+      <h1 class="m-hero-headline">DYNK for Merchants</h1>
+      <p class="m-hero-sub">
+        Visa and Mastercard silently take <strong>2–3% of every sale</strong> — forever.
+        DYNK settles directly to your wallet in 400ms for a flat <strong>1¢</strong>. No percentage. No middleman. No ceiling.
+      </p>
+      <div class="m-hero-btns">
+        <a href="#waitlist-section" class="m-hero-btn-primary">
+          <i class="fa-solid fa-bolt"></i> Get Early Access
+        </a>
+        <a href="#fees" class="m-hero-btn-secondary">
+          See the numbers <i class="fa-solid fa-arrow-down"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="m-hero-right">
+      <div class="m-loss-ticker" id="lossTicker">
+        <div class="m-loss-ticker-label">Card fees lost today</div>
+        <div class="m-loss-ticker-subtitle">On $2,000/day avg revenue at 2.9% card rate</div>
+        <div class="m-loss-amount">$58.00</div>
+        <div class="m-loss-amount-note">every single day, gone to your card processor</div>
+        <div class="m-loss-divider"></div>
+        <div class="m-loss-dynk-label">DYNK fee for same transactions</div>
+        <div class="m-loss-dynk-amount">$0.01</div>
+        <div class="m-loss-amount-note">flat — per transaction, not per dollar</div>
+        <div class="m-loss-badge">
+          <i class="fa-solid fa-arrow-trend-up"></i>
+          You keep 99.95%+ of every sale
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     01 — THE REAL COST (dark, chart)
+     ═══════════════════════════════════════ -->
+<section class="sec-bleed" id="fees">
+  <div class="sec-inner">
+    <div class="bleed-grid">
+      <div class="bleed-left" data-anim="fade-up">
+        <div class="sec-label">
+          <span class="sec-label-num">01</span>
+          <span class="sec-label-line sec-label-line--light"></span>
+          The Real Cost
+        </div>
+        <h2 class="sec-title sec-title--light">$1,500 a year.<br>Gone. For what?</h2>
+        <p class="sec-desc sec-desc--light">
+          On $50k in card revenue, Visa or Mastercard take ~$1,500 in fees — every year, scaling with every dollar you earn. DYNK settles the same volume for <strong style="color: var(--orange);">~$36</strong>: flat 1¢ per transaction, no percentage, no ceiling.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 4px;">
+          <div class="f-pill" style="background: rgba(255,255,255,0.04); border-color: var(--border); color: var(--text-2);">
+            <i class="fa-solid fa-clock" style="color: var(--orange);"></i>
+            Card settlements: 2–3 days. DYNK: 400ms.
+          </div>
+          <div class="f-pill" style="background: rgba(255,255,255,0.04); border-color: var(--border); color: var(--text-2);">
+            <i class="fa-solid fa-lock" style="color: var(--orange);"></i>
+            Non-custodial — your wallet, your keys, your money.
+          </div>
+        </div>
+      </div>
+
+      <div class="fee-scale-card" data-anim="fade-up" data-delay="2">
+        <div class="fsc-head-label">Annual fees at scale</div>
+        <div class="fsc-head-sub">What you actually pay as your revenue grows</div>
+
+        <div class="fsc-tiers">
+
+          <!-- $50k tier -->
+          <div class="fsc-tier">
+            <div class="fsc-tier-top">
+              <span class="fsc-tier-rev">$50k / yr</span>
+              <span class="fsc-save-pill">Save $1,414</span>
+            </div>
+            <div class="fsc-bar-group">
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--card"></div>
+                <span class="fsc-bar-val fsc-bar-val--card">$1,450 cards</span>
+              </div>
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--dynk"></div>
+                <span class="fsc-bar-val fsc-bar-val--dynk">$36 DYNK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- $100k tier -->
+          <div class="fsc-tier">
+            <div class="fsc-tier-top">
+              <span class="fsc-tier-rev">$100k / yr</span>
+              <span class="fsc-save-pill">Save $2,828</span>
+            </div>
+            <div class="fsc-bar-group">
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--card"></div>
+                <span class="fsc-bar-val fsc-bar-val--card">$2,900 cards</span>
+              </div>
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--dynk"></div>
+                <span class="fsc-bar-val fsc-bar-val--dynk">$72 DYNK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- $250k tier -->
+          <div class="fsc-tier">
+            <div class="fsc-tier-top">
+              <span class="fsc-tier-rev">$250k / yr</span>
+              <span class="fsc-save-pill">Save $7,070</span>
+            </div>
+            <div class="fsc-bar-group">
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--card"></div>
+                <span class="fsc-bar-val fsc-bar-val--card">$7,250 cards</span>
+              </div>
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--dynk"></div>
+                <span class="fsc-bar-val fsc-bar-val--dynk">$180 DYNK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- $500k tier -->
+          <div class="fsc-tier">
+            <div class="fsc-tier-top">
+              <span class="fsc-tier-rev">$500k / yr</span>
+              <span class="fsc-save-pill">Save $14,140</span>
+            </div>
+            <div class="fsc-bar-group">
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--card"></div>
+                <span class="fsc-bar-val fsc-bar-val--card">$14,500 cards</span>
+              </div>
+              <div class="fsc-bar-row">
+                <div class="fsc-bar fsc-bar--dynk"></div>
+                <span class="fsc-bar-val fsc-bar-val--dynk">$360 DYNK</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="fsc-divider"></div>
+
+        <div class="fsc-legend">
+          <div class="fsc-legend-item">
+            <span class="fsc-swatch fsc-swatch--card"></span> Card fees (avg 2.9%)
+          </div>
+          <div class="fsc-legend-item">
+            <span class="fsc-swatch fsc-swatch--dynk"></span> DYNK (flat 1¢ / transaction)
+          </div>
+        </div>
+
+        <div class="bleed-saving-callout">
+          <div class="bleed-saving-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+          <div class="bleed-saving-text">
+            <strong>$14,140 saved at $500k / year</strong>
+            <span>That's a hire, a fit-out, or six months' rent — back in your pocket.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     02 — HOW IT SETTLES (light)
+     ═══════════════════════════════════════ -->
+<section class="sec-settle" id="how">
+  <div class="sec-inner">
+    <div class="settle-head" data-anim="fade-up">
+      <div class="sec-label" style="justify-content: center;">
+        <span class="sec-label-num">02</span>
+        <span class="sec-label-line"></span>
+        How It Works
+      </div>
+      <h2 class="sec-title" style="text-align: center;">Customer pays.<br>You get paid. Now.</h2>
+      <p class="sec-desc" style="color: #5C5E68; text-align: center; margin-top: 12px;">No card networks. No clearing houses. No waiting. Just a direct on-chain settlement every time.</p>
+    </div>
+
+    <div class="settle-flow">
+      <div class="settle-node" data-anim="fade-up" data-delay="1">
+        <div class="settle-node-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <span class="settle-node-step">Step 01</span>
+        <h3>Customer taps</h3>
+        <p>They scan your QR or tap NFC on the counter. DYNK wallet confirms the amount — under a second.</p>
+      </div>
+      <div class="settle-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+      <div class="settle-node" data-anim="fade-up" data-delay="2">
+        <div class="settle-node-icon" style="background: linear-gradient(135deg, rgba(153,69,255,0.15), rgba(20,241,149,0.08)); border-color: rgba(153,69,255,0.2); color: #9945FF;">
+          <svg width="22" height="18" viewBox="0 0 397 312" fill="none"><defs><linearGradient id="sol-node" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#9945FF"/><stop offset="100%" stop-color="#14F195"/></linearGradient></defs><path d="M64.6 237.9a14 14 0 0 1 9.9-4.1h309.3c6.2 0 9.4 7.5 5 12L338 291.7a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12l50.8-45.9ZM64.6 20.3A14.4 14.4 0 0 1 74.5 16h309.3c6.2 0 9.4 7.5 5 12L338 74a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12L64.6 20.3ZM338 156.5a14 14 0 0 0-9.9-4.1H18.8c-6.2 0-9.4 7.5-5 12l50.8 45.9a14 14 0 0 0 9.9 4.1h309.3c6.2 0 9.4-7.5 5-12L338 156.5Z" fill="url(#sol-node)"/></svg>
+        </div>
+        <span class="settle-node-step">Step 02</span>
+        <h3>Solana confirms</h3>
+        <p>The transaction settles on-chain in under 400ms. 3,800 TPS, globally verified, cryptographically final.</p>
+        <div class="settle-time-pill"><i class="fa-solid fa-bolt"></i> 400ms</div>
+      </div>
+      <div class="settle-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+      <div class="settle-node" data-anim="fade-up" data-delay="3">
+        <div class="settle-node-icon" style="background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.2); color: #22C55E;">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+        <span class="settle-node-step">Step 03</span>
+        <h3>Your wallet. Done.</h3>
+        <p>Funds land directly in your non-custodial wallet. DYNK never touches, holds, or controls your money.</p>
+        <div class="settle-time-pill" style="background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.2); color: #22C55E;">
+          <i class="fa-solid fa-lock"></i> Your keys only
+        </div>
+      </div>
+    </div>
+
+    <div class="settle-cards" data-anim="fade-up" data-delay="2">
+      <div class="w-card">
+        <div class="w-card-icon"><i class="fa-solid fa-receipt"></i></div>
+        <h3>Tap-to-Pay Hardware</h3>
+        <p>A simple tablet or dongle at the counter. Accept DYNK payments at your point of sale — no terminal contracts, no monthly fees.</p>
+      </div>
+      <div class="w-card">
+        <div class="w-card-icon"><i class="fa-solid fa-qrcode"></i></div>
+        <h3>QR Checkout</h3>
+        <p>Print a QR code, stick it on the counter. Works with every customer's phone — no app required on their end to pay.</p>
+      </div>
+      <div class="w-card">
+        <div class="w-card-icon"><i class="fa-solid fa-code"></i></div>
+        <h3>API Integration</h3>
+        <p>Plug DYNK into your existing POS or e-commerce stack with a single API key. Shopify, WooCommerce, custom — all supported.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     03 — REACH (dark, local targeting)
+     ═══════════════════════════════════════ -->
+<section class="sec-reach" id="reach">
+  <div class="sec-inner">
+    <div class="reach-grid">
+      <div class="reach-left" data-anim="fade-up">
+        <div class="sec-label">
+          <span class="sec-label-num">03</span>
+          <span class="sec-label-line sec-label-line--light"></span>
+          Reach
+        </div>
+        <h2 class="sec-title sec-title--light">Fill tables tonight.<br>Not next quarter.</h2>
+        <p class="sec-desc sec-desc--light">
+          Target customers by location, timing, and behaviour — not demographics. Your offer hits the right phones at the right moment. Privacy-first: you see audience size, never identities.
+        </p>
+        <div class="reach-steps">
+          <div class="reach-step">
+            <div class="reach-step-num">1</div>
+            <div class="reach-step-body">
+              <h4>Set your offer</h4>
+              <p>Happy hour, 2-for-1, free side — write it in plain language. Takes 30 seconds.</p>
+            </div>
+          </div>
+          <div class="reach-step">
+            <div class="reach-step-num">2</div>
+            <div class="reach-step-body">
+              <h4>Pick signals, not people</h4>
+              <p>"Within 2km" + "free tonight" — DYNK matches anonymously, on-device. You see ~2,400 matches. Not who they are.</p>
+            </div>
+          </div>
+          <div class="reach-step">
+            <div class="reach-step-num">3</div>
+            <div class="reach-step-body">
+              <h4>AI builds your video ad</h4>
+              <p>Upload a photo of your venue. DYNK generates a branded 5–15s video ad from your offer. No agency, no budget.</p>
+            </div>
+          </div>
+          <div class="reach-step">
+            <div class="reach-step-num">4</div>
+            <div class="reach-step-body">
+              <h4>They walk in, you get paid</h4>
+              <p>Opt-in customers redeem via their DYNK wallet. Settlement happens in 400ms. You fund the offer; DYNK handles the rest.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reach-visual" data-anim="fade-up" data-delay="2">
+        <div class="reach-map-card">
+          <div class="reach-map-header">
+            <span class="reach-map-title">Live Audience Match</span>
+            <span class="reach-map-badge">● LIVE</span>
+          </div>
+          <div class="reach-pulse-wrap">
+            <div class="reach-pulse-ring"></div>
+            <div class="reach-pulse-ring"></div>
+            <div class="reach-pulse-ring"></div>
+            <div class="reach-pulse-ring"></div>
+            <div class="reach-pulse-core"><i class="fa-solid fa-store"></i></div>
+          </div>
+          <div class="reach-match-stat">
+            <strong>~2,847</strong>
+            <span>people match within 3km right now</span>
+          </div>
+          <div class="reach-tags">
+            <span class="reach-tag"><i class="fa-solid fa-location-dot"></i> Within 3km</span>
+            <span class="reach-tag"><i class="fa-solid fa-moon"></i> Free tonight</span>
+            <span class="reach-tag"><i class="fa-solid fa-utensils"></i> Dining interest</span>
+            <span class="reach-tag"><i class="fa-solid fa-user-shield"></i> Anonymous match</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     04 — MERCHANT DASHBOARD (light)
+     ═══════════════════════════════════════ -->
+<section class="sec-dash" id="dashboard">
+  <div class="sec-inner">
+    <div class="dash-grid">
+      <div class="dash-left" data-anim="fade-up">
+        <div class="sec-label">
+          <span class="sec-label-num">04</span>
+          <span class="sec-label-line"></span>
+          The Dashboard
+        </div>
+        <h2 class="sec-title">Everything in one place.<br>Built for the floor.</h2>
+        <p class="sec-desc">Not built for accountants — built for people who run a business. Sales, settlements, campaigns, and cash buckets, all in one tap.</p>
+        <div class="dash-features">
+          <div class="dash-feature" data-anim="fade-up" data-delay="1">
+            <div class="dash-feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="dash-feature-body">
+              <h4>Auto-split buckets</h4>
+              <p>Incoming payments split automatically into GST, wages, rent, and marketing — sorted before you think about it. Move to your bank anytime.</p>
+            </div>
+          </div>
+          <div class="dash-feature" data-anim="fade-up" data-delay="2">
+            <div class="dash-feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="dash-feature-body">
+              <h4>Real-time sales analytics</h4>
+              <p>See today's revenue, this week's trend, and your busiest hours — live. No waiting until end of month to know where you stand.</p>
+            </div>
+          </div>
+          <div class="dash-feature" data-anim="fade-up" data-delay="3">
+            <div class="dash-feature-icon"><i class="fa-solid fa-clapperboard"></i></div>
+            <div class="dash-feature-body">
+              <h4>Campaign manager</h4>
+              <p>Launch, pause, and track local ad campaigns from the same screen. See redemptions and ROI next to your settlement data.</p>
+            </div>
+          </div>
+          <div class="dash-feature" data-anim="fade-up" data-delay="4">
+            <div class="dash-feature-icon"><i class="fa-solid fa-tablet-screen-button"></i></div>
+            <div class="dash-feature-body">
+              <h4>POS & hardware ready</h4>
+              <p>A simple dongle or tablet at the counter. No terminal contracts, no hardware lock-in. Plug in and go in minutes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-right" data-anim="fade-up" data-delay="2">
+        <div class="dash-phone-wrap">
+          <div class="dash-glow"></div>
+          <div class="phone-mockup">
+            <img src="assets/dashboard.png" alt="[Merchant dashboard showing real-time sales, settlement history, and campaign performance]">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     05 — HEAD-TO-HEAD COMPARISON (dark)
+     ═══════════════════════════════════════ -->
+<section class="sec-compare" id="compare">
+  <div class="sec-inner">
+    <div class="compare-head" data-anim="fade-up">
+      <div class="sec-label" style="justify-content: center;">
+        <span class="sec-label-num">05</span>
+        <span class="sec-label-line sec-label-line--light"></span>
+        The Comparison
+      </div>
+      <h2 class="sec-title sec-title--light" style="text-align: center;">DYNK vs the old way</h2>
+      <p class="sec-desc sec-desc--light" style="text-align: center; margin: 12px auto 0; max-width: 500px;">Everything card networks do to your revenue — and what DYNK doesn't.</p>
+    </div>
+
+    <div class="compare-table-wrap" data-anim="fade-up" data-delay="2">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-card"><i class="fa-brands fa-cc-visa" style="margin-right: 6px;"></i>Cards</th>
+            <th class="col-dynk"><i class="fa-solid fa-bolt" style="margin-right: 6px;"></i>DYNK</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Transaction fee</td>
+            <td><span class="cmp-bad">2–3% of every sale</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> Flat 1¢</span></td>
+          </tr>
+          <tr>
+            <td>Settlement time</td>
+            <td><span class="cmp-bad">2–3 business days</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> 400ms (on-chain)</span></td>
+          </tr>
+          <tr>
+            <td>Who holds your funds</td>
+            <td><span class="cmp-bad">The card network / bank</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> You — non-custodial wallet</span></td>
+          </tr>
+          <tr>
+            <td>Monthly fees</td>
+            <td><span class="cmp-bad">Terminal rental, gateway fees</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> None</span></td>
+          </tr>
+          <tr>
+            <td>Chargebacks</td>
+            <td><span class="cmp-bad">Possible + chargeback fees</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> On-chain — final at settlement</span></td>
+          </tr>
+          <tr>
+            <td>Customer data ownership</td>
+            <td><span class="cmp-bad">Belongs to the network</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> Privacy-first — you see signals only</span></td>
+          </tr>
+          <tr>
+            <td>Local ad targeting</td>
+            <td><span class="cmp-neutral">Not included</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> Built in — AI video ads</span></td>
+          </tr>
+          <tr>
+            <td>Scales with revenue</td>
+            <td><span class="cmp-bad">Yes — fees grow with sales</span></td>
+            <td><span class="cmp-good"><i class="fa-solid fa-check-circle"></i> No — always 1¢ per transaction</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     WAITLIST (dark, bold CTA)
+     ═══════════════════════════════════════ -->
+<section class="sec-waitlist-m" id="waitlist-section">
+  <div class="waitlist-m-bg"></div>
+  <div class="waitlist-m-inner">
+    <span class="waitlist-m-eyebrow"><span class="m-hero-eyebrow-dot"></span> Early Access — Merchants</span>
+    <h2 class="waitlist-m-headline">
+      Stop handing 3%<br>to <em>Visa</em>.
+    </h2>
+    <p class="waitlist-m-sub">
+      Join the merchant early-access list. We'll set you up with the dashboard, hardware, and your first campaign when we launch in your area.
+    </p>
+    <form class="waitlist-m-form" id="waitlistForm" onsubmit="handleWaitlistSubmit(event)">
+      <div class="waitlist-m-input-wrap">
+        <input type="email" class="waitlist-m-input" id="waitlistEmail" placeholder="Your business email" required>
+        <button type="submit" class="waitlist-m-btn">
+          <span>Get Early Access</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </form>
+    <div class="waitlist-m-success" id="waitlistSuccess">
+      <div class="waitlist-m-success-icon">✓</div>
+      <p class="waitlist-m-success-msg">You're on the list. We'll be in touch when we launch in your area.</p>
+    </div>
+    <p class="waitlist-m-note">No spam, ever. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-brand-logo">
+          <img src="assets/dynk-logo.png" alt="DYNK">
+        </a>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="index.html#wallet">Digital Wallet</a>
+          <a href="#">Merchants</a>
+          <a href="index.html#data">Data Sovereignty</a>
+          <a href="Founders.html">Founders</a>
+        </div>
+        <div class="footer-col">
+          <h5>Merchants</h5>
+          <a href="#fees">Fee Comparison</a>
+          <a href="#how">How It Settles</a>
+          <a href="#reach">Local Reach</a>
+          <a href="#dashboard">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#">About</a>
+          <a href="mailto:contact@dynk.io">contact@dynk.io</a>
+        </div>
+        <div class="footer-col footer-col-app">
+          <h5>Get the App</h5>
+          <div class="footer-app-badges">
+            <a href="#" class="footer-badge"><img src="assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a>
+            <a href="#" class="footer-badge"><img src="assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DYNK. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="hero.js"></script>
+<script src="scroll-anim.js"></script>
+<script>
+// Nav scroll state
+window.addEventListener('scroll', function() {
+  document.getElementById('siteNav').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+
+
+// Waitlist submit
+async function handleWaitlistSubmit(e) {
+  e.preventDefault();
+  var email = document.getElementById('waitlistEmail').value;
+  if (!email) return;
+  var btn = document.querySelector('.waitlist-m-btn');
+  btn.disabled = true;
+  try {
+    var res = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'merchants' }),
+    });
+    if (!res.ok) throw new Error();
+    document.getElementById('waitlistForm').style.display = 'none';
+    document.getElementById('waitlistSuccess').classList.add('shown');
+  } catch {
+    alert('Something went wrong. Please try again.');
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
