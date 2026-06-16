@@ -47,6 +47,13 @@
     .m-ftr-bottom   { flex-direction: column !important; text-align: center !important; gap: 12px !important; }
     .m-cmp-header   { padding: 14px 16px !important; }
     .m-cmp-row-inner{ padding: 14px 16px !important; font-size: 12px !important; }
+    .m-fees-stats   { grid-template-columns: 1fr !important; }
+    .m-fees-stat    { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
+    .m-fees-stat:last-child { border-bottom: none !important; }
+    .m-fees-cards   { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 900px) {
+    .m-fees-stats   { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
 </head>
@@ -72,235 +79,207 @@
 <!-- ═══════════════════════════════════════
      HERO — light warm gradient, centered
      ═══════════════════════════════════════ -->
-<section style="position:relative; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; overflow:hidden;">
-  <!-- Background -->
-  <div style="position:absolute; inset:0;
-    background:
-      radial-gradient(140% 80% at 78% 12%, #F8C9A5 0%, rgba(248,201,165,0) 55%),
-      radial-gradient(120% 70% at 12%  8%, #FFE0CB 0%, rgba(255,224,203,0) 50%),
-      radial-gradient(140% 80% at 90% 92%, #C7D2EE 0%, rgba(199,210,238,0) 55%),
-      radial-gradient(160% 90% at  8% 90%, #DCDFEB 0%, rgba(220,223,235,0) 60%),
-      linear-gradient(180deg, #F0E5DA 0%, #E5E6EE 50%, #DBDDE8 100%);
-    pointer-events:none;">
-  </div>
-  <!-- Faint brand mark -->
-  <div style="position:absolute; top:50%; right:-5%; transform:translateY(-50%); width:500px; height:500px; opacity:0.04; pointer-events:none;">
-    <img src="assets/dynk-gradient-mark.png" alt="" style="width:100%; height:100%; object-fit:contain;">
-  </div>
+<section class="hero" id="hero">
+  <div class="hero-bg-light"></div>
 
-  <!-- Main content -->
-  <div class="m-hero-inner" style="position:relative; z-index:2; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; max-width:1280px; margin:0 auto; width:100%; padding:130px 48px 80px; text-align:center;">
-
-    <div data-entrance="0" style="opacity:0; transform:translateY(20px); transition:all 0.8s cubic-bezier(0.16,1,0.3,1); display:inline-flex; align-items:center; gap:10px; margin-bottom:32px;">
-      <span style="width:6px; height:6px; border-radius:50%; background:#FF7A1A; box-shadow:0 0 10px rgba(255,122,26,0.5);"></span>
-      <span style="font-family:'Orbitron',system-ui; font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#FF7A1A;">DYNK FOR MERCHANTS</span>
+  <div class="hero-inner">
+    <div class="hero-text hero-entrance hero-entrance--text">
+      <h1 class="hero-headline">KEEP EVERY DOLLAR</h1>
+      <div class="hero-brand">YOU EARN.</div>
+      <p class="hero-subtitle">Every card swipe costs you 2–3%. DYNK settles for a flat <strong style="color:#1A1A1A; font-weight:600;">1¢</strong> in <strong style="color:#1A1A1A; font-weight:600;">400ms</strong>, straight to your non-custodial wallet. No percentage. No middleman.</p>
+      <div class="hero-buttons">
+        <a href="#waitlist" class="hero-btn-primary"><span>Get Early Access</span></a>
+        <a href="#fees" class="hero-btn-secondary"><span>See the Numbers</span></a>
+      </div>
     </div>
-
-    <h1 data-entrance="200" style="opacity:0; transform:translateY(30px); transition:all 1s cubic-bezier(0.16,1,0.3,1); font-family:'Orbitron',system-ui; font-size:clamp(44px,7.5vw,88px); font-weight:900; color:#1A1A1A; letter-spacing:0.03em; line-height:0.95; margin-bottom:32px;">
-      KEEP EVERY<br><span style="color:#FF7A1A;">DOLLAR</span> YOU EARN
-    </h1>
-
-    <p data-entrance="400" style="opacity:0; transform:translateY(20px); transition:all 0.9s cubic-bezier(0.16,1,0.3,1); font-size:clamp(16px,1.8vw,20px); font-weight:400; color:#5C5E68; line-height:1.65; max-width:560px; margin-bottom:44px;">
-      Every card swipe costs you 2–3%. DYNK settles for a flat <strong style="color:#1A1A1A; font-weight:600;">1¢</strong> in <strong style="color:#1A1A1A; font-weight:600;">400 milliseconds</strong>, straight to your non-custodial wallet. No percentage. No middleman.
-    </p>
-
-    <div data-entrance="550" style="opacity:0; transform:translateY(20px); transition:all 0.8s cubic-bezier(0.16,1,0.3,1); display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
-      <a href="#waitlist" class="m-btn-primary" style="display:inline-flex; align-items:center; gap:10px; padding:18px 36px; border-radius:999px; background:linear-gradient(135deg,#FF7A1A,#E55A00); color:#fff; font-weight:700; font-size:15px; letter-spacing:0.04em; box-shadow:0 12px 40px rgba(255,122,26,0.35); transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),box-shadow 0.3s;">
-        <i class="fa-solid fa-bolt"></i> Get Early Access
-      </a>
-      <a href="#fees" class="m-btn-secondary" style="display:inline-flex; align-items:center; gap:10px; padding:18px 32px; border-radius:999px; background:rgba(255,255,255,0.5); border:1.5px solid #C8CAD4; color:#1A1A1A; font-weight:600; font-size:15px; transition:background 0.3s,border-color 0.3s;">
-        See the Numbers <i class="fa-solid fa-arrow-down" style="font-size:13px;"></i>
-      </a>
+    <div class="hero-visual hero-entrance hero-entrance--visual" id="heroVisual">
+      <img src="assets/merchant-hero.png" alt="DYNK for Merchants" loading="eager">
     </div>
   </div>
 
-  <!-- Stat bar -->
-  <div data-entrance="700" style="opacity:0; transform:translateY(15px); transition:all 0.8s cubic-bezier(0.16,1,0.3,1); position:relative; z-index:2; border-top:1px solid rgba(0,0,0,0.07); padding:0 48px;">
-    <div class="m-hero-stats" style="max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:48px; padding:24px 0;">
-      <div style="display:flex; flex-direction:column; gap:4px;">
-        <span style="font-family:'Orbitron',system-ui; font-size:24px; font-weight:800; color:#1A1A1A; line-height:1;">1¢</span>
-        <span style="font-size:12px; color:#8A8D9A; letter-spacing:0.04em;">Per transaction</span>
-      </div>
-      <div class="m-stat-div" style="width:1px; height:36px; background:linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);"></div>
-      <div style="display:flex; flex-direction:column; gap:4px;">
-        <span style="font-family:'Orbitron',system-ui; font-size:24px; font-weight:800; color:#1A1A1A; line-height:1;">400<span style="font-size:14px; color:#FF7A1A;">ms</span></span>
-        <span style="font-size:12px; color:#8A8D9A; letter-spacing:0.04em;">Settlement</span>
-      </div>
-      <div class="m-stat-div" style="width:1px; height:36px; background:linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);"></div>
-      <div style="display:flex; flex-direction:column; gap:4px;">
-        <span style="font-family:'Orbitron',system-ui; font-size:24px; font-weight:800; color:#1A1A1A; line-height:1;">$0</span>
-        <span style="font-size:12px; color:#8A8D9A; letter-spacing:0.04em;">Monthly fees</span>
-      </div>
-      <div class="m-stat-div" style="width:1px; height:36px; background:linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);"></div>
-      <div style="margin-left:auto; display:flex; align-items:center; gap:12px; font-size:12px; color:#A0A3B1; letter-spacing:0.06em;">
-        built on
-        <span style="display:inline-flex; align-items:center; gap:8px;">
-          <svg width="24" height="19" viewBox="0 0 397 312" fill="none"><defs><linearGradient id="sol-h" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#9945FF"/><stop offset="100%" stop-color="#14F195"/></linearGradient></defs><path d="M64.6 237.9a14 14 0 0 1 9.9-4.1h309.3c6.2 0 9.4 7.5 5 12L338 291.7a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12l50.8-45.9ZM64.6 20.3A14.4 14.4 0 0 1 74.5 16h309.3c6.2 0 9.4 7.5 5 12L338 74a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12L64.6 20.3ZM338 156.5a14 14 0 0 0-9.9-4.1H18.8c-6.2 0-9.4 7.5-5 12l50.8 45.9a14 14 0 0 0 9.9 4.1h309.3c6.2 0 9.4-7.5 5-12L338 156.5Z" fill="url(#sol-h)"/></svg>
-          <span style="font-family:'Chakra Petch',system-ui; font-weight:700; font-size:18px; color:#1A1A1A; letter-spacing:0.04em;">Solana</span>
-        </span>
-      </div>
+  <div class="hero-featured hero-entrance hero-entrance--featured">
+    <span>built on</span>
+    <div class="featured-logos">
+      <span class="featured-logo solana-logo">
+        <svg width="28" height="22" viewBox="0 0 397 312" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sol-a" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#9945FF"/>
+              <stop offset="50%" stop-color="#14F195"/>
+              <stop offset="100%" stop-color="#14F195"/>
+            </linearGradient>
+          </defs>
+          <path d="M64.6 237.9a14 14 0 0 1 9.9-4.1h309.3c6.2 0 9.4 7.5 5 12L338 291.7a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12l50.8-45.9ZM64.6 20.3A14.4 14.4 0 0 1 74.5 16h309.3c6.2 0 9.4 7.5 5 12L338 74a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12L64.6 20.3ZM338 156.5a14 14 0 0 0-9.9-4.1H18.8c-6.2 0-9.4 7.5-5 12l50.8 45.9a14 14 0 0 0 9.9 4.1h309.3c6.2 0 9.4-7.5 5-12L338 156.5Z" fill="url(#sol-a)"/>
+        </svg>
+        <span style="font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: 0.04em;">Solana</span>
+      </span>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     01 — THE INVISIBLE TAX (dark)
+     01 — KEEP MORE OF EVERY SALE (dark)
      ═══════════════════════════════════════ -->
-<section id="fees" class="m-sec" style="position:relative; padding:130px 0; overflow:hidden; background:#0C0C0E;">
-  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 30% 40%, rgba(255,122,26,0.04) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 75% 60%, rgba(255,80,20,0.03) 0%, transparent 55%); pointer-events:none;"></div>
+<section id="fees" class="m-sec" style="position:relative; padding:100px 0; overflow:hidden; background:#0C0C0E;">
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 55% 65% at 10% 55%, rgba(255,122,26,0.05) 0%, transparent 55%), radial-gradient(ellipse 45% 45% at 90% 25%, rgba(255,80,20,0.03) 0%, transparent 55%); pointer-events:none;"></div>
   <div style="position:absolute; top:0; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
 
   <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
 
-    <div style="text-align:center; max-width:640px; margin:0 auto 64px;">
-      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase; justify-content:center;">
+    <!-- Header block -->
+    <div style="max-width:740px; margin-bottom:48px;">
+      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:12px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
         <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">01</span>
         <span style="width:32px; height:1px; background:rgba(255,255,255,0.25);"></span>
-        The Problem
+        Pricing
       </div>
-      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(36px,5vw,60px); font-weight:700; letter-spacing:0.02em; line-height:1.05; color:#FFFFFF; margin-bottom:18px;">THE INVISIBLE<br><span style="color:#FF7A1A;">TAX</span></h2>
-      <p data-reveal="2" style="font-size:18px; font-weight:400; color:rgba(255,255,255,0.55); line-height:1.65;">On $500,000 in annual revenue, here's what card networks silently take — and what DYNK costs instead.</p>
+      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#FFFFFF; margin-bottom:12px;">KEEP MORE OF<br><span style="color:#FF7A1A;">EVERY SALE.</span></h2>
+      <p data-reveal="2" style="font-size:16px; color:rgba(255,255,255,0.55); line-height:1.6; max-width:600px;">Card processors take 2–3% of everything you earn. DYNK settles on-chain for a flat <strong style="color:#FFFFFF; font-weight:600;">1¢</strong> — straight to your own non-custodial wallet. You always hold your funds.</p>
     </div>
 
-    <!-- Counter card -->
-    <div id="counter-section" data-reveal="3" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:24px; padding:48px; max-width:800px; margin:0 auto;">
-      <div style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:32px; text-align:center;">Annual processing cost on $500K revenue</div>
+    <!-- Stats row -->
+    <div data-reveal="3" class="m-fees-stats" style="display:grid; grid-template-columns:1fr 1fr 1fr; border:1px solid rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; margin-bottom:20px;">
 
-      <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:center;">
-        <div style="text-align:center; padding:20px;">
-          <div id="card-fee-display" style="font-family:'Orbitron',system-ui; font-size:clamp(36px,5vw,56px); font-weight:900; color:#DC2626; line-height:1; letter-spacing:-0.02em; font-variant-numeric:tabular-nums;">$0</div>
-          <div style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-top:10px;">Card Networks</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.4); margin-top:6px;">2.9% of every sale</div>
-        </div>
-        <div style="width:1px; height:100px; background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);"></div>
-        <div style="text-align:center; padding:20px;">
-          <div id="dynk-fee-display" style="font-family:'Orbitron',system-ui; font-size:clamp(36px,5vw,56px); font-weight:900; color:#22C55E; line-height:1; letter-spacing:-0.02em; font-variant-numeric:tabular-nums;">$0</div>
-          <div style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-top:10px;">DYNK</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.4); margin-top:6px;">Flat 1¢ per transaction</div>
+      <!-- 1¢ -->
+      <div class="m-fees-stat" style="padding:36px 40px; position:relative; border-right:1px solid rgba(255,255,255,0.07);">
+        <div style="position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 20% 60%, rgba(255,122,26,0.08) 0%, transparent 65%); pointer-events:none;"></div>
+        <div style="position:relative; z-index:1;">
+          <div style="font-family:'Orbitron',system-ui; font-size:clamp(40px,5vw,64px); font-weight:900; color:#FF7A1A; line-height:1; letter-spacing:-0.02em; margin-bottom:8px; text-shadow:0 0 40px rgba(255,122,26,0.4);">1¢</div>
+          <div style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.3);">Per transaction</div>
+          <div style="margin-top:10px; width:36px; height:2px; background:linear-gradient(90deg,#FF7A1A,transparent); border-radius:2px;"></div>
         </div>
       </div>
 
-      <!-- Visual bars -->
-      <div style="margin-top:32px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.05);">
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div data-target-w="100%" style="height:16px; width:0; border-radius:4px; background:rgba(255,255,255,0.1); transition:width 1.5s cubic-bezier(0.16,1,0.3,1);"></div>
-            <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:rgba(255,255,255,0.28); white-space:nowrap;">Cards</span>
+      <!-- 400ms -->
+      <div class="m-fees-stat" style="padding:36px 40px; border-right:1px solid rgba(255,255,255,0.07);">
+        <div style="font-family:'Orbitron',system-ui; font-size:clamp(40px,5vw,64px); font-weight:900; color:#FFFFFF; line-height:1; letter-spacing:-0.03em; margin-bottom:8px;">400<span style="font-size:0.52em; letter-spacing:0.01em; color:rgba(255,255,255,0.45); font-weight:700;">ms</span></div>
+        <div style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.3);">Settlement</div>
+        <div style="margin-top:10px; width:36px; height:2px; background:linear-gradient(90deg,rgba(255,255,255,0.2),transparent); border-radius:2px;"></div>
+      </div>
+
+      <!-- 0% -->
+      <div class="m-fees-stat" style="padding:36px 40px;">
+        <div style="font-family:'Orbitron',system-ui; font-size:clamp(40px,5vw,64px); font-weight:900; color:#FFFFFF; line-height:1; letter-spacing:-0.03em; margin-bottom:8px;">0<span style="font-size:0.6em; letter-spacing:0; color:rgba(255,255,255,0.45); font-weight:700;">%</span></div>
+        <div style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.3);">Held by DYNK</div>
+        <div style="margin-top:10px; width:36px; height:2px; background:linear-gradient(90deg,rgba(255,255,255,0.2),transparent); border-radius:2px;"></div>
+      </div>
+
+    </div>
+
+    <!-- Feature cards -->
+    <div data-reveal="4" class="m-fees-cards" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+
+      <!-- Flat 1¢ Fee -->
+      <div style="padding:30px 32px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:20px; position:relative; overflow:hidden;">
+        <div style="position:relative; z-index:1; display:flex; align-items:flex-start; gap:18px;">
+          <div style="width:42px; height:42px; border-radius:13px; flex-shrink:0; background:rgba(255,122,26,0.1); border:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; justify-content:center;">
+            <i class="fa-solid fa-tag" style="color:#FF7A1A; font-size:17px;"></i>
           </div>
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div data-target-w="2.5%" data-min-w="12px" style="height:12px; width:0; min-width:0; border-radius:4px; background:linear-gradient(90deg,#FF7A1A,#E55A00); box-shadow:0 0 12px rgba(255,122,26,0.4); transition:width 1.5s cubic-bezier(0.16,1,0.3,1) 0.3s, min-width 1.5s cubic-bezier(0.16,1,0.3,1) 0.3s;"></div>
-            <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:#FF7A1A; white-space:nowrap;">DYNK</span>
+          <div>
+            <h3 style="font-family:'Chakra Petch',system-ui; font-size:17px; font-weight:700; color:#FFFFFF; margin-bottom:6px; letter-spacing:0.01em;">Flat 1¢ Fee</h3>
+            <p style="font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6; margin:0;">No percentage cut. A coffee or a car — you pay one cent to settle.</p>
           </div>
         </div>
       </div>
 
-      <!-- Savings callout -->
-      <div style="margin-top:28px; padding:20px 24px; background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.03)); border:1px solid rgba(34,197,94,0.2); border-radius:14px; display:flex; align-items:center; gap:16px;">
-        <div style="width:44px; height:44px; border-radius:12px; flex-shrink:0; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.2); display:flex; align-items:center; justify-content:center; color:#22C55E; font-size:18px;">
-          <i class="fa-solid fa-piggy-bank"></i>
-        </div>
-        <div>
-          <div style="font-family:'Chakra Petch',system-ui; font-size:16px; font-weight:700; color:#22C55E; margin-bottom:3px;">You save <span id="savings-display">$14,140</span> every year</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.4);">That's a new hire, a renovation, or six months of marketing — back in your pocket.</div>
+      <!-- Non-Custodial -->
+      <div style="padding:30px 32px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:20px; position:relative; overflow:hidden;">
+        <div style="position:relative; z-index:1; display:flex; align-items:flex-start; gap:18px;">
+          <div style="width:42px; height:42px; border-radius:13px; flex-shrink:0; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.2); display:flex; align-items:center; justify-content:center;">
+            <i class="fa-solid fa-key" style="color:#22C55E; font-size:17px;"></i>
+          </div>
+          <div>
+            <h3 style="font-family:'Chakra Petch',system-ui; font-size:17px; font-weight:700; color:#FFFFFF; margin-bottom:6px; letter-spacing:0.01em;">Non-Custodial</h3>
+            <p style="font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6; margin:0;">Funds settle on-chain to your own wallet. DYNK never holds or controls your money.</p>
+          </div>
         </div>
       </div>
+
     </div>
 
-    <!-- Stat pills -->
-    <div data-reveal="4" style="display:flex; justify-content:center; gap:12px; margin-top:40px; flex-wrap:wrap;">
-      <div style="display:flex; align-items:center; gap:8px; padding:12px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; font-size:13px; color:rgba(255,255,255,0.55);">
-        <i class="fa-solid fa-percent" style="color:#FF7A1A; font-size:11px;"></i> 2.9% avg card rate
-      </div>
-      <div style="display:flex; align-items:center; gap:8px; padding:12px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; font-size:13px; color:rgba(255,255,255,0.55);">
-        <i class="fa-solid fa-clock" style="color:#FF7A1A; font-size:11px;"></i> 2–3 day card settlement
-      </div>
-      <div style="display:flex; align-items:center; gap:8px; padding:12px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; font-size:13px; color:rgba(255,255,255,0.55);">
-        <i class="fa-solid fa-file-invoice-dollar" style="color:#FF7A1A; font-size:11px;"></i> Monthly terminal fees
-      </div>
-    </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     02 — HOW IT WORKS (light)
+     02 — REACH (light)
      ═══════════════════════════════════════ -->
-<section id="how" class="m-sec" style="position:relative; padding:130px 0; overflow:hidden; background:radial-gradient(140% 80% at 78% 12%,#F8C9A5 0%,rgba(248,201,165,0) 55%),radial-gradient(120% 70% at 12% 8%,#FFE0CB 0%,rgba(255,224,203,0) 50%),radial-gradient(140% 80% at 90% 92%,#C7D2EE 0%,rgba(199,210,238,0) 55%),radial-gradient(160% 90% at 8% 90%,#DCDFEB 0%,rgba(220,223,235,0) 60%),linear-gradient(180deg,#F0E5DA 0%,#E5E6EE 50%,#DBDDE8 100%);">
+<section id="reach" class="m-sec" style="position:relative; padding:130px 0; overflow:hidden; background:radial-gradient(140% 80% at 78% 12%,#F8C9A5 0%,rgba(248,201,165,0) 55%),radial-gradient(120% 70% at 12% 8%,#FFE0CB 0%,rgba(255,224,203,0) 50%),radial-gradient(140% 80% at 90% 92%,#C7D2EE 0%,rgba(199,210,238,0) 55%),radial-gradient(160% 90% at 8% 90%,#DCDFEB 0%,rgba(220,223,235,0) 60%),linear-gradient(180deg,#F0E5DA 0%,#E5E6EE 50%,#DBDDE8 100%);">
   <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
 
-    <div style="text-align:center; max-width:640px; margin:0 auto 72px;">
-      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase; justify-content:center;">
+    <!-- Header -->
+    <div style="max-width:680px; margin-bottom:72px;">
+      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
         <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">02</span>
         <span style="width:32px; height:1px; background:#FF7A1A; opacity:0.4;"></span>
-        Settlement
+        Reach
       </div>
-      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(36px,5vw,60px); font-weight:700; letter-spacing:0.02em; line-height:1.05; color:#1A1A1A; margin-bottom:18px;">TAP. SETTLE.<br>DONE.</h2>
-      <p data-reveal="2" style="font-size:18px; color:#5C5E68; line-height:1.65;">No card networks. No clearing houses. No 2–3 day waiting period. Direct settlement, every time.</p>
+      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#1A1A1A; margin-bottom:16px;">MARKET WHERE<br><span style="color:#FF7A1A;">IT MATTERS.</span></h2>
+      <p data-reveal="2" style="font-size:18px; color:#5C5E68; line-height:1.65; max-width:580px;">Put your offer in front of the right customers nearby — matched by signal, not spam. You set the audience. Their on-device agent decides. No one's identity is ever shared.</p>
     </div>
 
-    <!-- 3-step flow -->
-    <div data-reveal="3" class="m-step-flow" style="display:flex; align-items:stretch; gap:0; justify-content:center; max-width:1000px; margin:0 auto;">
-      <div class="m-step-card" style="flex:1; text-align:center; padding:40px 28px; background:rgba(255,255,255,0.65); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.7); border-radius:24px; display:flex; flex-direction:column; align-items:center; gap:14px; box-shadow:0 2px 24px rgba(0,0,0,0.06); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;">
-        <div style="width:64px; height:64px; border-radius:20px; background:linear-gradient(135deg,rgba(255,122,26,0.12),rgba(255,122,26,0.04)); border:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:26px;">
-          <i class="fa-solid fa-mobile-screen"></i>
+   
+
+    <!-- 4-step flow -->
+    <div style="border-top:1px solid rgba(0,0,0,0.1); display:grid; grid-template-columns:1fr 1fr 1fr 1fr;">
+
+      <!-- Step 1 -->
+      <div data-reveal="4" style="padding:44px 36px 44px 0; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">01</span>
+          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
         </div>
-        <span style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#FF7A1A;">Step 01</span>
-        <h3 style="font-family:'Chakra Petch',system-ui; font-size:18px; font-weight:700; color:#1A1A1A;">Customer taps</h3>
-        <p style="font-size:13.5px; color:#5C5E68; line-height:1.6;">QR scan or NFC tap at the counter. The DYNK wallet confirms the amount — under one second.</p>
-      </div>
-      <div class="m-step-arrow" style="display:flex; align-items:center; justify-content:center; padding:0 8px; flex-shrink:0; color:#FF7A1A; font-size:18px; opacity:0.5;">
-        <i class="fa-solid fa-chevron-right"></i>
-      </div>
-      <div class="m-step-card" style="flex:1; text-align:center; padding:40px 28px; background:rgba(255,255,255,0.65); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.7); border-radius:24px; display:flex; flex-direction:column; align-items:center; gap:14px; box-shadow:0 2px 24px rgba(0,0,0,0.06); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;">
-        <div style="width:64px; height:64px; border-radius:20px; background:linear-gradient(135deg,rgba(153,69,255,0.15),rgba(20,241,149,0.08)); border:1px solid rgba(153,69,255,0.2); display:flex; align-items:center; justify-content:center;">
-          <svg width="22" height="18" viewBox="0 0 397 312" fill="none"><defs><linearGradient id="sol-s" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#9945FF"/><stop offset="100%" stop-color="#14F195"/></linearGradient></defs><path d="M64.6 237.9a14 14 0 0 1 9.9-4.1h309.3c6.2 0 9.4 7.5 5 12L338 291.7a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12l50.8-45.9ZM64.6 20.3A14.4 14.4 0 0 1 74.5 16h309.3c6.2 0 9.4 7.5 5 12L338 74a14 14 0 0 1-9.9 4.1H18.8c-6.2 0-9.4-7.5-5-12L64.6 20.3ZM338 156.5a14 14 0 0 0-9.9-4.1H18.8c-6.2 0-9.4 7.5-5 12l50.8 45.9a14 14 0 0 0 9.9 4.1h309.3c6.2 0 9.4-7.5 5-12L338 156.5Z" fill="url(#sol-s)"/></svg>
-        </div>
-        <span style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#FF7A1A;">Step 02</span>
-        <h3 style="font-family:'Chakra Petch',system-ui; font-size:18px; font-weight:700; color:#1A1A1A;">Solana confirms</h3>
-        <p style="font-size:13.5px; color:#5C5E68; line-height:1.6;">On-chain settlement in under 400ms. 3,800 TPS, globally verified, cryptographically final.</p>
-        <div style="display:inline-flex; align-items:center; gap:8px; margin-top:4px; padding:6px 14px; border-radius:999px; background:rgba(255,122,26,0.08); border:1px solid rgba(255,122,26,0.15); font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.08em; color:#FF7A1A;">
-          <i class="fa-solid fa-bolt"></i> 400ms
+        <div>
+          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Create Your Offer</div>
+          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Set your deal in seconds — happy hour, two-for-one, a seat that needs filling.</p>
         </div>
       </div>
-      <div class="m-step-arrow" style="display:flex; align-items:center; justify-content:center; padding:0 8px; flex-shrink:0; color:#FF7A1A; font-size:18px; opacity:0.5;">
-        <i class="fa-solid fa-chevron-right"></i>
-      </div>
-      <div class="m-step-card" style="flex:1; text-align:center; padding:40px 28px; background:rgba(255,255,255,0.65); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.7); border-radius:24px; display:flex; flex-direction:column; align-items:center; gap:14px; box-shadow:0 2px 24px rgba(0,0,0,0.06); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;">
-        <div style="width:64px; height:64px; border-radius:20px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.2); display:flex; align-items:center; justify-content:center; color:#22C55E; font-size:26px;">
-          <i class="fa-solid fa-wallet"></i>
+
+      <!-- Step 2 -->
+      <div data-reveal="5" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">02</span>
+          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
         </div>
-        <span style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#FF7A1A;">Step 03</span>
-        <h3 style="font-family:'Chakra Petch',system-ui; font-size:18px; font-weight:700; color:#1A1A1A;">In your wallet</h3>
-        <p style="font-size:13.5px; color:#5C5E68; line-height:1.6;">Funds land directly in your non-custodial wallet. DYNK never touches, holds, or controls your money.</p>
-        <div style="display:inline-flex; align-items:center; gap:8px; margin-top:4px; padding:6px 14px; border-radius:999px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.08em; color:#22C55E;">
-          <i class="fa-solid fa-lock"></i> Your keys only
+        <div>
+          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Pick the Audience</div>
+          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Filter by area, time, and behaviour. Preview audience size — never individual identities.</p>
         </div>
       </div>
+
+      <!-- Step 3 -->
+      <div data-reveal="6" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">03</span>
+          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
+            <i class="fa-solid fa-photo-film"></i>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Create Your Ad</div>
+          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Upload your creative or build a simple ad directly in the dashboard. Your brand, your message — ready in minutes.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div data-reveal="7" style="padding:44px 0 44px 36px; display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">04</span>
+          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
+            <i class="fa-solid fa-store"></i>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Precision Delivery</div>
+          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Your offer is shown only to customers who fit your exact criteria. No broad targeting, no wasted spend — just the right people at the right moment.</p>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Integration cards -->
-    <div class="m-icard-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px; max-width:1000px; margin-left:auto; margin-right:auto;">
-      <div data-reveal="4" class="m-icard" style="background:rgba(255,255,255,0.7); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.7); border-radius:24px; padding:32px 24px; display:flex; flex-direction:column; gap:14px; box-shadow:0 2px 16px rgba(0,0,0,0.04); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;">
-        <div style="width:48px; height:48px; border-radius:14px; background:rgba(255,122,26,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px;">
-          <i class="fa-solid fa-receipt"></i>
-        </div>
-        <h3 style="font-family:'Chakra Petch',system-ui; font-size:17px; font-weight:700; color:#1A1A1A;">Tap-to-Pay</h3>
-        <p style="font-size:14px; color:#5C5E68; line-height:1.6;">A simple tablet or dongle at the counter. No terminal contracts, no monthly hardware fees.</p>
-      </div>
-      <div data-reveal="5" class="m-icard" style="background:rgba(255,255,255,0.7); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.7); border-radius:24px; padding:32px 24px; display:flex; flex-direction:column; gap:14px; box-shadow:0 2px 16px rgba(0,0,0,0.04); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;">
-        <div style="width:48px; height:48px; border-radius:14px; background:rgba(255,122,26,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px;">
-          <i class="fa-solid fa-qrcode"></i>
-        </div>
-        <h3 style="font-family:'Chakra Petch',system-ui; font-size:17px; font-weight:700; color:#1A1A1A;">QR Checkout</h3>
-        <p style="font-size:14px; color:#5C5E68; line-height:1.6;">Print a code, stick it on the counter. Works with every customer's phone — no app required.</p>
-      </div>
-      <div data-reveal="6" class="m-icard" style="background:rgba(255,255,255,0.7); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.7); border-radius:24px; padding:32px 24px; display:flex; flex-direction:column; gap:14px; box-shadow:0 2px 16px rgba(0,0,0,0.04); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;">
-        <div style="width:48px; height:48px; border-radius:14px; background:rgba(255,122,26,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px;">
-          <i class="fa-solid fa-code"></i>
-        </div>
-        <h3 style="font-family:'Chakra Petch',system-ui; font-size:17px; font-weight:700; color:#1A1A1A;">API Integration</h3>
-        <p style="font-size:14px; color:#5C5E68; line-height:1.6;">Plug DYNK into your existing POS or e-commerce stack. Shopify, WooCommerce, custom — all supported.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -321,7 +300,7 @@
           <span style="width:32px; height:1px; background:rgba(255,255,255,0.25);"></span>
           At Scale
         </div>
-        <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.05; color:#FFFFFF; margin-bottom:18px;">GROWS WITH YOU.<br><span style="color:#FF7A1A;">FEES DON'T.</span></h2>
+        <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#FFFFFF; margin-bottom:16px;">GROWS WITH YOU.<br><span style="color:#FF7A1A;">FEES DON'T.</span></h2>
         <p data-reveal="2" style="font-size:18px; color:rgba(255,255,255,0.55); line-height:1.65; max-width:440px;">Card fees scale against you — the more you earn, the more they take. DYNK stays flat. Always 1¢. Your growth is yours.</p>
         <div data-reveal="3" style="display:flex; flex-direction:column; gap:10px; margin-top:28px;">
           <div style="display:flex; align-items:center; gap:10px; padding:14px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; font-size:14px; color:rgba(255,255,255,0.55);">
@@ -333,98 +312,53 @@
         </div>
       </div>
 
-      <!-- Right: bar chart -->
-      <div data-reveal="2" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:36px 32px;">
-        <div style="display:flex; gap:18px; margin-bottom:24px;">
-          <div style="display:flex; align-items:center; gap:7px; font-size:11px; color:rgba(255,255,255,0.28);">
-            <span style="width:20px; height:3px; border-radius:2px; background:rgba(255,255,255,0.15);"></span> Card fees (2.9%)
-          </div>
-          <div style="display:flex; align-items:center; gap:7px; font-size:11px; color:rgba(255,255,255,0.28);">
-            <span style="width:20px; height:3px; border-radius:2px; background:#FF7A1A; box-shadow:0 0 5px rgba(255,122,26,0.5);"></span> DYNK (1¢/txn)
+      <!-- Right: comparison table -->
+      <div data-reveal="2" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07); border-radius:20px; overflow:hidden;">
+
+        <!-- Column headers -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:16px 28px; border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02);">
+          <span style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.2);">Revenue / yr</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.2);">Cards 2.9%</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#FF7A1A;">DYNK 1¢</span>
+        </div>
+
+        <!-- $50K -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:22px 28px; border-bottom:1px solid rgba(255,255,255,0.04); align-items:baseline;">
+          <span style="font-family:'Orbitron',system-ui; font-size:11px; font-weight:700; letter-spacing:0.06em; color:rgba(255,255,255,0.3);">$50K</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:rgba(255,255,255,0.45); letter-spacing:-0.01em;">$1,450</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$36</span>
+        </div>
+
+        <!-- $100K -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:22px 28px; border-bottom:1px solid rgba(255,255,255,0.04); align-items:baseline;">
+          <span style="font-family:'Orbitron',system-ui; font-size:11px; font-weight:700; letter-spacing:0.06em; color:rgba(255,255,255,0.3);">$100K</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:rgba(255,255,255,0.45); letter-spacing:-0.01em;">$2,900</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$72</span>
+        </div>
+
+        <!-- $250K -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:22px 28px; border-bottom:1px solid rgba(255,255,255,0.04); align-items:baseline;">
+          <span style="font-family:'Orbitron',system-ui; font-size:11px; font-weight:700; letter-spacing:0.06em; color:rgba(255,255,255,0.3);">$250K</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:rgba(255,255,255,0.45); letter-spacing:-0.01em;">$7,250</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$180</span>
+        </div>
+
+        <!-- $500K -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:22px 28px; border-bottom:1px solid rgba(255,255,255,0.08); align-items:baseline;">
+          <span style="font-family:'Orbitron',system-ui; font-size:11px; font-weight:700; letter-spacing:0.06em; color:rgba(255,255,255,0.3);">$500K</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:rgba(255,255,255,0.45); letter-spacing:-0.01em;">$14,500</span>
+          <span style="font-family:'Orbitron',system-ui; font-size:18px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$360</span>
+        </div>
+
+        <!-- Savings footer -->
+        <div style="padding:22px 28px; display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+          <span style="font-size:13px; color:rgba(255,255,255,0.3); line-height:1.5;">At $500K/yr — that's a hire, a fit-out,<br>or six months' rent back in your pocket.</span>
+          <div style="text-align:right; flex-shrink:0;">
+            <div style="font-family:'Orbitron',system-ui; font-size:22px; font-weight:900; color:#22C55E; letter-spacing:-0.02em; white-space:nowrap;">$14,140</div>
+            <div style="font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(34,197,94,0.5); margin-top:3px;">saved / yr</div>
           </div>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:22px;">
-          <!-- $50K -->
-          <div>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.55);">$50K / YR</span>
-              <span style="padding:3px 9px; border-radius:20px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.18); font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.06em; color:#22C55E;">Save $1,414</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:5px;">
-              <div style="display:flex; align-items:center; gap:10px; height:14px;">
-                <div data-target-w="10%" style="height:100%; width:0; border-radius:3px; background:rgba(255,255,255,0.13); transition:width 0.8s cubic-bezier(0.16,1,0.3,1);"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:rgba(255,255,255,0.28); white-space:nowrap;">$1,450</span>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px; height:10px;">
-                <div data-target-w="28px" data-min-w="28px" style="height:100%; width:0; min-width:0; border-radius:3px; background:linear-gradient(90deg,#FF7A1A,#E55A00); box-shadow:0 0 10px rgba(255,122,26,0.45); transition:width 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s, min-width 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s;"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:#FF7A1A; white-space:nowrap;">$36</span>
-              </div>
-            </div>
-          </div>
-          <!-- $100K -->
-          <div>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.55);">$100K / YR</span>
-              <span style="padding:3px 9px; border-radius:20px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.18); font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.06em; color:#22C55E;">Save $2,828</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:5px;">
-              <div style="display:flex; align-items:center; gap:10px; height:14px;">
-                <div data-target-w="20%" style="height:100%; width:0; border-radius:3px; background:rgba(255,255,255,0.13); transition:width 0.8s cubic-bezier(0.16,1,0.3,1) 0.15s;"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:rgba(255,255,255,0.28); white-space:nowrap;">$2,900</span>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px; height:10px;">
-                <div data-target-w="28px" data-min-w="28px" style="height:100%; width:0; min-width:0; border-radius:3px; background:linear-gradient(90deg,#FF7A1A,#E55A00); box-shadow:0 0 10px rgba(255,122,26,0.45); transition:width 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s, min-width 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s;"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:#FF7A1A; white-space:nowrap;">$72</span>
-              </div>
-            </div>
-          </div>
-          <!-- $250K -->
-          <div>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.55);">$250K / YR</span>
-              <span style="padding:3px 9px; border-radius:20px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.18); font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.06em; color:#22C55E;">Save $7,070</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:5px;">
-              <div style="display:flex; align-items:center; gap:10px; height:14px;">
-                <div data-target-w="50%" style="height:100%; width:0; border-radius:3px; background:rgba(255,255,255,0.13); transition:width 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s;"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:rgba(255,255,255,0.28); white-space:nowrap;">$7,250</span>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px; height:10px;">
-                <div data-target-w="28px" data-min-w="28px" style="height:100%; width:0; min-width:0; border-radius:3px; background:linear-gradient(90deg,#FF7A1A,#E55A00); box-shadow:0 0 10px rgba(255,122,26,0.45); transition:width 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s, min-width 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s;"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:#FF7A1A; white-space:nowrap;">$180</span>
-              </div>
-            </div>
-          </div>
-          <!-- $500K -->
-          <div>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.55);">$500K / YR</span>
-              <span style="padding:3px 9px; border-radius:20px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.18); font-family:'Orbitron',system-ui; font-size:9px; font-weight:700; letter-spacing:0.06em; color:#22C55E;">Save $14,140</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:5px;">
-              <div style="display:flex; align-items:center; gap:10px; height:14px;">
-                <div data-target-w="100%" style="height:100%; width:0; border-radius:3px; background:rgba(255,255,255,0.13); transition:width 0.8s cubic-bezier(0.16,1,0.3,1) 0.45s;"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:rgba(255,255,255,0.28); white-space:nowrap;">$14,500</span>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px; height:10px;">
-                <div data-target-w="28px" data-min-w="28px" style="height:100%; width:0; min-width:0; border-radius:3px; background:linear-gradient(90deg,#FF7A1A,#E55A00); box-shadow:0 0 10px rgba(255,122,26,0.45); transition:width 0.8s cubic-bezier(0.16,1,0.3,1) 0.65s, min-width 0.8s cubic-bezier(0.16,1,0.3,1) 0.65s;"></div>
-                <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; color:#FF7A1A; white-space:nowrap;">$360</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style="height:1px; background:rgba(255,255,255,0.05); margin:24px 0;"></div>
-        <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.03)); border:1px solid rgba(34,197,94,0.2); border-radius:12px; display:flex; align-items:center; gap:14px;">
-          <div style="width:38px; height:38px; border-radius:10px; flex-shrink:0; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.2); display:flex; align-items:center; justify-content:center; color:#22C55E; font-size:16px;">
-            <i class="fa-solid fa-piggy-bank"></i>
-          </div>
-          <div>
-            <div style="font-family:'Chakra Petch',system-ui; font-size:15px; font-weight:700; color:#22C55E; margin-bottom:2px;">$14,140 saved at $500k/year</div>
-            <span style="font-size:12px; color:rgba(255,255,255,0.28);">That's a hire, a fit-out, or six months' rent — back in your pocket.</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -444,7 +378,7 @@
           <span style="width:32px; height:1px; background:#FF7A1A; opacity:0.4;"></span>
           The Platform
         </div>
-        <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.05; color:#1A1A1A; margin-bottom:18px;">NOT JUST<br><span style="color:#FF7A1A;">PAYMENTS.</span></h2>
+        <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#1A1A1A; margin-bottom:16px;">NOT JUST<br><span style="color:#FF7A1A;">PAYMENTS.</span></h2>
         <p data-reveal="2" style="font-size:18px; color:#5C5E68; line-height:1.65; max-width:460px; margin-bottom:32px;">Accept payments, run local campaigns, and manage your revenue — all from one dashboard built for the floor, not the back office.</p>
 
         <div style="display:flex; flex-direction:column; gap:14px;">
@@ -454,8 +388,8 @@
               <i class="fa-solid fa-location-crosshairs"></i>
             </div>
             <div>
-              <h4 style="font-family:'Chakra Petch',system-ui; font-size:15px; font-weight:700; color:#1A1A1A; margin-bottom:4px;">Local Targeting</h4>
-              <p style="font-size:13px; color:#5C5E68; line-height:1.55;">Reach customers by location and timing. Privacy-first — you see audience size, never identities.</p>
+              <h4 style="font-family:'Chakra Petch',system-ui; font-size:15px; font-weight:700; color:#1A1A1A; margin-bottom:4px;">Market Into Their Wallet</h4>
+              <p style="font-size:13px; color:#5C5E68; line-height:1.55;">DYNK is the only platform that puts your offer directly inside your customers' wallets — not a feed, not an inbox. When they open their app, your deal is already there.</p>
             </div>
           </div>
           <div data-reveal="5" class="m-feat" style="display:flex; gap:16px; padding:20px; background:rgba(255,255,255,0.65); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.7); border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.04); transition:transform 0.35s cubic-bezier(0.16,1,0.3,1),box-shadow 0.35s;">
@@ -483,8 +417,8 @@
       <div data-reveal="3" style="display:flex; justify-content:center; align-items:center;">
         <div style="position:relative; width:280px;">
           <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(255,122,26,0.12) 0%, transparent 70%); pointer-events:none;"></div>
-          <div style="position:relative; z-index:1; border-radius:36px; overflow:hidden; box-shadow:0 24px 80px rgba(0,0,0,0.12),0 8px 24px rgba(0,0,0,0.06); background:#1A1A1A; padding:4px;">
-            <img src="assets/dashboard.png" alt="DYNK Merchant Dashboard" style="width:100%; display:block; border-radius:32px;">
+          <div style="position:relative; z-index:1;">
+            <img src="assets/phone2.png" alt="DYNK Merchant Dashboard" style="width:100%; display:block; filter:drop-shadow(0 24px 60px rgba(0,0,0,0.18)) drop-shadow(0 8px 20px rgba(0,0,0,0.10));">
           </div>
         </div>
       </div>
@@ -499,67 +433,103 @@
   <div style="position:absolute; top:0; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
 
   <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
-    <div style="text-align:center; max-width:600px; margin:0 auto 64px;">
+    <div style="text-align:center; max-width:600px; margin:0 auto 72px;">
       <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase; justify-content:center;">
         <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">05</span>
         <span style="width:32px; height:1px; background:rgba(255,255,255,0.25);"></span>
         Comparison
       </div>
-      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(36px,5vw,60px); font-weight:700; letter-spacing:0.02em; line-height:1.05; color:#FFFFFF; margin-bottom:18px;">SIDE BY <span style="color:#FF7A1A;">SIDE</span></h2>
+      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#FFFFFF; margin-bottom:16px;">SIDE BY <span style="color:#FF7A1A;">SIDE</span></h2>
       <p data-reveal="2" style="font-size:18px; color:rgba(255,255,255,0.55); line-height:1.65;">Everything card networks do to your revenue — and what DYNK doesn't.</p>
     </div>
 
-    <div data-reveal="3" style="max-width:900px; margin:0 auto; background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07); border-radius:20px; overflow:hidden;">
-      <div class="m-cmp-header" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.07); padding:20px 32px;">
-        <span></span>
-        <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#FF6060;">
-          <i class="fa-brands fa-cc-visa" style="margin-right:6px;"></i>CARDS
-        </span>
-        <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#FF7A1A;">
-          <i class="fa-solid fa-bolt" style="margin-right:6px;"></i>DYNK
-        </span>
+    <!-- Two-panel comparison -->
+    <div data-reveal="3" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:1100px; margin:0 auto;">
+
+      <!-- CARDS panel -->
+      <div style="border:1px solid rgba(255,255,255,0.08); border-radius:20px; overflow:hidden;">
+        <div style="padding:28px 36px; border-bottom:1px solid rgba(255,255,255,0.07); display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.02);">
+          <span style="width:10px; height:10px; border-radius:50%; background:#FF6060; flex-shrink:0;"></span>
+          <span style="font-family:'Orbitron',system-ui; font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Card Networks</span>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Transaction fee</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">2–3% of every sale</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Settlement</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">2–3 business days</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Fund custody</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">Bank / card network</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Monthly fees</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">Terminal + gateway</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Chargebacks</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">Possible + penalties</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Data ownership</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">Network owns it</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Local ads</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">Not included</div>
+          </div>
+          <div style="padding:24px 36px;">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px;">Fee scaling</div>
+            <div style="font-size:18px; font-weight:600; color:rgba(255,255,255,0.55);">Grows with revenue</div>
+          </div>
+        </div>
       </div>
-      <!-- Rows -->
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Transaction fee</span>
-        <span style="font-size:14px; color:#FF6060; font-weight:600;">2–3% of every sale</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> Flat 1¢</span>
+
+      <!-- DYNK panel -->
+      <div style="border:1px solid rgba(255,122,26,0.3); border-radius:20px; overflow:hidden; background:rgba(255,122,26,0.04);">
+        <div style="padding:28px 36px; border-bottom:1px solid rgba(255,122,26,0.15); display:flex; align-items:center; gap:12px; background:rgba(255,122,26,0.06);">
+          <span style="width:10px; height:10px; border-radius:50%; background:#FF7A1A; flex-shrink:0; box-shadow:0 0 10px rgba(255,122,26,0.5);"></span>
+          <span style="font-family:'Orbitron',system-ui; font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#FF7A1A;">DYNK</span>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,122,26,0.08);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Transaction fee</div>
+            <div style="font-size:18px; font-weight:700; color:#22C55E;">Flat 1¢</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,122,26,0.08);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Settlement</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF;">400ms on-chain</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,122,26,0.08);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Fund custody</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF;">Your wallet, your keys</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,122,26,0.08);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Monthly fees</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF;">$0</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,122,26,0.08);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Chargebacks</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF;">Final at settlement</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,122,26,0.08);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Data ownership</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF;">Privacy-first signals</div>
+          </div>
+          <div style="padding:24px 36px; border-bottom:1px solid rgba(255,122,26,0.08);">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Local ads</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF;">Built-in ad tools</div>
+          </div>
+          <div style="padding:24px 36px;">
+            <div style="font-family:'Chakra Petch',system-ui; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,122,26,0.5); margin-bottom:6px;">Fee scaling</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF;">Always 1¢</div>
+          </div>
+        </div>
       </div>
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Settlement</span>
-        <span style="font-size:14px; color:#FF6060; font-weight:600;">2–3 business days</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> 400ms on-chain</span>
-      </div>
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Fund custody</span>
-        <span style="font-size:14px; color:#FF6060; font-weight:600;">Bank / card network</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> Your wallet, your keys</span>
-      </div>
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Monthly fees</span>
-        <span style="font-size:14px; color:#FF6060; font-weight:600;">Terminal + gateway</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> $0</span>
-      </div>
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Chargebacks</span>
-        <span style="font-size:14px; color:#FF6060; font-weight:600;">Possible + penalty fees</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> Final at settlement</span>
-      </div>
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Data ownership</span>
-        <span style="font-size:14px; color:#FF6060; font-weight:600;">Network owns it</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> Privacy-first signals</span>
-      </div>
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Local ads</span>
-        <span style="font-size:14px; color:rgba(255,255,255,0.28); font-weight:500;">Not included</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> Built-in AI video ads</span>
-      </div>
-      <div class="m-cmp-row m-cmp-row-inner" style="display:grid; grid-template-columns:1.2fr 1fr 1fr; padding:18px 32px; transition:background 0.2s;">
-        <span style="font-size:14px; color:rgba(255,255,255,0.55); font-weight:500;">Fee scaling</span>
-        <span style="font-size:14px; color:#FF6060; font-weight:600;">Grows with revenue</span>
-        <span style="display:flex; align-items:center; gap:6px; font-size:14px; color:#22C55E; font-weight:600;"><i class="fa-solid fa-check-circle" style="font-size:12px;"></i> Always 1¢</span>
-      </div>
+
     </div>
   </div>
 </section>
@@ -569,18 +539,17 @@
      ═══════════════════════════════════════ -->
 <section id="waitlist" class="m-sec" style="position:relative; padding:140px 0; overflow:hidden; text-align:center; background:#0C0C0E;">
   <div style="position:absolute; top:0; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
-  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255,122,26,0.1) 0%, transparent 60%); pointer-events:none;"></div>
 
   <div style="position:relative; z-index:2; max-width:680px; margin:0 auto; padding:0 24px;">
     <div data-reveal="0" style="display:inline-flex; align-items:center; gap:10px; margin-bottom:28px;">
       <span style="width:6px; height:6px; border-radius:50%; background:#FF7A1A; box-shadow:0 0 10px rgba(255,122,26,0.5);"></span>
       <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#FF7A1A;">Early Access — Merchants</span>
     </div>
-    <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(36px,5.5vw,64px); font-weight:900; color:#FFFFFF; line-height:1.02; letter-spacing:0.01em; margin-bottom:20px;">
-      STOP PAYING<br>FOR <span style="color:#FF7A1A;">PERMISSION</span>
+    <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; color:#FFFFFF; line-height:1.1; letter-spacing:0.02em; margin-bottom:20px;">
+      JOIN THE<br><span style="color:#FF7A1A;">WAITLIST.</span>
     </h2>
     <p data-reveal="2" style="font-size:17px; color:rgba(255,255,255,0.5); line-height:1.65; margin-bottom:48px;">
-      Join the merchant early-access list. We'll set you up with the dashboard, hardware, and your first campaign when we launch in your area.
+      We're building with a small group of merchants first. Join the list and we'll reach out when we're ready for you.
     </p>
 
     <form id="waitlistForm" data-reveal="3" style="width:100%; max-width:520px; margin:0 auto;" onsubmit="handleMerchantWaitlist(event)">
@@ -696,52 +665,7 @@
     });
   });
 
-  // ── Counter animation ──
-  function countUp(el, target, ms) {
-    var t0 = performance.now();
-    function tick(now) {
-      var p = Math.min((now - t0) / ms, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = '$' + Math.round(target * eased).toLocaleString();
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-
-  var counterDone = false;
-  var counterEl = document.getElementById('counter-section');
-  if (counterEl) {
-    var co = new IntersectionObserver(function(entries) {
-      if (entries[0] && entries[0].isIntersecting && !counterDone) {
-        counterDone = true;
-        var cardEl = document.getElementById('card-fee-display');
-        var dynkEl = document.getElementById('dynk-fee-display');
-        var savEl  = document.getElementById('savings-display');
-        countUp(cardEl, 14500, 2000);
-        countUp(dynkEl,   360, 2000);
-        // savings counter
-        var t0 = performance.now(), ms = 2000;
-        function tickSav(now) {
-          var p = Math.min((now - t0) / ms, 1);
-          var eased = 1 - Math.pow(1 - p, 3);
-          savEl.textContent = '$' + Math.round(14140 * eased).toLocaleString();
-          if (p < 1) requestAnimationFrame(tickSav);
-        }
-        requestAnimationFrame(tickSav);
-        // Animate counter bars
-        counterEl.querySelectorAll('[data-target-w]').forEach(function(b, i) {
-          setTimeout(function() {
-            b.style.width = b.dataset.targetW;
-            if (b.dataset.minW) b.style.minWidth = b.dataset.minW;
-          }, i * 150);
-        });
-        co.disconnect();
-      }
-    }, { threshold: 0.25 });
-    co.observe(counterEl);
-  }
-
-  // ── Bar chart animation (scale section) ──
+// ── Bar chart animation (scale section) ──
   var scaleDone = false;
   var scaleEl = document.getElementById('scale-section');
   if (scaleEl) {
@@ -760,7 +684,7 @@
     bo.observe(scaleEl);
   }
 
-  // ── Waitlist form ──
+// ── Waitlist form ──
   window.handleMerchantWaitlist = async function(e) {
     e.preventDefault();
     var email = document.getElementById('waitlistEmail').value;

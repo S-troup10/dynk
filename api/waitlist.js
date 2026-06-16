@@ -1,3 +1,5 @@
+import { appendToSheet } from './sheets.js';
+
 const ORANGE = '#FF7A1A';
 const ORANGE_DEEP = '#E55A00';
 const TEXT_1 = '#1A1A1A';
@@ -88,7 +90,7 @@ function confirmationHtml() {
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
-  const { email } = req.body;
+  const { email, source } = req.body;
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Invalid email' });
   }
@@ -99,6 +101,7 @@ export default async function handler(req, res) {
   };
 
   await Promise.all([
+    appendToSheet(email, source || 'home'),
     // Add to Resend Contacts audience
     fetch(`https://api.resend.com/audiences/${process.env.RESEND_AUDIENCE_ID}/contacts`, {
       method: 'POST',

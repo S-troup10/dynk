@@ -1,3 +1,5 @@
+import { appendToSheet } from './sheets.js';
+
 const ORANGE = '#FF7A1A';
 const ORANGE_DEEP = '#E55A00';
 const BG = '#F0E5DA';
@@ -126,6 +128,7 @@ export default async function handler(req, res) {
   };
 
   await Promise.all([
+    appendToSheet(email, 'founders'),
     fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers,
