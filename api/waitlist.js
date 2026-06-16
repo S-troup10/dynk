@@ -102,8 +102,8 @@ export default async function handler(req, res) {
 
   await Promise.all([
     appendToSheet(email, source || 'home'),
-    // Add to Resend Contacts audience
-    fetch(`https://api.resend.com/audiences/${process.env.RESEND_AUDIENCE_ID}/contacts`, {
+    // Add to Resend Contacts
+    fetch('https://api.resend.com/contacts', {
       method: 'POST',
       headers,
       body: JSON.stringify({ email, unsubscribed: false }),
