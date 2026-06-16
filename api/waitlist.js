@@ -101,7 +101,7 @@ export default async function handler(req, res) {
   };
 
   await Promise.all([
-    appendToSheet(email, source || 'home'),
+    appendToSheet(email, source || 'home').catch(() => {}),
     // Add to Resend Contacts
     fetch('https://api.resend.com/contacts', {
       method: 'POST',
