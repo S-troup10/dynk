@@ -69,10 +69,7 @@
   @media (max-width: 900px) {
     .m-fees-stats   { grid-template-columns: 1fr 1fr !important; }
   }
-  #coming-soon-banner { transition: transform 0.3s ease; }
-  body.banner-visible .nav { top: 40px !important; }
   @media (max-width: 600px) {
-    body.banner-visible .nav { top: 58px !important; }
     #coming-soon-banner span:nth-child(3) { display: none; }
   }
 </style>
@@ -725,10 +722,17 @@
 <script>
   (function() {
     var banner = document.getElementById('coming-soon-banner');
-    document.body.classList.add('banner-visible');
-    var closeBtn = banner.querySelector('button');
-    closeBtn.addEventListener('click', function() {
-      document.body.classList.remove('banner-visible');
+    var nav = document.getElementById('siteNav');
+
+    function applyOffset() {
+      nav.style.top = banner.offsetHeight + 'px';
+    }
+
+    applyOffset();
+    window.addEventListener('resize', applyOffset);
+
+    banner.querySelector('button').addEventListener('click', function() {
+      nav.style.top = '0';
     });
   })();
 </script>
