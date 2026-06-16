@@ -13,63 +13,64 @@
 <style>
   body { background: #0C0C0E; color: #1A1A1A; font-family: var(--font-body); }
 
-  /* ── Hover states ── */
-  .m-btn-primary:hover  { transform: translateY(-2px) scale(1.02) !important; box-shadow: 0 18px 48px rgba(255,122,26,0.45) !important; }
-  .m-btn-secondary:hover{ background: rgba(255,255,255,0.7) !important; border-color: #A0A3B1 !important; }
-  .m-step-card:hover    { transform: translateY(-6px) !important; box-shadow: 0 20px 56px rgba(0,0,0,0.1) !important; }
-  .m-icard:hover        { transform: translateY(-4px) !important; box-shadow: 0 16px 48px rgba(0,0,0,0.07) !important; }
-  .m-feat:hover         { transform: translateX(6px) !important; box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important; }
-  .m-fcard              { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s, background 0.4s; }
-  .m-fcard:hover        { transform: translateY(-5px) !important; border-color: rgba(255,255,255,0.16) !important; background: rgba(255,255,255,0.05) !important; }
-  .m-fcard:hover .m-fcard-icon { transform: scale(1.08) rotate(-4deg) !important; }
-  .m-fcard:hover .m-fcard-glow { opacity: 1 !important; }
-  .m-fcard-icon         { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-  .m-fcard-glow         { transition: opacity 0.5s ease; }
-  .m-cmp-row:hover      { background: rgba(255,255,255,0.025) !important; }
-  .m-cmp2-row:not(.m-cmp2-head) { transition: background 0.25s; }
-  .m-cmp2-row:not(.m-cmp2-head):hover .m-cmp2-cards { background: rgba(255,255,255,0.025) !important; }
-  .m-cmp2-row:not(.m-cmp2-head):hover .m-cmp2-dynk  { background: rgba(255,122,26,0.1) !important; }
-  .m-cmp2-row:not(.m-cmp2-head):hover .m-cmp2-label { color: rgba(255,255,255,0.6) !important; }
+  .m-waitlist-btn:hover { opacity: 0.9 !important; }
   .m-flink:hover        { color: #FF7A1A !important; }
   .m-flegal:hover       { color: rgba(255,255,255,0.55) !important; }
-  .m-waitlist-btn:hover { opacity: 0.9 !important; }
 
-  /* ── Responsive ── */
-  @media (max-width: 1024px) {
-    .m-scale-grid    { grid-template-columns: 1fr !important; }
-    .m-platform-grid { grid-template-columns: 1fr !important; }
+  .m-overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 56px;
   }
-  @media (max-width: 900px) {
-    .m-step-flow  { flex-direction: column !important; max-width: 400px !important; margin-left: auto !important; margin-right: auto !important; }
-    .m-step-arrow { transform: rotate(90deg); }
-    .m-icard-grid { grid-template-columns: 1fr !important; }
-    .m-hero-stats { flex-wrap: wrap !important; gap: 20px !important; }
-    .m-cmp-header, .m-cmp-row-inner { grid-template-columns: 1.4fr 1fr 1fr !important; }
-    .m-ftr-cols { gap: 32px !important; flex-wrap: wrap !important; }
+  .m-overview-card {
+    padding: 36px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .m-overview-card:hover { border-color: rgba(255,122,26,0.25); background: rgba(255,122,26,0.03); }
+  .m-overview-icon {
+    width: 50px; height: 50px; border-radius: 15px;
+    background: linear-gradient(135deg,rgba(255,122,26,0.16),rgba(255,122,26,0.05));
+    border: 1px solid rgba(255,122,26,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: #FF7A1A; font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .m-overview-stat {
+    font-family: 'Orbitron', system-ui;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 900;
+    color: #FF7A1A;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .m-overview-title {
+    font-family: 'Chakra Petch', system-ui;
+    font-size: 16px; font-weight: 700;
+    color: #fff; margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .m-overview-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .m-overview-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
-    .m-inner        { padding: 0 20px !important; }
-    .m-sec          { padding: 80px 0 !important; }
-    .m-hero-inner   { padding: 110px 20px 60px !important; }
-    .m-stat-div     { display: none !important; }
-    .m-ftr-top      { flex-direction: column !important; gap: 40px !important; }
-    .m-ftr-cols     { flex-direction: column !important; gap: 24px !important; }
-    .m-ftr-bottom   { flex-direction: column !important; text-align: center !important; gap: 12px !important; }
-    .m-cmp-header   { padding: 14px 16px !important; }
-    .m-cmp-row-inner{ padding: 14px 16px !important; font-size: 12px !important; }
-    .m-cmp2-row     { grid-template-columns: 1.2fr 1fr 1fr !important; }
-    .m-cmp2-label   { padding: 16px 14px !important; font-size: 10px !important; }
-    .m-cmp2-cards, .m-cmp2-dynk { padding: 16px 14px !important; font-size: 13px !important; }
-    .m-cmp2-head > div { padding: 16px 14px !important; }
-    .m-fees-stats   { grid-template-columns: 1fr !important; }
-    .m-fees-stat    { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
-    .m-fees-stat:last-child { border-bottom: none !important; }
-    .m-fees-cards   { grid-template-columns: 1fr !important; }
-  }
-  @media (max-width: 900px) {
-    .m-fees-stats   { grid-template-columns: 1fr 1fr !important; }
-  }
-  @media (max-width: 600px) {
+    .m-inner { padding: 0 20px !important; }
+    .m-ftr-top { flex-direction: column !important; gap: 40px !important; }
+    .m-ftr-cols { flex-direction: column !important; gap: 24px !important; }
+    .m-ftr-bottom { flex-direction: column !important; text-align: center !important; gap: 12px !important; }
     #coming-soon-banner span:nth-child(3) { display: none; }
   }
 </style>
@@ -81,12 +82,10 @@
   <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:13px; color:#fff; letter-spacing:0.1em; text-transform:uppercase;">Coming Soon</span>
   <span style="color:rgba(255,255,255,0.6); font-size:13px;">—</span>
   <span style="font-family:'Outfit',sans-serif; font-size:13px; color:rgba(255,255,255,0.9);">The DYNK Merchant platform is on its way. Join the waitlist below.</span>
-  <button onclick="document.getElementById('coming-soon-banner').style.display='none'" style="position:absolute; right:16px; background:none; border:none; cursor:pointer; color:rgba(255,255,255,0.7); font-size:18px; line-height:1; padding:0 4px;">&times;</button>
+  <button onclick="document.getElementById('coming-soon-banner').style.display='none';document.getElementById('siteNav').style.top='0';" style="position:absolute; right:16px; background:none; border:none; cursor:pointer; color:rgba(255,255,255,0.7); font-size:18px; line-height:1; padding:0 4px;">&times;</button>
 </div>
 
-<!-- ═══════════════════════════════════════
-     NAV
-     ═══════════════════════════════════════ -->
+<!-- NAV -->
 <nav class="nav" id="siteNav">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
@@ -101,9 +100,7 @@
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════
-     HERO — light warm gradient, centered
-     ═══════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg-light"></div>
 
@@ -111,10 +108,10 @@
     <div class="hero-text hero-entrance hero-entrance--text">
       <h1 class="hero-headline">KEEP EVERY DOLLAR</h1>
       <div class="hero-brand">YOU EARN.</div>
-      <p class="hero-subtitle">Cards take 2–3% on every sale. DYNK settles for a flat <strong style="color:#1A1A1A; font-weight:600;">1¢</strong> in <strong style="color:#1A1A1A; font-weight:600;">400ms</strong> to your own wallet — then lets you market your offers <strong style="color:#1A1A1A; font-weight:600;">straight to the right customers' wallets</strong> nearby. Lower fees. More reach. No middleman.</p>
+      <p class="hero-subtitle">Cards take 2–3% on every sale. DYNK settles for a flat <strong style="color:#1A1A1A; font-weight:600;">1¢</strong> in <strong style="color:#1A1A1A; font-weight:600;">400ms</strong> to your own wallet — then lets you market your offers <strong style="color:#1A1A1A; font-weight:600;">straight to the right customers' wallets</strong> nearby.</p>
       <div class="hero-buttons">
         <a href="#waitlist" class="hero-btn-primary"><span>Join the Waitlist</span></a>
-        <a href="#fees" class="hero-btn-secondary"><span>See the Numbers</span></a>
+        <a href="#overview" class="hero-btn-secondary"><span>Learn More</span></a>
       </div>
     </div>
     <div class="hero-visual hero-entrance hero-entrance--visual" id="heroVisual">
@@ -142,414 +139,57 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     01 — KEEP MORE OF EVERY SALE (dark)
-     ═══════════════════════════════════════ -->
-<section id="fees" class="m-sec" style="position:relative; padding:100px 0; overflow:hidden; background:#0C0C0E;">
-  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 55% 65% at 10% 55%, rgba(255,122,26,0.05) 0%, transparent 55%), radial-gradient(ellipse 45% 45% at 90% 25%, rgba(255,80,20,0.03) 0%, transparent 55%); pointer-events:none;"></div>
+<!-- OVERVIEW -->
+<section id="overview" style="position:relative; padding:120px 0; overflow:hidden; background:#0C0C0E;">
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 55% 65% at 10% 55%, rgba(255,122,26,0.05) 0%, transparent 55%); pointer-events:none;"></div>
   <div style="position:absolute; top:0; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
 
-  <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
+  <div class="m-inner" style="max-width:1120px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
 
-    <!-- Header block -->
-    <div style="max-width:740px; margin-bottom:48px;">
-      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:12px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
+    <div style="max-width:640px; margin-bottom:8px;">
+      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:16px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
         <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">01</span>
         <span style="width:32px; height:1px; background:rgba(255,255,255,0.25);"></span>
-        Pricing
+        What DYNK Does
       </div>
-      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#FFFFFF; margin-bottom:12px;">KEEP MORE OF<br><span style="color:#FF7A1A;">EVERY SALE.</span></h2>
-      <p data-reveal="2" style="font-size:16px; color:rgba(255,255,255,0.55); line-height:1.6; max-width:600px;">Card processors take 2–3% of everything you earn. DYNK settles on-chain for a flat <strong style="color:#FFFFFF; font-weight:600;">1¢</strong> — straight to your own non-custodial wallet. You always hold your funds.</p>
+      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(30px,4vw,50px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#FFFFFF; margin-bottom:14px;">PAYMENTS. MARKETING.<br><span style="color:#FF7A1A;">ALL IN ONE.</span></h2>
+      <p data-reveal="2" style="font-size:17px; color:rgba(255,255,255,0.5); line-height:1.65; max-width:560px;">DYNK replaces your card terminal and your ad spend with a single platform — lower fees, instant settlement, and a direct line to the customers already near you.</p>
     </div>
 
-    <!-- Stats row -->
-    <div data-reveal="3" class="m-fees-stats" style="display:grid; grid-template-columns:1fr 1fr 1fr; border:1px solid rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; margin-bottom:20px;">
+    <div class="m-overview-grid">
 
-      <!-- 1¢ -->
-      <div class="m-fees-stat" style="padding:36px 40px; position:relative; border-right:1px solid rgba(255,255,255,0.07);">
-        <div style="position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 20% 60%, rgba(255,122,26,0.08) 0%, transparent 65%); pointer-events:none;"></div>
-        <div style="position:relative; z-index:1;">
-          <div style="font-family:'Orbitron',system-ui; font-size:clamp(40px,5vw,64px); font-weight:900; color:#FF7A1A; line-height:1; letter-spacing:-0.02em; margin-bottom:8px; text-shadow:0 0 40px rgba(255,122,26,0.4);">1¢</div>
-          <div style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.3);">Per transaction</div>
-          <div style="margin-top:10px; width:36px; height:2px; background:linear-gradient(90deg,#FF7A1A,transparent); border-radius:2px;"></div>
-        </div>
+      <div class="m-overview-card" data-reveal="3">
+        <div class="m-overview-icon"><i class="fa-solid fa-tag"></i></div>
+        <div class="m-overview-stat">1¢</div>
+        <div class="m-overview-title">Flat Transaction Fee</div>
+        <p class="m-overview-desc">Every card processor takes 2–3% of every sale. DYNK settles on-chain for a flat 1¢ — a coffee or a car, always the same one cent. No percentage, no middleman, no surprises.</p>
       </div>
 
-      <!-- 400ms -->
-      <div class="m-fees-stat" style="padding:36px 40px; border-right:1px solid rgba(255,255,255,0.07);">
-        <div style="font-family:'Orbitron',system-ui; font-size:clamp(40px,5vw,64px); font-weight:900; color:#FFFFFF; line-height:1; letter-spacing:-0.03em; margin-bottom:8px;">400<span style="font-size:0.52em; letter-spacing:0.01em; color:rgba(255,255,255,0.45); font-weight:700;">ms</span></div>
-        <div style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.3);">Settlement</div>
-        <div style="margin-top:10px; width:36px; height:2px; background:linear-gradient(90deg,rgba(255,255,255,0.2),transparent); border-radius:2px;"></div>
+      <div class="m-overview-card" data-reveal="4">
+        <div class="m-overview-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="m-overview-stat">400<span style="font-size:0.5em; color:rgba(255,255,255,0.4); font-weight:700;">ms</span></div>
+        <div class="m-overview-title">Instant Settlement</div>
+        <p class="m-overview-desc">Funds arrive in your non-custodial wallet in 400ms. DYNK never holds your money — your keys, your funds, always. No waiting 2–3 business days for what you already earned.</p>
       </div>
 
-      <!-- 0% -->
-      <div class="m-fees-stat" style="padding:36px 40px;">
-        <div style="font-family:'Orbitron',system-ui; font-size:clamp(40px,5vw,64px); font-weight:900; color:#FFFFFF; line-height:1; letter-spacing:-0.03em; margin-bottom:8px;">0<span style="font-size:0.6em; letter-spacing:0; color:rgba(255,255,255,0.45); font-weight:700;">%</span></div>
-        <div style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.3);">Held by DYNK</div>
-        <div style="margin-top:10px; width:36px; height:2px; background:linear-gradient(90deg,rgba(255,255,255,0.2),transparent); border-radius:2px;"></div>
+      <div class="m-overview-card" data-reveal="5">
+        <div class="m-overview-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+        <div class="m-overview-title">Market Into Their Wallet</div>
+        <p class="m-overview-desc">DYNK is the only platform that puts your offer directly inside nearby customers' wallets. Set a deal, pick your audience, and your ad lands where they're already making decisions — not a feed, not an inbox.</p>
       </div>
 
-    </div>
-
-    <!-- Feature cards -->
-    <div data-reveal="4" class="m-fees-cards" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-
-      <!-- Flat 1¢ Fee -->
-      <div class="m-fcard" style="padding:32px 34px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:20px; position:relative; overflow:hidden;">
-        <div class="m-fcard-glow" style="position:absolute; top:-40%; right:-20%; width:240px; height:240px; background:radial-gradient(circle,rgba(255,122,26,0.16) 0%,rgba(255,122,26,0) 70%); opacity:0.45; pointer-events:none;"></div>
-        <div style="position:relative; z-index:1; display:flex; align-items:flex-start; gap:18px;">
-          <div class="m-fcard-icon" style="width:46px; height:46px; border-radius:14px; flex-shrink:0; background:linear-gradient(135deg,rgba(255,122,26,0.16),rgba(255,122,26,0.05)); border:1px solid rgba(255,122,26,0.25); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 18px rgba(255,122,26,0.12);">
-            <i class="fa-solid fa-tag" style="color:#FF7A1A; font-size:18px;"></i>
-          </div>
-          <div>
-            <h3 style="font-family:'Chakra Petch',system-ui; font-size:17px; font-weight:700; color:#FFFFFF; margin-bottom:7px; letter-spacing:0.01em;">Flat 1¢ Fee</h3>
-            <p style="font-size:14px; color:rgba(255,255,255,0.5); line-height:1.65; margin:0;">Every card swipe costs you <span style="color:rgba(255,255,255,0.85); font-weight:600;">2–3%</span>. DYNK settles for a flat <span style="color:#FF7A1A; font-weight:600;">1¢</span> — a coffee or a car, same one cent. No percentage, no middleman.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Non-Custodial -->
-      <div class="m-fcard" style="padding:32px 34px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:20px; position:relative; overflow:hidden;">
-        <div class="m-fcard-glow" style="position:absolute; top:-40%; right:-20%; width:240px; height:240px; background:radial-gradient(circle,rgba(255,122,26,0.16) 0%,rgba(255,122,26,0) 70%); opacity:0.45; pointer-events:none;"></div>
-        <div style="position:relative; z-index:1; display:flex; align-items:flex-start; gap:18px;">
-          <div class="m-fcard-icon" style="width:46px; height:46px; border-radius:14px; flex-shrink:0; background:linear-gradient(135deg,rgba(255,122,26,0.16),rgba(255,122,26,0.05)); border:1px solid rgba(255,122,26,0.25); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 18px rgba(255,122,26,0.12);">
-            <i class="fa-solid fa-key" style="color:#FF7A1A; font-size:18px;"></i>
-          </div>
-          <div>
-            <h3 style="font-family:'Chakra Petch',system-ui; font-size:17px; font-weight:700; color:#FFFFFF; margin-bottom:7px; letter-spacing:0.01em;">Non-Custodial</h3>
-            <p style="font-size:14px; color:rgba(255,255,255,0.5); line-height:1.65; margin:0;">Funds settle on-chain in <span style="color:rgba(255,255,255,0.85); font-weight:600;">400ms</span>, straight to your own wallet. DYNK never holds or controls your money — your keys, your funds, always.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     02 — REACH (light)
-     ═══════════════════════════════════════ -->
-<section id="reach" class="m-sec" style="position:relative; padding:130px 0; overflow:hidden; background:radial-gradient(140% 80% at 78% 12%,#F8C9A5 0%,rgba(248,201,165,0) 55%),radial-gradient(120% 70% at 12% 8%,#FFE0CB 0%,rgba(255,224,203,0) 50%),radial-gradient(140% 80% at 90% 92%,#C7D2EE 0%,rgba(199,210,238,0) 55%),radial-gradient(160% 90% at 8% 90%,#DCDFEB 0%,rgba(220,223,235,0) 60%),linear-gradient(180deg,#F0E5DA 0%,#E5E6EE 50%,#DBDDE8 100%);">
-  <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
-
-    <!-- Header -->
-    <div style="max-width:680px; margin-bottom:72px;">
-      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
-        <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">02</span>
-        <span style="width:32px; height:1px; background:#FF7A1A; opacity:0.4;"></span>
-        Reach
-      </div>
-      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#1A1A1A; margin-bottom:16px;">MARKET WHERE<br><span style="color:#FF7A1A;">IT MATTERS.</span></h2>
-      <p data-reveal="2" style="font-size:18px; color:#5C5E68; line-height:1.65; max-width:580px;">Reach nearby customers at the moment they're deciding. You define the offer and set the criteria. Their device finds the match. No identities, no cold outreach, no wasted spend.</p>
-    </div>
-
-   
-
-    <!-- 4-step flow -->
-    <div style="border-top:1px solid rgba(0,0,0,0.1); display:grid; grid-template-columns:1fr 1fr 1fr 1fr;">
-
-      <!-- Step 1 -->
-      <div data-reveal="4" style="padding:44px 36px 44px 0; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
-          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">01</span>
-          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
-            <i class="fa-solid fa-pen-to-square"></i>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Create Your Offer</div>
-          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Set your deal in seconds — happy hour, two-for-one, a seat that needs filling.</p>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div data-reveal="5" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
-          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">02</span>
-          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
-            <i class="fa-solid fa-sliders"></i>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Pick the Audience</div>
-          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Filter by area, time, and behaviour. Preview audience size — never individual identities.</p>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div data-reveal="6" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
-          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">03</span>
-          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
-            <i class="fa-solid fa-photo-film"></i>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Create Your Ad</div>
-          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Upload your creative or build a simple ad directly in the dashboard. Your brand, your message — ready in minutes.</p>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div data-reveal="7" style="padding:44px 0 44px 36px; display:flex; flex-direction:column; gap:16px;">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between;">
-          <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">04</span>
-          <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
-            <i class="fa-solid fa-store"></i>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:'Chakra Petch',system-ui; font-size:14px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1A1A1A; margin-bottom:10px;">Precision Delivery</div>
-          <p style="font-size:15px; color:#3A3C46; line-height:1.65; margin:0;">Your offer is shown only to customers who fit your exact criteria. No broad targeting, no wasted spend — just the right people at the right moment.</p>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     03 — SAVINGS AT SCALE (dark)
-     ═══════════════════════════════════════ -->
-<section id="scale-section" class="m-sec" style="position:relative; padding:130px 0; overflow:hidden; background:#0C0C0E;">
-  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 70% 30%, rgba(255,122,26,0.04) 0%, transparent 55%); pointer-events:none;"></div>
-  <div style="position:absolute; top:0; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
-
-  <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
-    <div class="m-scale-grid" style="display:grid; grid-template-columns:1fr 1.3fr; gap:80px; align-items:stretch;">
-
-      <!-- Left text -->
-      <div>
-        <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
-          <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">03</span>
-          <span style="width:32px; height:1px; background:rgba(255,255,255,0.25);"></span>
-          At Scale
-        </div>
-        <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#FFFFFF; margin-bottom:16px;">GROWS WITH YOU.<br><span style="color:#FF7A1A;">FEES DON'T.</span></h2>
-        <p data-reveal="2" style="font-size:18px; color:rgba(255,255,255,0.55); line-height:1.65; max-width:440px;">Card fees scale against you — the more you earn, the more they take. DYNK stays flat. Always 1¢. Your growth is yours.</p>
-        <div data-reveal="3" style="display:flex; flex-direction:column; gap:10px; margin-top:28px;">
-          <div style="display:flex; align-items:center; gap:10px; padding:14px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; font-size:14px; color:rgba(255,255,255,0.55);">
-            <i class="fa-solid fa-arrow-trend-up" style="color:#FF7A1A;"></i> Card fees: percentage-based, compounding
-          </div>
-          <div style="display:flex; align-items:center; gap:10px; padding:14px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; font-size:14px; color:rgba(255,255,255,0.55);">
-            <i class="fa-solid fa-minus" style="color:#22C55E;"></i> DYNK: flat 1¢, regardless of amount
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: comparison table -->
-      <div data-reveal="2" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; display:flex; flex-direction:column;">
-
-        <!-- Column headers -->
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:22px 30px; border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.025);">
-          <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Revenue / yr</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Cards 2.9%</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#FF7A1A;">DYNK 1¢</span>
-        </div>
-
-        <!-- $50K -->
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:24px 30px; border-bottom:1px solid rgba(255,255,255,0.05); align-items:baseline;">
-          <span style="font-family:'Orbitron',system-ui; font-size:13px; font-weight:700; letter-spacing:0.04em; color:rgba(255,255,255,0.55);">$50K</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:rgba(255,255,255,0.6); letter-spacing:-0.01em;">$1,450</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$36</span>
-        </div>
-
-        <!-- $100K -->
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:24px 30px; border-bottom:1px solid rgba(255,255,255,0.05); align-items:baseline;">
-          <span style="font-family:'Orbitron',system-ui; font-size:13px; font-weight:700; letter-spacing:0.04em; color:rgba(255,255,255,0.55);">$100K</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:rgba(255,255,255,0.6); letter-spacing:-0.01em;">$2,900</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$72</span>
-        </div>
-
-        <!-- $250K -->
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:24px 30px; border-bottom:1px solid rgba(255,255,255,0.05); align-items:baseline;">
-          <span style="font-family:'Orbitron',system-ui; font-size:13px; font-weight:700; letter-spacing:0.04em; color:rgba(255,255,255,0.55);">$250K</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:rgba(255,255,255,0.6); letter-spacing:-0.01em;">$7,250</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$180</span>
-        </div>
-
-        <!-- $500K -->
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:24px 30px; border-bottom:1px solid rgba(255,255,255,0.1); align-items:baseline;">
-          <span style="font-family:'Orbitron',system-ui; font-size:13px; font-weight:700; letter-spacing:0.04em; color:rgba(255,255,255,0.55);">$500K</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:rgba(255,255,255,0.6); letter-spacing:-0.01em;">$14,500</span>
-          <span style="font-family:'Orbitron',system-ui; font-size:20px; font-weight:700; color:#FF7A1A; letter-spacing:-0.01em;">$360</span>
-        </div>
-
-        <!-- Savings footer -->
-        <div style="margin-top:auto; padding:30px; display:flex; align-items:center; justify-content:space-between; gap:16px; background:rgba(34,197,94,0.05);">
-          <span style="font-size:14px; color:rgba(255,255,255,0.45); line-height:1.55;">At $500K/yr — that's a hire, a fit-out,<br>or six months' rent back in your pocket.</span>
-          <div style="text-align:right; flex-shrink:0;">
-            <div style="font-family:'Orbitron',system-ui; font-size:28px; font-weight:900; color:#22C55E; letter-spacing:-0.02em; white-space:nowrap;">$14,140</div>
-            <div style="font-family:'Orbitron',system-ui; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(34,197,94,0.6); margin-top:4px;">saved / yr</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     04 — THE PLATFORM (light)
-     ═══════════════════════════════════════ -->
-<section id="platform" class="m-sec" style="position:relative; padding:130px 0; overflow:hidden; background:radial-gradient(140% 80% at 78% 12%,#F8C9A5 0%,rgba(248,201,165,0) 55%),radial-gradient(120% 70% at 12% 8%,#FFE0CB 0%,rgba(255,224,203,0) 50%),radial-gradient(140% 80% at 90% 92%,#C7D2EE 0%,rgba(199,210,238,0) 55%),radial-gradient(160% 90% at 8% 90%,#DCDFEB 0%,rgba(220,223,235,0) 60%),linear-gradient(180deg,#F0E5DA 0%,#E5E6EE 50%,#DBDDE8 100%);">
-  <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
-    <div class="m-platform-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
-
-      <!-- Left: text + features -->
-      <div>
-        <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
-          <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">04</span>
-          <span style="width:32px; height:1px; background:#FF7A1A; opacity:0.4;"></span>
-          The Platform
-        </div>
-        <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#1A1A1A; margin-bottom:16px;">NOT JUST<br><span style="color:#FF7A1A;">PAYMENTS.</span></h2>
-        <p data-reveal="2" style="font-size:18px; color:#5C5E68; line-height:1.65; max-width:460px; margin-bottom:32px;">Accept payments, run local campaigns, and manage your revenue — all from one dashboard built for the floor, not the back office.</p>
-
-        <div style="display:flex; flex-direction:column; gap:14px;">
-          
-          <div data-reveal="4" class="m-feat" style="display:flex; gap:16px; padding:20px; background:rgba(255,255,255,0.65); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.7); border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.04); transition:transform 0.35s cubic-bezier(0.16,1,0.3,1),box-shadow 0.35s;">
-            <div style="width:44px; height:44px; border-radius:13px; flex-shrink:0; background:rgba(255,122,26,0.1); border:1px solid rgba(255,122,26,0.15); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:18px;">
-              <i class="fa-solid fa-location-crosshairs"></i>
-            </div>
-            <div>
-              <h4 style="font-family:'Chakra Petch',system-ui; font-size:15px; font-weight:700; color:#1A1A1A; margin-bottom:4px;">Market Into Their Wallet</h4>
-              <p style="font-size:13px; color:#5C5E68; line-height:1.55;">DYNK is the only platform that puts your offer directly inside your customers' wallets — not a feed, not an inbox. When they open their app, your deal is already there.</p>
-            </div>
-          </div>
-          <div data-reveal="5" class="m-feat" style="display:flex; gap:16px; padding:20px; background:rgba(255,255,255,0.65); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.7); border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.04); transition:transform 0.35s cubic-bezier(0.16,1,0.3,1),box-shadow 0.35s;">
-            <div style="width:44px; height:44px; border-radius:13px; flex-shrink:0; background:rgba(255,122,26,0.1); border:1px solid rgba(255,122,26,0.15); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:18px;">
-              <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <div>
-              <h4 style="font-family:'Chakra Petch',system-ui; font-size:15px; font-weight:700; color:#1A1A1A; margin-bottom:4px;">Auto-Split Buckets</h4>
-              <p style="font-size:13px; color:#5C5E68; line-height:1.55;">Revenue sorts automatically into GST, wages, rent, marketing — before you think about it.</p>
-            </div>
-          </div>
-          <div data-reveal="6" class="m-feat" style="display:flex; gap:16px; padding:20px; background:rgba(255,255,255,0.65); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.7); border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.04); transition:transform 0.35s cubic-bezier(0.16,1,0.3,1),box-shadow 0.35s;">
-            <div style="width:44px; height:44px; border-radius:13px; flex-shrink:0; background:rgba(255,122,26,0.1); border:1px solid rgba(255,122,26,0.15); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:18px;">
-              <i class="fa-solid fa-chart-line"></i>
-            </div>
-            <div>
-              <h4 style="font-family:'Chakra Petch',system-ui; font-size:15px; font-weight:700; color:#1A1A1A; margin-bottom:4px;">Real-Time Analytics</h4>
-              <p style="font-size:13px; color:#5C5E68; line-height:1.55;">Today's revenue, busiest hours, weekly trends — live. No waiting until month-end.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: phone mockup -->
-      <div data-reveal="3" style="display:flex; justify-content:center; align-items:center;">
-        <div style="position:relative; width:280px;">
-          <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(255,122,26,0.12) 0%, transparent 70%); pointer-events:none;"></div>
-          <div style="position:relative; z-index:1;">
-            <img src="../assets/phone2.png" alt="DYNK Merchant Dashboard" style="width:100%; display:block; filter:drop-shadow(0 24px 60px rgba(0,0,0,0.18)) drop-shadow(0 8px 20px rgba(0,0,0,0.10));">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     05 — COMPARISON (dark)
-     ═══════════════════════════════════════ -->
-<section id="compare" class="m-sec" style="position:relative; padding:130px 0; overflow:hidden; background:#0C0C0E;">
-  <div style="position:absolute; top:0; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
-
-  <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
-    <div style="text-align:center; max-width:600px; margin:0 auto 72px;">
-      <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase; justify-content:center;">
-        <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">05</span>
-        <span style="width:32px; height:1px; background:rgba(255,255,255,0.25);"></span>
-        Comparison
-      </div>
-      <h2 data-reveal="1" style="font-family:'Orbitron',system-ui; font-size:clamp(34px,4.5vw,56px); font-weight:700; letter-spacing:0.02em; line-height:1.1; color:#FFFFFF; margin-bottom:16px;">SIDE BY <span style="color:#FF7A1A;">SIDE</span></h2>
-      <p data-reveal="2" style="font-size:18px; color:rgba(255,255,255,0.55); line-height:1.65;">Everything card networks do to your revenue — and what DYNK doesn't.</p>
-    </div>
-
-    <!-- Unified comparison table -->
-    <div data-reveal="3" class="m-cmp2" style="position:relative; max-width:1000px; margin:0 auto; border:1px solid rgba(255,255,255,0.08); border-radius:22px; overflow:hidden; background:rgba(255,255,255,0.015);">
-
-      <!-- Header row -->
-      <div class="m-cmp2-row m-cmp2-head" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center;">
-        <div style="padding:24px 32px;"></div>
-        <div style="padding:24px 28px; display:flex; align-items:center; gap:10px; border-left:1px solid rgba(255,255,255,0.06);">
-          <span style="width:9px; height:9px; border-radius:50%; background:#FF6060; flex-shrink:0;"></span>
-          <span style="font-family:'Orbitron',system-ui; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.45);">Card Networks</span>
-        </div>
-        <div style="padding:24px 28px; display:flex; align-items:center; gap:10px; background:rgba(255,122,26,0.07); border-left:1px solid rgba(255,122,26,0.2);">
-          <span style="width:9px; height:9px; border-radius:50%; background:#FF7A1A; flex-shrink:0; box-shadow:0 0 10px rgba(255,122,26,0.6);"></span>
-          <span style="font-family:'Orbitron',system-ui; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#FF7A1A;">DYNK</span>
-        </div>
-      </div>
-
-      <!-- Transaction fee -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Transaction fee</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">2–3% of every sale</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>Flat 1¢</div>
-      </div>
-
-      <!-- Settlement -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Settlement</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">2–3 business days</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>400ms on-chain</div>
-      </div>
-
-      <!-- Fund custody -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Fund custody</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">Bank / card network</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>Your wallet, your keys</div>
-      </div>
-
-      <!-- Monthly fees -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Monthly fees</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">Terminal + gateway</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>$0</div>
-      </div>
-
-      <!-- Chargebacks -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Chargebacks</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">Possible + penalties</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>Final at settlement</div>
-      </div>
-
-      <!-- Data ownership -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Data ownership</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">Network owns it</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>Privacy-first signals</div>
-      </div>
-
-      <!-- Local ads -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Local ads</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">Not included</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>Built-in ad tools</div>
-      </div>
-
-      <!-- Fee scaling -->
-      <div class="m-cmp2-row" style="display:grid; grid-template-columns:1.1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div class="m-cmp2-label" style="padding:22px 32px; font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Fee scaling</div>
-        <div class="m-cmp2-cards" style="padding:22px 28px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.5); border-left:1px solid rgba(255,255,255,0.06);">Grows with revenue</div>
-        <div class="m-cmp2-dynk" style="padding:22px 28px; font-size:16px; font-weight:700; color:#FFFFFF; background:rgba(255,122,26,0.05); border-left:1px solid rgba(255,122,26,0.2); display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-check" style="color:#22C55E; font-size:13px;"></i>Always 1¢</div>
+      <div class="m-overview-card" data-reveal="6">
+        <div class="m-overview-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div class="m-overview-title">One Dashboard, Everything</div>
+        <p class="m-overview-desc">Accept payments, run campaigns, and track your revenue in real time — all from a single dashboard built for the floor, not the back office. Revenue auto-splits into tax, wages, and ops buckets before you think about it.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     WAITLIST CTA (light)
-     ═══════════════════════════════════════ -->
-<section id="waitlist" class="m-sec" style="position:relative; padding:140px 0; overflow:hidden; text-align:center; background:radial-gradient(140% 80% at 78% 12%,#F8C9A5 0%,rgba(248,201,165,0) 55%),radial-gradient(120% 70% at 12% 8%,#FFE0CB 0%,rgba(255,224,203,0) 50%),radial-gradient(140% 80% at 90% 92%,#C7D2EE 0%,rgba(199,210,238,0) 55%),radial-gradient(160% 90% at 8% 90%,#DCDFEB 0%,rgba(220,223,235,0) 60%),linear-gradient(180deg,#F0E5DA 0%,#E5E6EE 50%,#DBDDE8 100%);">
+<!-- WAITLIST -->
+<section id="waitlist" style="position:relative; padding:140px 0; overflow:hidden; text-align:center; background:radial-gradient(140% 80% at 78% 12%,#F8C9A5 0%,rgba(248,201,165,0) 55%),radial-gradient(120% 70% at 12% 8%,#FFE0CB 0%,rgba(255,224,203,0) 50%),radial-gradient(140% 80% at 90% 92%,#C7D2EE 0%,rgba(199,210,238,0) 55%),radial-gradient(160% 90% at 8% 90%,#DCDFEB 0%,rgba(220,223,235,0) 60%),linear-gradient(180deg,#F0E5DA 0%,#E5E6EE 50%,#DBDDE8 100%);">
   <div style="position:absolute; top:0; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);"></div>
 
   <div style="position:relative; z-index:2; max-width:680px; margin:0 auto; padding:0 24px;">
@@ -582,9 +222,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     FOOTER (dark)
-     ═══════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer style="background:#141416; border-top:1px solid rgba(255,255,255,0.07);">
   <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px;">
     <div class="m-ftr-top" style="display:flex; justify-content:space-between; align-items:flex-start; padding:64px 0 48px; gap:60px;">
@@ -596,27 +234,25 @@
       <div class="m-ftr-cols" style="display:flex; gap:64px;">
         <div style="display:flex; flex-direction:column; gap:10px;">
           <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Product</h5>
-          <a href="/#wallet" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Digital Wallet</a>
-          <a href="/#data"   class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Data Sovereignty</a>
-          <a href="/founders"     class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Founders</a>
+          <a href="/#wallet"  class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Digital Wallet</a>
+          <a href="/#data"    class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Data Sovereignty</a>
+          <a href="/founders" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Founders</a>
         </div>
         <div style="display:flex; flex-direction:column; gap:10px;">
           <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Merchants</h5>
-          <a href="#fees"     class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Fee Comparison</a>
-          <a href="#how"      class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">How It Works</a>
-          <a href="#platform" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">The Platform</a>
-          <a href="#compare"  class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Comparison</a>
+          <a href="#overview" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Overview</a>
+          <a href="#waitlist" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Join Waitlist</a>
         </div>
         <div style="display:flex; flex-direction:column; gap:10px;">
           <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Company</h5>
-          <a href="#"                    class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">About</a>
+          <a href="#"                      class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">About</a>
           <a href="mailto:contact@dynk.io" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">contact@dynk.io</a>
         </div>
         <div style="display:flex; flex-direction:column; gap:10px;">
           <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Get the App</h5>
           <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
-            <a href="#"><img src="../assets/apple.png"   alt="App Store"    style="width:140px; height:auto; display:block;"></a>
-            <a href="#"><img src="../assets/android.png" alt="Google Play"  style="width:140px; height:auto; display:block;"></a>
+            <a href="#"><img src="../assets/apple.png"   alt="App Store"   style="width:140px; height:auto; display:block;"></a>
+            <a href="#"><img src="../assets/android.png" alt="Google Play" style="width:140px; height:auto; display:block;"></a>
           </div>
         </div>
       </div>
@@ -636,25 +272,12 @@
 <script src="../scroll-anim.js"></script>
 <script>
 (function() {
-  // ── Nav scroll ──
   var nav = document.getElementById('siteNav');
+
   window.addEventListener('scroll', function() {
-    var s = window.scrollY > 50;
-    nav.classList.toggle('scrolled', s);
+    nav.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
 
-  // ── Hero entrance animations ──
-  setTimeout(function() {
-    document.querySelectorAll('[data-entrance]').forEach(function(el) {
-      var d = parseInt(el.dataset.entrance || '0');
-      setTimeout(function() {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      }, d);
-    });
-  }, 100);
-
-  // ── Reveal animations (scroll) ──
   requestAnimationFrame(function() {
     var obs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
@@ -677,26 +300,6 @@
     });
   });
 
-// ── Bar chart animation (scale section) ──
-  var scaleDone = false;
-  var scaleEl = document.getElementById('scale-section');
-  if (scaleEl) {
-    var bo = new IntersectionObserver(function(entries) {
-      if (entries[0] && entries[0].isIntersecting && !scaleDone) {
-        scaleDone = true;
-        scaleEl.querySelectorAll('[data-target-w]').forEach(function(b, i) {
-          setTimeout(function() {
-            b.style.width = b.dataset.targetW;
-            if (b.dataset.minW) b.style.minWidth = b.dataset.minW;
-          }, i * 120);
-        });
-        bo.disconnect();
-      }
-    }, { threshold: 0.15 });
-    bo.observe(scaleEl);
-  }
-
-// ── Waitlist form ──
   window.handleMerchantWaitlist = async function(e) {
     e.preventDefault();
     var email = document.getElementById('waitlistEmail').value;
@@ -710,12 +313,9 @@
         body: JSON.stringify({ email: email, source: 'merchants' })
       });
       if (!res.ok) throw new Error();
-    } catch(err) {
-      // Show success regardless (static site)
-    }
+    } catch(err) {}
     document.getElementById('waitlistForm').style.display = 'none';
-    var suc = document.getElementById('waitlistSuccess');
-    suc.style.display = 'flex';
+    document.getElementById('waitlistSuccess').style.display = 'flex';
   };
 })();
 </script>
