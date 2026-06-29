@@ -38,7 +38,7 @@
     <div class="hero-text hero-entrance hero-entrance--text">
       <h1 class="hero-headline">OWN IT. GROW IT.</h1>
       <div class="hero-brand">DYNK</div>
-      <p class="hero-subtitle">The Intelligence of Digital<br>Asset Ownership.</p>
+      <p class="hero-subtitle">Take ownership of your assets,<br>your data, your future.</p>
       <div class="hero-buttons">
         <a href="#waitlist-section" class="hero-btn-primary"><span>Join the Waitlist</span></a>
         <a href="#wallet" class="hero-btn-secondary"><span>Learn More</span></a>
@@ -134,7 +134,7 @@
       <div class="w-card wlight-card">
         <div class="w-card-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
         <h3>NFT-Backed Wallets</h3>
-        <p>Founder wallets are minted as unique NFTs on Solana — transferable and sellable as a whole, just like any other on-chain asset.</p>
+        <p>In our app, users are able to purchase NFT-backed wallets which are able to be transferred and sellable as a whole.</p>
       </div>
       <div class="w-card wlight-card">
         <div class="w-card-icon"><i class="fa-solid fa-key"></i></div>
@@ -147,12 +147,17 @@
 
 <!-- DATA -->
 <section class="sec-data" id="data">
+  <div class="data-coming-soon-banner">
+    <span class="data-cs-label">Coming Soon</span>
+    <span class="data-cs-sep">—</span>
+    <span class="data-cs-text">Data Sovereignty features are in active development. Stay tuned.</span>
+  </div>
   <div class="sec-inner">
     <div class="data-grid">
       <div class="data-left">
         <div class="sec-label"><span class="sec-label-num">02</span><span class="sec-label-line"></span>Data Sovereignty</div>
         <h2 class="sec-title sec-title--light">Own Your<br>Data</h2>
-        <p class="sec-desc sec-desc--light">Your preferences have value. When merchants want access, the reward flows to you — not the platform.</p>
+        <p class="sec-desc sec-desc--light">Your data have value. When merchants want access, the reward flows to you — not the platform.</p>
       </div>
       <div class="data-right">
         <div class="d-item">
@@ -165,7 +170,7 @@
         </div>
         <div class="d-item">
           <div class="d-item-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-          <div class="d-item-body"><h4>Earn Rewards for Your Preferences</h4><p>When you choose to share your preferences, DYNK credits flow directly to your wallet.</p></div>
+          <div class="d-item-body"><h4>Earn Rewards for Your Data</h4><p>When you choose to share your data, you are paid in DYNK tokens directly from the merchant who markets to you.</p></div>
         </div>
       </div>
     </div>
@@ -192,8 +197,8 @@
       <div class="data-flow-card" data-anim="fade-up" data-delay="4">
         <span class="data-flow-num">4</span>
         <div class="d-item-icon"><i class="fa-solid fa-coins"></i></div>
-        <h4>You earn credits</h4>
-        <p>DYNK credits land straight in your wallet. No platform skimming off the top.</p>
+        <h4>You earn Tokens</h4>
+        <p>DYNK tokens land straight in your wallet. No platform skimming off the top.</p>
       </div>
     </div>
   </div>
@@ -207,14 +212,14 @@
     <h2 class="sec-title">The Foundation</h2>
     <p class="sec-desc">A decentralized ecosystem built by the community, for the community.</p>
     <div class="f-stats">
-      <div class="f-stat"><div class="f-stat-val" data-count="800">800</div><div class="f-stat-label">Founder Wallets</div></div>
+      <div class="f-stat"><div class="f-stat-val" data-count="2100">2,100</div><div class="f-stat-label">Founder Wallets</div></div>
       <div class="f-divider"></div>
-      <div class="f-stat"><div class="f-stat-val" data-count="1300">1,300</div><div class="f-stat-label">Treasury Wallets</div></div>
+      <div class="f-stat"><div class="f-stat-val">NFT</div><div class="f-stat-label">Backed Wallets</div></div>
       <div class="f-divider"></div>
-      <div class="f-stat"><div class="f-stat-val" data-count="10000">10,000</div><div class="f-stat-label">Tokens Included</div></div>
+      <div class="f-stat"><div class="f-stat-val" data-count="10000">10,000</div><div class="f-stat-label">Tokens Included (first 800)</div></div>
     </div>
     <div class="f-pills">
-      <div class="f-pill"><i class="fa-solid fa-percent"></i>Earn from merchant bids</div>
+      <div class="f-pill"><i class="fa-solid fa-percent"></i>Earn from network activity</div>
       <div class="f-pill"><i class="fa-solid fa-users"></i>Form the governance</div>
     </div>
   </div>
@@ -226,8 +231,8 @@
     <div class="sec-label"><span class="sec-label-num">04</span><span class="sec-label-line"></span>Wallet Board</div>
     <div class="board-header">
       <div class="board-header-text">
-        <h2 class="sec-title sec-title--light">800 Founder Wallets</h2>
-        <p class="sec-desc sec-desc--light">Each cell represents a unique Founder Wallet (#001–#800). Claimed wallets are lit — the rest are waiting for their owner.</p>
+        <h2 class="sec-title sec-title--light">2,100 Founder Wallets</h2>
+        <p class="sec-desc sec-desc--light">Each cell represents a unique Founder Wallet (#001–#2100). Claimed wallets are lit — the rest are waiting for their owner.</p>
       </div>
       <div class="board-legend">
         <span class="board-legend-item"><span class="board-legend-dot board-legend-dot--taken"></span>Claimed</span>
@@ -316,6 +321,54 @@
     </div>
   </div>
 </footer>
+
+<!-- WALLET CARD MODAL -->
+<div class="wc-overlay" id="walletModal" role="dialog" aria-modal="true" aria-label="Wallet Card">
+  <div class="wc-card">
+    <button class="wc-close" id="walletModalClose" aria-label="Close">&times;</button>
+
+    <div class="wc-left">
+      <div class="wc-top-row">
+        <span class="wc-type">Founder Wallet</span>
+        <span class="wc-status" id="wcStatus">Available</span>
+      </div>
+
+      <div class="wc-number-block">
+        <span class="wc-number" id="wcNumber">#0001</span>
+        <span class="wc-number-sub">of 2,100</span>
+      </div>
+
+      <p class="wc-desc">One of only 2,100 exclusive Founder Wallets — minted on Solana. Own it, trade it, or hold it. It's yours forever.</p>
+
+      <div class="wc-tokens-block">
+        <span class="wc-tokens-label">Preloaded Tokens</span>
+        <div class="wc-tokens-row">
+          <span class="wc-tokens-val" id="wcTokensVal">~10,000</span>
+          <span class="wc-tokens-unit">DYNK</span>
+        </div>
+      </div>
+
+      <div class="wc-perks">
+        <span class="wc-perk"><i class="fa-solid fa-scale-balanced"></i>Governance Rights</span>
+        <span class="wc-perk"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transferable</span>
+        <span class="wc-perk"><i class="fa-solid fa-percent"></i>Network Earnings</span>
+      </div>
+
+      <a href="/founders" class="wc-marketplace-btn">Go to Marketplace <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="wc-right">
+      <div class="wc-img-card">
+        <img src="assets/fitr.png" alt="DYNK Wallet" class="wc-logo">
+        <div class="wc-img-caption">DYNK — Own the Network</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOARD HOVER TOOLTIP -->
+<div class="wc-tooltip" id="boardTooltip"></div>
 
 <script src="hero.js"></script>
 <script src="sections.js"></script>
