@@ -184,7 +184,7 @@
   color: #22C55E; font-weight: 700;
 }
 .fp-compare-col--old ul li::before {
-  content: '—'; position: absolute; left: 0;
+  content: '✓'; position: absolute; left: 0;
   color: var(--text-3);
 }
 .fp-compare-neg { color: var(--text-3) !important; }
