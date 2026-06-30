@@ -1226,6 +1226,8 @@
 @media (max-width: 768px) {
   /* Hide phone mockup column in dark wallet section */
   .wdark-right { display: none; }
+  /* Stack wallet-light cards vertically */
+  .wlight-cards { grid-template-columns: 1fr; }
 
   /* Modal: hide image panel, single column */
   .wc-card {
