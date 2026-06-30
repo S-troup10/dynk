@@ -72,6 +72,35 @@
   @media (max-width: 600px) {
     #coming-soon-banner span:nth-child(3) { display: none; }
   }
+
+  /* ── Tablet (≤768px) ── */
+  @media (max-width: 768px) {
+    .m-inner        { padding: 0 24px !important; }
+    .m-sec          { padding: 80px 0 !important; }
+    .m-reach-header { margin-bottom: 40px !important; }
+    .m-reach-steps  { grid-template-columns: 1fr 1fr !important; }
+    .m-reach-step   { padding: 28px 20px !important; border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.1) !important; }
+    .m-reach-step:nth-child(odd)       { border-right: 1px solid rgba(0,0,0,0.1) !important; }
+    .m-reach-step:nth-last-child(-n+2) { border-bottom: none !important; }
+    .m-platform-phone img              { max-width: 220px !important; }
+    .m-scale-grid   { gap: 48px !important; }
+  }
+
+  /* ── Mobile (≤480px) ── */
+  @media (max-width: 480px) {
+    .m-sec              { padding: 60px 0 !important; }
+    .m-reach-header     { margin-bottom: 24px !important; }
+    .m-reach-steps      { grid-template-columns: 1fr !important; }
+    .m-reach-step       { padding: 24px 0 !important; border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.1) !important; }
+    .m-reach-step:nth-child(odd)       { border-right: none !important; }
+    .m-reach-step:nth-last-child(-n+2) { border-bottom: 1px solid rgba(0,0,0,0.1) !important; }
+    .m-reach-step:last-child           { border-bottom: none !important; }
+    .m-waitlist-form-inner             { flex-direction: column !important; }
+    .m-waitlist-form-inner input       { border-radius: 12px 12px 0 0 !important; }
+    .m-waitlist-form-inner button      { justify-content: center !important; border-radius: 0 0 12px 12px !important; }
+    .m-scale-grid       { gap: 36px !important; }
+    .m-fees-cards       { gap: 14px !important; }
+  }
 </style>
 </head>
 <body>
@@ -234,7 +263,7 @@
   <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:2;">
 
     <!-- Header -->
-    <div style="max-width:680px; margin-bottom:72px;">
+    <div class="m-reach-header" style="max-width:680px; margin-bottom:72px;">
       <div data-reveal="0" style="display:flex; align-items:center; gap:12px; margin-bottom:20px; font-size:13px; font-weight:600; color:#FF7A1A; letter-spacing:0.08em; text-transform:uppercase;">
         <span style="font-family:'Orbitron',system-ui; font-weight:700; font-size:11px; opacity:0.6;">02</span>
         <span style="width:32px; height:1px; background:#FF7A1A; opacity:0.4;"></span>
@@ -247,10 +276,10 @@
    
 
     <!-- 4-step flow -->
-    <div style="border-top:1px solid rgba(0,0,0,0.1); display:grid; grid-template-columns:1fr 1fr 1fr 1fr;">
+    <div class="m-reach-steps" style="border-top:1px solid rgba(0,0,0,0.1); display:grid; grid-template-columns:1fr 1fr 1fr 1fr;">
 
       <!-- Step 1 -->
-      <div data-reveal="4" style="padding:44px 36px 44px 0; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
+      <div data-reveal="4" class="m-reach-step" style="padding:44px 36px 44px 0; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
         <div style="display:flex; align-items:flex-start; justify-content:space-between;">
           <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">01</span>
           <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
@@ -264,7 +293,7 @@
       </div>
 
       <!-- Step 2 -->
-      <div data-reveal="5" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
+      <div data-reveal="5" class="m-reach-step" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
         <div style="display:flex; align-items:flex-start; justify-content:space-between;">
           <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">02</span>
           <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
@@ -278,7 +307,7 @@
       </div>
 
       <!-- Step 3 -->
-      <div data-reveal="6" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
+      <div data-reveal="6" class="m-reach-step" style="padding:44px 36px; border-right:1px solid rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;">
         <div style="display:flex; align-items:flex-start; justify-content:space-between;">
           <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">03</span>
           <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
@@ -292,7 +321,7 @@
       </div>
 
       <!-- Step 4 -->
-      <div data-reveal="7" style="padding:44px 0 44px 36px; display:flex; flex-direction:column; gap:16px;">
+      <div data-reveal="7" class="m-reach-step" style="padding:44px 0 44px 36px; display:flex; flex-direction:column; gap:16px;">
         <div style="display:flex; align-items:flex-start; justify-content:space-between;">
           <span style="font-family:'Orbitron',system-ui; font-size:clamp(56px,7vw,88px); font-weight:900; color:rgba(0,0,0,0.06); line-height:1;">04</span>
           <div style="width:52px; height:52px; border-radius:15px; background:rgba(255,255,255,0.85); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; color:#FF7A1A; font-size:20px; flex-shrink:0; margin-top:6px;">
@@ -441,7 +470,7 @@
       </div>
 
       <!-- Right: phone mockup -->
-      <div data-reveal="3" style="display:flex; justify-content:center; align-items:center;">
+      <div data-reveal="3" class="m-platform-phone" style="display:flex; justify-content:center; align-items:center;">
         <div style="position:relative; width:280px;">
           <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(255,122,26,0.12) 0%, transparent 70%); pointer-events:none;"></div>
           <div style="position:relative; z-index:1;">
@@ -565,7 +594,7 @@
     </p>
 
     <form id="waitlistForm" data-reveal="3" style="width:100%; max-width:520px; margin:0 auto;" onsubmit="handleMerchantWaitlist(event)">
-      <div style="display:flex; gap:0; background:rgba(255,255,255,0.75); backdrop-filter:blur(12px); border:1px solid rgba(255,122,26,0.35); border-radius:14px; overflow:hidden; box-shadow:0 8px 40px rgba(255,122,26,0.12);">
+      <div class="m-waitlist-form-inner" style="display:flex; gap:0; background:rgba(255,255,255,0.75); backdrop-filter:blur(12px); border:1px solid rgba(255,122,26,0.35); border-radius:14px; overflow:hidden; box-shadow:0 8px 40px rgba(255,122,26,0.12);">
         <input type="email" id="waitlistEmail" placeholder="Your business email" required style="flex:1; padding:18px 22px; background:transparent; border:none; outline:none; font-family:inherit; font-size:15px; color:#1A1A1A;">
         <button type="submit" id="waitlistBtn" class="m-waitlist-btn" style="display:flex; align-items:center; gap:8px; padding:16px 24px; background:linear-gradient(135deg,#FF7A1A,#E55A00); border:none; cursor:pointer; color:#fff; font-family:inherit; font-size:14px; font-weight:700; white-space:nowrap; transition:opacity 0.2s;">
           <span>Join the Waitlist</span>
