@@ -47,3 +47,22 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
+/* ── MOBILE: strip expensive GPU properties ── */
+@media (max-width: 768px) {
+  .sec-title, .sec-label, .sec-desc,
+  .w-card, .d-item, .f-stats, .f-pill,
+  .board-counter, .board-cta-row,
+  .wdark-metric,
+  .waitlist-label, .waitlist-headline, .waitlist-sub, .waitlist-form,
+  .cta-center, .f-cta-title, .f-cta-desc,
+  [data-anim],
+  .board-cell,
+  .hero-inner, .hero-featured {
+    will-change: auto;
+  }
+  [data-anim], .wdark-metric {
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+  }
+}
