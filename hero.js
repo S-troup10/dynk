@@ -2,6 +2,33 @@
    DYNK — Hero Interactivity
    ═══════════════════════════════════════ */
 
+// ── MOBILE NAV HAMBURGER ──
+(function initMobileNav() {
+  var btn = document.getElementById('navHamburger');
+  var menu = document.getElementById('navMobileMenu');
+  if (!btn || !menu) return;
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    }
+  });
+
+  menu.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    }
+  });
+})();
+
 // ── ENTRANCE ANIMATIONS ──
 (function runEntrance() {
   var sequence = [

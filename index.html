@@ -25,8 +25,17 @@
       <a href="/founders">Founders</a>
     </div>
     <a href="#waitlist-section" class="nav-platform-btn">Join the Waitlist</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#">Home</a>
+  <a href="/merchants">Merchants</a>
+  <a href="/founders">Founders</a>
+  <a href="#waitlist-section" class="nav-mobile-cta">Join the Waitlist</a>
+</div>
 
 <!-- ═══════════════════════════════════════
      HERO
@@ -240,6 +249,14 @@
       </div>
     </div>
     <div class="board-grid" id="walletBoard"></div>
+    <div class="board-mobile-picker" id="boardMobilePicker">
+      <p class="board-mobile-picker-label">Enter a wallet number to view details</p>
+      <div class="board-mobile-picker-row">
+        <input type="number" class="board-mobile-picker-input" id="boardPickerInput" min="1" max="2100" placeholder="1 – 2100">
+        <button class="board-mobile-picker-btn" id="boardPickerBtn">View</button>
+      </div>
+      <button class="board-mobile-picker-random" id="boardPickerRandom">Pick Random Wallet</button>
+    </div>
     <div class="board-counter">
       <div class="board-counter-stat">
         <span class="board-counter-val" id="boardTaken">—</span>

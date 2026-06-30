@@ -14,8 +14,6 @@
   body { background: #0C0C0E; color: #1A1A1A; font-family: var(--font-body); }
 
   .m-waitlist-btn:hover { opacity: 0.9 !important; }
-  .m-flink:hover        { color: #FF7A1A !important; }
-  .m-flegal:hover       { color: rgba(255,255,255,0.55) !important; }
 
   .m-overview-grid {
     display: grid;
@@ -65,14 +63,22 @@
 
   @media (max-width: 768px) {
     .m-overview-grid { grid-template-columns: 1fr; }
+    /* Merchants waitlist form: stack on mobile */
+    #waitlistForm > div {
+      flex-direction: column;
+      border-radius: 14px;
+    }
+    #waitlistForm input[type="email"] {
+      border-radius: 14px 14px 0 0;
+    }
+    .m-waitlist-btn {
+      justify-content: center !important;
+      border-radius: 0 0 14px 14px !important;
+    }
   }
   @media (max-width: 600px) {
     .m-inner { padding: 0 20px !important; }
-    .m-ftr-top { flex-direction: column !important; gap: 40px !important; }
-    .m-ftr-cols { flex-direction: column !important; gap: 24px !important; }
-    .m-ftr-bottom { flex-direction: column !important; text-align: center !important; gap: 12px !important; }
     #coming-soon-banner span:nth-child(3) { display: none; }
-    .hero-visual { display: none; }
   }
 </style>
 </head>
@@ -98,8 +104,17 @@
       <a href="/founders">Founders</a>
     </div>
     <a href="#waitlist" class="nav-platform-btn">Join the Waitlist</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="/">Home</a>
+  <a href="#" style="color: var(--orange);">Merchants</a>
+  <a href="/founders">Founders</a>
+  <a href="#waitlist" class="nav-mobile-cta">Join the Waitlist</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -224,47 +239,23 @@
 </section>
 
 <!-- FOOTER -->
-<footer style="background:#141416; border-top:1px solid rgba(255,255,255,0.07);">
-  <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px;">
-    <div class="m-ftr-top" style="display:flex; justify-content:space-between; align-items:flex-start; padding:64px 0 48px; gap:60px;">
-      <div>
-        <a href="/">
-          <img src="../assets/dynk-logo.png" alt="DYNK" style="width:100px; height:auto;">
-        </a>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand-logo"><img src="../assets/dynk-logo.png" alt="DYNK"></a>
       </div>
-      <div class="m-ftr-cols" style="display:flex; gap:64px;">
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Product</h5>
-          <a href="/#wallet"  class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Digital Wallet</a>
-          <a href="/#data"    class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Data Sovereignty</a>
-          <a href="/founders" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Founders</a>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Merchants</h5>
-          <a href="#overview" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Overview</a>
-          <a href="#waitlist" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Join Waitlist</a>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Company</h5>
-          <a href="#"                      class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">About</a>
-          <a href="mailto:contact@dynk.io" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">contact@dynk.io</a>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Get the App</h5>
-          <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
-            <a href="#"><img src="../assets/apple.png"   alt="App Store"   style="width:140px; height:auto; display:block;"></a>
-            <a href="#"><img src="../assets/android.png" alt="Google Play" style="width:140px; height:auto; display:block;"></a>
-          </div>
-        </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h5>Product</h5><a href="/#wallet">Digital Wallet</a><a href="/#data">Data Sovereignty</a><a href="/#foundation">Governance</a><a href="/founders">Founders</a></div>
+        <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="mailto:contact@dynk.io">contact@dynk.io</a></div>
+        <div class="footer-col"><h5>Community</h5><a href="#">Twitter / X</a><a href="#">Telegram</a></div>
+        <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="../assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="../assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>
       </div>
     </div>
-    <div style="height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
-    <div class="m-ftr-bottom" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; gap:20px;">
-      <span style="font-size:13px; color:rgba(255,255,255,0.28);">© 2026 DYNK. All rights reserved.</span>
-      <div style="display:flex; gap:24px;">
-        <a href="#" class="m-flegal" style="font-size:13px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Privacy Policy</a>
-        <a href="#" class="m-flegal" style="font-size:13px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Terms of Service</a>
-      </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DYNK. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
     </div>
   </div>
 </footer>
@@ -324,9 +315,12 @@
   (function() {
     var banner = document.getElementById('coming-soon-banner');
     var nav = document.getElementById('siteNav');
+    var mobileMenu = document.getElementById('navMobileMenu');
 
     function applyOffset() {
-      nav.style.top = banner.offsetHeight + 'px';
+      var h = banner.offsetHeight;
+      nav.style.top = h + 'px';
+      if (mobileMenu) mobileMenu.style.top = (72 + h) + 'px';
     }
 
     applyOffset();
@@ -335,6 +329,7 @@
     banner.querySelector('button').addEventListener('click', function() {
       banner.style.display = 'none';
       nav.style.top = '0';
+      if (mobileMenu) mobileMenu.style.top = '72px';
     });
   })();
 </script>

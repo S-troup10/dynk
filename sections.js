@@ -13,20 +13,30 @@ window.addEventListener('scroll', function() {
   if (!board) return;
 
   var total = 2100;
-  var takenCount = 100; // First 100 wallets are claimed
+  var takenCount = 100;
+  var isMobile = window.innerWidth <= 768;
+  var MOBILE_GROUPS = 210;
+  var walletsPerGroup = total / MOBILE_GROUPS; // 10
 
-  // Build grid
+  // Build grid — on mobile render 210 macro-cells to avoid lag
   var frag = document.createDocumentFragment();
-  for (var i = 0; i < total; i++) {
-    var isTaken = i < takenCount;
+  var cellCount = isMobile ? MOBILE_GROUPS : total;
+
+  for (var i = 0; i < cellCount; i++) {
+    var walletNum = isMobile ? (i * walletsPerGroup + 1) : (i + 1);
+    var taken = isMobile ? (i * walletsPerGroup < takenCount) : (i < takenCount);
     var cell = document.createElement('div');
-    var num = String(i + 1).padStart(4, '0');
-    cell.className = 'board-cell' + (isTaken ? ' taken' : '');
+    var num = String(walletNum).padStart(4, '0');
+    cell.className = 'board-cell' + (taken ? ' taken' : '');
     cell.dataset.wallet = num;
-    cell.dataset.taken = isTaken ? '1' : '0';
+    cell.dataset.taken = taken ? '1' : '0';
     frag.appendChild(cell);
   }
   board.appendChild(frag);
+
+  if (isMobile) {
+    board.classList.add('board-grid--mobile');
+  }
 
   // Update counters
   var takenEl = document.getElementById('boardTaken');
@@ -34,22 +44,23 @@ window.addEventListener('scroll', function() {
   if (takenEl) takenEl.textContent = takenCount.toLocaleString();
   if (openEl) openEl.textContent = (total - takenCount).toLocaleString();
 
-  // ── Tooltip ──
+  // ── Tooltip (desktop only) ──
   var tooltip = document.getElementById('boardTooltip');
-  board.addEventListener('mouseover', function(e) {
-    var cell = e.target.closest('.board-cell');
-    if (!cell || !tooltip) return;
-    tooltip.textContent = '#' + cell.dataset.wallet + (cell.dataset.taken === '1' ? ' · Claimed' : ' · Available');
-    tooltip.classList.add('visible');
-  });
-  board.addEventListener('mousemove', function(e) {
-    if (!tooltip) return;
-    tooltip.style.left = (e.clientX + 12) + 'px';
-    tooltip.style.top  = (e.clientY - 28) + 'px';
-  });
-  board.addEventListener('mouseleave', function() {
-    if (tooltip) tooltip.classList.remove('visible');
-  });
+  if (!isMobile && tooltip) {
+    board.addEventListener('mouseover', function(e) {
+      var cell = e.target.closest('.board-cell');
+      if (!cell) return;
+      tooltip.textContent = '#' + cell.dataset.wallet + (cell.dataset.taken === '1' ? ' · Claimed' : ' · Available');
+      tooltip.classList.add('visible');
+    });
+    board.addEventListener('mousemove', function(e) {
+      tooltip.style.left = (e.clientX + 12) + 'px';
+      tooltip.style.top  = (e.clientY - 28) + 'px';
+    });
+    board.addEventListener('mouseleave', function() {
+      tooltip.classList.remove('visible');
+    });
+  }
 
   // ── Token tier lookup ──
   function getTokens(walletNum) {
@@ -69,14 +80,14 @@ window.addEventListener('scroll', function() {
   var wcTokens = document.getElementById('wcTokensVal');
   var closeBtn = document.getElementById('walletModalClose');
 
-  function openModal(num, isTaken) {
+  function openModal(num, taken) {
     if (!modal || !wcNum) return;
     var n = parseInt(num, 10);
-    wcNum.textContent = '#' + num;
+    wcNum.textContent = '#' + String(n).padStart(4, '0');
     if (wcTokens) wcTokens.textContent = getTokens(n);
     if (wcStatus) {
-      wcStatus.textContent = isTaken ? 'Claimed' : 'Available';
-      wcStatus.className = 'wc-status ' + (isTaken ? 'wc-status--claimed' : 'wc-status--available');
+      wcStatus.textContent = taken ? 'Claimed' : 'Available';
+      wcStatus.className = 'wc-status ' + (taken ? 'wc-status--claimed' : 'wc-status--available');
     }
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -98,6 +109,29 @@ window.addEventListener('scroll', function() {
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
   });
+
+  // ── Mobile wallet picker ──
+  var pickerInput = document.getElementById('boardPickerInput');
+  var pickerBtn   = document.getElementById('boardPickerBtn');
+  var pickerRand  = document.getElementById('boardPickerRandom');
+
+  if (pickerBtn && pickerInput) {
+    pickerBtn.addEventListener('click', function() {
+      var n = parseInt(pickerInput.value, 10);
+      if (n >= 1 && n <= 2100) {
+        openModal(String(n).padStart(4, '0'), n <= takenCount);
+      }
+    });
+    pickerInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') pickerBtn.click();
+    });
+  }
+  if (pickerRand) {
+    pickerRand.addEventListener('click', function() {
+      var n = Math.floor(Math.random() * 2100) + 1;
+      openModal(String(n).padStart(4, '0'), n <= takenCount);
+    });
+  }
 })();
 
 // Counter animation

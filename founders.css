@@ -417,4 +417,21 @@
   .fp-revenue-grid { grid-template-columns: 1fr; }
   .wallet-grid { grid-template-columns: 1fr !important; }
   .f-hero-actions { justify-content: center; }
+  .fp-email-input-wrap {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+  }
+  .fp-email-input {
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+  .fp-email-btn {
+    border-radius: 0;
+    justify-content: center;
+    padding: 16px 28px;
+  }
+  .f-cta-inner { padding: 0 20px; }
+  .fp-email-form { max-width: 100%; }
 }
