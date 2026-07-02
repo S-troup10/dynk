@@ -23,6 +23,7 @@
       <a href="#">Home</a>
       <a href="/merchants">Merchants</a>
       <a href="/founders">Founders</a>
+      <a href="/whitepaper">Whitepaper</a>
     </div>
     <a href="#waitlist-section" class="nav-platform-btn">Join the Waitlist</a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
@@ -34,6 +35,7 @@
   <a href="#">Home</a>
   <a href="/merchants">Merchants</a>
   <a href="/founders">Founders</a>
+  <a href="/whitepaper">Whitepaper</a>
   <a href="#waitlist-section" class="nav-mobile-cta">Join the Waitlist</a>
 </div>
 
@@ -252,7 +254,7 @@
     <div class="board-mobile-picker" id="boardMobilePicker">
       <p class="board-mobile-picker-label">Enter a wallet number to view details</p>
       <div class="board-mobile-picker-row">
-        <input type="number" class="board-mobile-picker-input" id="boardPickerInput" min="1" max="2100" placeholder="1 – 2100">
+        <input type="text" inputmode="numeric" pattern="[0-9]*" class="board-mobile-picker-input" id="boardPickerInput" placeholder="1 – 2100" autocomplete="off">
         <button class="board-mobile-picker-btn" id="boardPickerBtn">View</button>
       </div>
       <button class="board-mobile-picker-random" id="boardPickerRandom">Pick Random Wallet</button>
@@ -268,6 +270,33 @@
         <span class="board-counter-label">Available</span>
       </div>
     </div>
+    <!-- LIVE MARKETPLACE STATS (populated by JS from /api/marketplace) -->
+    <div class="mkt-live-panel" id="mktLivePanel" style="display:none;">
+      <div class="mkt-stats-row">
+        <div class="mkt-stat-card mkt-stat-card--highlight" id="mktAvailableCard" style="display:none;">
+          <span class="mkt-stat-val" id="mktAvailable">0</span>
+          <span class="mkt-stat-label">Available NFTs</span>
+        </div>
+        <div class="mkt-stat-card mkt-stat-card--highlight" id="mktListedCard" style="display:none;">
+          <span class="mkt-stat-val" id="mktListed">0</span>
+          <span class="mkt-stat-label">On Marketplace</span>
+        </div>
+        <div class="mkt-stat-card" id="mktAssignedCard" style="display:none;">
+          <span class="mkt-stat-val" id="mktAssigned">0</span>
+          <span class="mkt-stat-label">Assigned</span>
+        </div>
+        <div class="mkt-stat-card" id="mktClaimedCard" style="display:none;">
+          <span class="mkt-stat-val" id="mktClaimed">0</span>
+          <span class="mkt-stat-label">Claimed</span>
+        </div>
+        <div class="mkt-stat-card" id="mktMintedCard" style="display:none;">
+          <span class="mkt-stat-val" id="mktMinted">0</span>
+          <span class="mkt-stat-label">Total Minted</span>
+        </div>
+      </div>
+      <p class="mkt-last-updated" id="mktLastUpdated"></p>
+    </div>
+
     <div class="board-cta-row">
       <a href="/founders" class="hero-cta"><span>Become a Founder</span><i class="fa-solid fa-arrow-right"></i></a>
     </div>
@@ -325,7 +354,7 @@
         <a href="#" class="footer-brand-logo"><img src="assets/dynk-logo.png" alt="DYNK"></a>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h5>Product</h5><a href="#wallet">Digital Wallet</a><a href="#data">Data Sovereignty</a><a href="#foundation">Governance</a><a href="/founders">Founders</a></div>
+        <div class="footer-col"><h5>Product</h5><a href="#wallet">Digital Wallet</a><a href="#data">Data Sovereignty</a><a href="#foundation">Governance</a><a href="/founders">Founders</a><a href="/whitepaper">Whitepaper</a></div>
         <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="mailto:contact@dynk.io">contact@dynk.io</a></div>
         <div class="footer-col"><h5>Community</h5><a href="#">Twitter / X</a><a href="#">Telegram</a></div>
         <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DYNK — Whitepaper</title>
+<link rel="icon" type="image/png" href="../assets/dynk-gradient-mark.png">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../hero.css">
+<link rel="stylesheet" href="../sections.css">
+<link rel="stylesheet" href="../scroll-anim.css">
+<link rel="stylesheet" href="../whitepaper.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="../assets/dynk-logo.png" alt="DYNK">
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/merchants">Merchants</a>
+      <a href="/founders">Founders</a>
+      <a href="#" style="color: var(--orange);">Whitepaper</a>
+    </div>
+    <a href="/#waitlist-section" class="nav-platform-btn">Join the Waitlist</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="/">Home</a>
+  <a href="/merchants">Merchants</a>
+  <a href="/founders">Founders</a>
+  <a href="#" style="color: var(--orange);">Whitepaper</a>
+  <a href="/#waitlist-section" class="nav-mobile-cta">Join the Waitlist</a>
+</div>
+
+<!-- HERO BAND -->
+<section class="wp-hero">
+  <div class="wp-hero-inner">
+    <div class="wp-hero-tag">Official Whitepaper</div>
+    <div class="wp-hero-title">DYNK NETWORK</div>
+    <div class="wp-hero-sub">Own it. Grow it.</div>
+
+    <div class="wp-hero-meta">
+      <div class="wp-meta-row"><span class="wp-meta-key">Token</span><span class="wp-meta-val">DYNK</span></div>
+      <div class="wp-meta-row"><span class="wp-meta-key">Standard</span><span class="wp-meta-val">SPL (Solana Program Library)</span></div>
+      <div class="wp-meta-row"><span class="wp-meta-key">Blockchain</span><span class="wp-meta-val">Solana (Mainnet-Beta)</span></div>
+      <div class="wp-meta-row"><span class="wp-meta-key">Maximum Supply</span><span class="wp-meta-val">21,000,000 DYNK (hard-capped, immutable)</span></div>
+      <div class="wp-meta-row"><span class="wp-meta-key">Token Type</span><span class="wp-meta-val">Utility Token</span></div>
+      <div class="wp-meta-row"><span class="wp-meta-key">Wallet</span><span class="wp-meta-val">Non-custodial</span></div>
+      <div class="wp-meta-row"><span class="wp-meta-key">Corporate Structure</span><span class="wp-meta-val">UAE (technology) · Panama (foundation &amp; token entity)</span></div>
+      <div class="wp-meta-row wp-meta-row--full"><span class="wp-meta-key">Contract Address</span><span class="wp-meta-val" style="font-family: monospace; font-size: 13px; letter-spacing: 0.02em;">EsHRhgzVaTRANVaSfjqhmKQeSo6hFZagB422NpHV5ASq</span></div>
+      <div class="wp-meta-row"><span class="wp-meta-key">Version</span><span class="wp-meta-val">2026 - July</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENT BODY -->
+<div class="wp-body">
+  <div class="wp-body-inner">
+    <div class="wp-layout">
+
+      <!-- TOC SIDEBAR -->
+      <aside class="wp-toc" id="wpToc">
+        <div class="wp-toc-label">Contents</div>
+        <ul class="wp-toc-list">
+          <li><a href="#notice">Notice &amp; Disclaimer</a></li>
+          <li><a href="#s1">1. Abstract</a></li>
+          <li><a href="#s2">2. The Problem</a></li>
+          <li><a href="#s3">3. Market Context + Opportunity</a></li>
+          <li><a href="#s4">4. Product Architecture</a></li>
+          <li><a href="#s5">5. Token Utility</a></li>
+          <li><a href="#s6">6. Tokenomics</a></li>
+          <li><a href="#s7">7. Product Roadmap</a></li>
+          <li><a href="#s8">8. Security / Risk</a></li>
+          <li><a href="#s9">9. Conclusion</a></li>
+        </ul>
+      </aside>
+
+      <!-- ARTICLE -->
+      <article class="wp-article">
+
+        <!-- NOTICE -->
+        <section class="wp-section" id="notice">
+          <div class="wp-section-num">Notice</div>
+          <h2 class="wp-h2">Notice and disclaimer</h2>
+          <div class="wp-callout">
+            <div class="wp-callout-title">Important Legal Notice</div>
+            <ul>
+              <li>Dynk does not conduct, and has not conducted, any presale, initial coin offering, or any other form of pre launch capital raise through the distribution of DYNK tokens or associated NFTs.</li>
+              <li>DYNK is a utility token designed solely for use within the DYNK application. It does not confer any ownership, equity, dividend, revenue‑share, or profit‑sharing rights. Holding DYNK does not represent an investment in DYNK, ENKI Enterprises, or any affiliated entity.</li>
+              <li>The purpose of this white paper is strictly educational and does not constitute, or should be construed as, an offer to sell or a solicitation of an offer to buy any product or service DYNK related.</li>
+              <li>The contents of this whitepaper are subject to revision and amendment at any time without notice. The most current version supersedes all prior versions and should be treated as the definitive reference.</li>
+              <li>Distribution, use, or holding of DYNK may be restricted or prohibited in certain jurisdictions. Prospective users are responsible for ensuring compliance with applicable local laws and regulations before acquiring or using DYNK.</li>
+              <li>While we have structured DYNK as a utility token and have engaged counsel in key jurisdictions (U.S, EU, UAE, Australia), the regulatory landscape for digital assets is evolving. There can be no assurance that regulators will not classify DYNK or related activities differently in the future, which could affect the product's availability or functionality.</li>
+              <li>The whitepaper contains no promise of guarantee of returns, yield, interest, staking rewards, or any form of financial gain from holding or using DYNK. All statements regarding price, liquidity, or value are illustrative only and do not constitute a guarantee.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ABSTRACT -->
+        <section class="wp-section" id="s1">
+          <div class="wp-section-num">01</div>
+          <h2 class="wp-h2">Abstract</h2>
+          <p class="wp-p">DYNK is a decentralised utility token and non-custodial wallet built on the Solana blockchain, engineered to settle transactions at a cost of $0.01 in approximately 400 milliseconds. DYNK's mission is to close the tangible gap between mass non-native crypto users and the practical, real-world utility of blockchain technology to make crypto as simple and intuitive as current fiat banking apps. DYNK is a non-custodial wallet, meaning users hold their own private keys and retain full ownership of their funds at all times, at the heart of the network is an on-device Ai agent, built to assist non-native crypto users.</p>
+          <p class="wp-p">Everyday payments are fundamentally inefficient. The infrastructure that moves money has accumulated layers of intermediaries. Card networks inflate processing fees and banks each extract a margin while delaying settlement. Consumers bear an estimated 1.5 to 3% on every card transaction, and merchants forfeit a meaningful share of every sale to processing costs they have no power to negotiate. An estimated 1.4 billion adults globally remain entirely unbanked, settlement is slow and reversible only at the discretion of institutions. The result is a system in which value leaks constantly, control sits with custodians rather than account holders, and the people with the least access pay the most.</p>
+          <p class="wp-p">DYNK settles transactions directly on-chain at a fixed fee of $0.01, utilizing an on-device artificial intelligence agent to abstract cryptocurrency complexity including gas fees, address formats, and confirmation requirements. Furthermore wallet abstractions will be integrated into the platform at a later stage, replacing a wallet address with a user's chosen username. The system incorporates a Web 3 authentication protocol to reduce the complexity associated with seed phrase management for users unfamiliar with blockchain technology.</p>
+        </section>
+
+        <!-- THE PROBLEM -->
+        <section class="wp-section" id="s2">
+          <div class="wp-section-num">02</div>
+          <h2 class="wp-h2">The Problem</h2>
+          <p class="wp-p">The infrastructure that moves and stores everyday money was not designed for the world it now operates in. It predates the smartphone, the internet of value, and the expectation of instant, borderless settlement. Consumers and businesses are left to absorb the cost of that obsolescence, in fees, delay, exclusion, and the quiet surrender of control over their own funds. DYNK exists to resolve a connected set of failures across both the legacy financial system and the cryptocurrency ecosystem that set out to replace it.</p>
+
+          <h3 class="wp-h3">Transaction fees</h3>
+          <p class="wp-p">Every traditional payment passes through a chain of intermediaries - card networks, processing fees and cross-border flows, corresponding banks each extract a margin. Consumers ultimately bear these costs through higher prices, while merchants forfeit a meaningful share of every sale to fees they cannot negotiate. Cross-border remittances remain the starkest example, averaging well above 6% in total cost. A system in which moving money is expensive by default and generates profit for the intermediaries. DYNK replaces these excessive fees with a flat $0.01 settlement fee, allowing value to move anywhere in the world at a fraction of the cost of traditional rails, regardless of the amount, distance, or borders crossed.</p>
+
+          <h3 class="wp-h3">Settlement speed</h3>
+          <p class="wp-p">Beneath the appearance of instant payment, legacy rails settle slowly. Card authorisations are provisional, reversible, and batch-settled over days; international transfers can take longer still. Capital sits in transit, businesses manage around unpredictable clearing times, and finally the certainty that a payment is truly complete is deferred to the discretion of institutions the user never chose. DYNK transactions are settled instantaneously, globally.</p>
+
+          <h3 class="wp-h3">Technological Sustainability</h3>
+          <p class="wp-p">Legacy card payments run through vast networks of data centres and intermediary banks, consuming an estimated ten times more electricity per transaction than DYNK. Built on Solana's proof of stake blockchain, DYNK settles value directly on the chain, removing those redundant layers to deliver payments that are faster, cheaper, and far less energy intensive.</p>
+
+          <h3 class="wp-h3">Banking exclusion</h3>
+          <p class="wp-p">Access to the system is conditional. Minimum balances, documentation requirements, credit history, and geography exclude an estimated 1.4 billion adults worldwide from formal financial services entirely. For these participants the problem is not the cost of the rails but the absence of any rails at all, a structural lockout that no incremental improvement to legacy banking has resolved. Global participation is accessible for anyone with a smartphone,</p>
+
+          <h3 class="wp-h3">Programmable Money</h3>
+          <p class="wp-p">Even for the fully banked, the unit of account is unstable. Holders of fiat currency have no control over its supply, and the purchasing power of their savings is diluted over time by inflation and monetary expansion decided elsewhere. Value can be held faithfully and still shrink  a debasement borne entirely by the holder, who has no say in the policy that causes it. DYNK has a fixed immutable supply of 21,000,000 tokens enforced by a smart contract.</p>
+
+          <h3 class="wp-h3">Ownership</h3>
+          <p class="wp-p">In both legacy banking and most digital wallets, the user does not truly hold their own money as a custodian does. Balances can be frozen, transactions reversed, and access withdrawn at the provider's discretion. The account holder is a product for the institution, not the owner of the asset. This dependence is the inverse of what a sound financial instrument should offer: unconditional control by the person of which that value belongs to. Ownership in digital wallet systems such as DYNK is established through private key control, which represents a fundamentally different model from traditional banking where users maintain contractual claims against financial institutions rather than direct asset possession</p>
+
+          <h3 class="wp-h3">The complexity of existing crypto</h3>
+          <p class="wp-p">Cryptocurrency set out to solve ownership and settlement, but in doing so created a new barrier usability. Self-custody today demands fluency in seed phrases, gas fees, network selection, contract addresses, and irreversible manual transactions, with catastrophic and unrecoverable consequences for any error. The result is an instrument that is sovereign in principle but hostile in practice, accessible only to the technically initiated. DYNK's proprietary social recovery system mirrors the familiar flows of the world's most-used apps, removing the complexity and risk of seed phrases.</p>
+
+          <h3 class="wp-h3">Technical barriers to mass participation</h3>
+          <p class="wp-p">This complexity is the single largest obstacle to mainstream adoption. The majority of the world's population -  the non-native users DYNK is built for - will not, and should not have to, learn the mechanics of blockchain to transact. As long as participation requires expertise rather than intuition, digital assets will remain the preserve of a minority, and their real-world utility will go unrealised. A decade of effort has not produced a wallet that an ordinary person can use as effortlessly as a banking app.</p>
+        </section>
+
+        <!-- MARKET CONTEXT -->
+        <section class="wp-section" id="s3">
+          <div class="wp-section-num">03</div>
+          <h2 class="wp-h2">Market Context + Opportunity</h2>
+          <p class="wp-p">Approximately 1.4 billion adults remain unbanked, around 900 million of whom own a mobile phone and roughly 530 million a smartphone, while mobile-money services already move close to $2 trillion annually across more than 2 billion registered accounts, over 500 million monthly active users, and some 108 billion transactions in 2025. Remittances to low- and middle-income countries reached approximately $685 billion in 2024 'LMICs' — exceeding foreign direct investment and development aid combined — yet remain taxed at an average of 6.36% (Q3 2025) per transfer against card-processing rates of 1.5–3%, even as on-chain stablecoin volume reached roughly $5.6 trillion, equivalent to around 40% of Visa's payments volume, with an estimated 66% of supply held by individuals in emerging markets. The non-custodial wallet sector itself now spans more than 820 million active addresses, with 72% of users transacting primarily on mobile, 59% relying on self-custody as their primary store of value, and prevailing in-wallet swap fees across leading providers sitting near 0.85%.</p>
+          <p class="wp-p">The opportunity these figures display show the scalable market at a global basis, providing consumers with a self-sovereign payment rail. The 530 million unbanked smartphone owners represent an immediately addressable population requiring neither a bank account nor a credit history, while the far larger underbanked base, illustrated by markets such as India, where account ownership has reached 89% but roughly 16% of accounts sit dormant — extends the serviceable population across DYNK's five priority regions into the high hundreds of millions, the same markets that already lead grassroots cryptocurrency adoption, with India, Nigeria and Indonesia ranking first, second and third globally.</p>
+
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr>
+                  <th>Opportunity</th>
+                  <th>Data Point</th>
+                  <th>DYNK Relevance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Global Smartphone Access</td><td>4.2+ billion users</td><td>Minimum viable hardware for DYNK participation</td></tr>
+                <tr><td>Unbanked Adults</td><td>1.3 billion globally</td><td>First meaningful access to a store of value</td></tr>
+                <tr><td>Crypto Market Cap</td><td>$2+ trillion</td><td>Liquidity infrastructure for DYNK as a tradeable asset</td></tr>
+                <tr><td>Solana TPS</td><td>65,000+ transactions/sec</td><td>Technology for mass transactions is ready</td></tr>
+                <tr><td>DeFi Total Value Locked</td><td>$100B+</td><td>Ecosystem for DYNK utility expansion</td></tr>
+                <tr><td>Digital Wallet Users</td><td>1.5B+ globally</td><td>Digital-native audience for DYNK app onboarding</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="wp-h3">Competitor Landscape</h3>
+          <p class="wp-p">Various crypto wallets in today's market provide users with some of the tools needed to use crypto in their respective environment. Non-custodial wallets restore true ownership to the user but tie it to a seed phrase, with no recovery path if it's lost. Some wallets are beginning to introduce an AI-assisted interface but have a very limited use case. Other wallets include cold wallet storage or white labeled debit cards to use crypto in everyday circumstances. All these features are available in today's market, however, they are often separately offered. Users can't find a wallet that combines the best versions of these features that have strong use cases for a user's use of crypto in their daily lives. No directly comparable project combines these elements within the same structure.</p>
+        </section>
+
+        <!-- PRODUCT ARCHITECTURE -->
+        <section class="wp-section" id="s4">
+          <div class="wp-section-num">04</div>
+          <h2 class="wp-h2">Product Architecture</h2>
+          <p class="wp-p">DYNK's architecture is organised around five components that together convert the principles of the previous sections into a working product: a non-custodial wallet that holds the user's value, a social recovery system that makes that custody survivable for ordinary people, an on-device agent that makes it usable, and a white label card that expands the utility into a spendable finance produce, and a cold wallet card enhances security to a maximum. Each is described below.</p>
+
+          <h3 class="wp-h3">Non-custodial wallet</h3>
+          <p class="wp-p">A non-custodial wallet means the user alone holds the keys that control their funds. DYNK generates these keys on the user's device and stores them in its secure hardware; they are never transmitted to or held by DYNK, and every transaction is signed by the user. DYNK will never have the ability to freeze, seize, or move a balance, ownership is a property of holding the keys.</p>
+          <p class="wp-p">This is the structural opposite of fiat banking apps and centralised exchanges, where a third party holds the keys or the deposits on the user's behalf. In both cases the user owns only a claim against the institution, not the asset itself: a bank can freeze an account, reverse a transfer, or impose limits, and an exchange can halt withdrawals or fail entirely. DYNK removes that dependency. Self-sovereignty and true ownership are restored to the individual.</p>
+
+          <h3 class="wp-h3">NFT Backed Wallets</h3>
+          <p class="wp-p">A key innovation of DYNK is its NFT-backed wallets. NFTs were originally created to prove authenticity and ownership of digital art and collectibles; DYNK repurposes that same proof-of-ownership mechanism for financial use. Each wallet can be represented by an NFT, meaning ownership of the wallet itself, and everything held inside it, is tied to that token. Holders can list their wallet-NFT for sale or put it up for auction directly through DYNK's platform, transferring the wallet and all of its underlying assets to the buyer in a single transaction. This turns a wallet from a static container into a tradable asset in its own right.</p>
+
+          <h3 class="wp-h3">Wallet Recovery</h3>
+          <p class="wp-p">Traditional cryptocurrency ownership carries an existential risk that has deterred mainstream adoption for over a decade: private key loss. Estimates suggest that 15–20% of all Bitcoin in circulation is permanently inaccessible due to lost or forgotten private keys. DYNK removes it from the default path. DYNK replaces the seed phrase with a social recovery authentication model that lets participants restore their wallet through credentials they already hold, while DYNK retains no private keys. Under social recovery, a participant signs in through Google, Apple - which returns a verified ID token to Web3Auth; once validated against DYNK's verifier, the same social account consistently resolves to the same wallet, creating one for a new participant or restoring it for a returning one.</p>
+          <p class="wp-p">DYNK provides an alternative to social recovery which entails a custom server recovery which works identically but anchors the wallet to a stable internal identifier issued by DYNK's own backend rather than an external provider: at sign-in the backend validates the participant and issues a short-lived signed token carrying an immutable user identifier, which Web3Auth verifies to resolve the same wallet every time. If a user faces the following issues: device loss, failure, or reinstallation the participant simply installs DYNK on a new device and signs in again with the same account, and access to the original wallet which is restored automatically.</p>
+          <p class="wp-p">DYNK does provide the option of a seed phrase to users who prefer the older model, but DYNK highly recommends users to proceed with one of the two wallet recovery mechanisms provided above.</p>
+
+          <h3 class="wp-h3">NKI Ai Agent</h3>
+          <p class="wp-p">The DYNK AI agent is a local intelligence layer that runs entirely on the user's own device, turning a passive wallet into an active financial interface while keeping the user in full control of their data. It is powered by an on-device large language model, so sensitive information is processed locally and never transmitted to external servers or centralised AI providers - privacy, ownership, and security are held by default, without sacrificing real-time responsiveness. The agent can therefore act on instructions instantly, delivering assistant-grade intelligence that conventional, data-harvesting platforms cannot offer without surveillance.</p>
+          <p class="wp-p">Functionally, the agent serves as both an interface and a participant in the wallet's economy. As a financial assistant, it lets users manage their finances through natural language - guiding them through the platform, answering questions, and executing actions such as sending funds or completing payments within predefined permissions and safeguards, collapsing complex interactions into simple commands.</p>
+
+          <h3 class="wp-h3">White Label Card</h3>
+          <p class="wp-p">The DYNK card will extend the network from a place where value is simply held into an account that can be spent in everyday life. Issued as a white-label Visa card, it lets participants spend their DYNK balance directly at the tens of millions of merchants that accept Visa worldwide, online and in person. A user simply sends the DYNK token over to their digital visa wallet provided in-app, and at the point of sale the required amount of DYNK is converted to fiat in real time and settled instantly. A dedicated liquidity pool maintained by the network underwrites that conversion, so the experience is indistinguishable from a conventional payment card. Each fee charged on card transactions is routed back into the ecosystem, funding buybacks for further engagement reward. The card is the bridge between self-custodial ownership and real-world purchasing, carrying the token's utility off the network and into daily use.</p>
+
+          <h3 class="wp-h3">Tangem Cold Wallet</h3>
+          <p class="wp-p">Cold wallet is a storage method in which a participant's private keys are generated and held entirely offline, isolated from any internet-connected device. Tangem is a hardware cold wallet that takes the form of a simple NFC-enabled card rather than a USB device or an app. Embedded in the card is a certified tamper-resistant secure-element chip (the same class of hardware used in bank cards and passports) which generates the participant's private keys on the chip itself at the moment of activation. The keys are created on the card and never leave it. To authorise a transaction, the participant simply taps the Tangem card to their phone over NFC; the card signs the transaction internally while the keys remain sealed inside the chip at all times. All 2100 Founder NFT Wallets will come included with a Tangem cold wallet card, ensuring maximum security for our Foundation. Additionally these cold wallet cards will be purchasable in-app, providing access to all.</p>
+        </section>
+
+        <!-- TOKEN UTILITY -->
+        <section class="wp-section" id="s5">
+          <div class="wp-section-num">05</div>
+          <h2 class="wp-h2">Token Utility</h2>
+          <p class="wp-p">A utility token is a blockchain-based digital asset that grants its holder access to the functions of a specific network or application. It is the medium through which the system operates, used to pay for services, unlock features, and participate in the network. A utility token derives its value from this functional role, not from any entitlement to profit, ownership stake, dividend, or claim against an issuer. Following launch, DYNK will perform the eight utility functions set out below.</p>
+
+          <h3 class="wp-h3">Governance rights</h3>
+          <p class="wp-p">DYNK's foundation is built on 2100 Founders. Eligible Founder Wallets holding 10,000 DYNK tokens can vote and create proposals that shape the protocol's direction. Removing any concern of central authority.</p>
+
+          <h3 class="wp-h3">Native Network transaction fees</h3>
+          <p class="wp-p">DYNK is the settlement medium of the network. Every transaction DYNK to DYNK is settled for a flat $0.01 USD, and the token is the unit through which that settlement occurs.</p>
+
+          <h3 class="wp-h3">Referral programme</h3>
+          <p class="wp-p">The referral engine rewards participants in DYNK, paid from the fixed distribution allocation. Allowing the network to grow through supply rather than paid acquisition. Creating cheaper CPA's enhances the network's growth mechanisms.</p>
+
+          <h3 class="wp-h3">In-app shop</h3>
+          <p class="wp-p">DYNK is the currency of the in-house shop, where buyers and sellers transact for goods, services, and digital assets. The token functions as the unit of exchange across the network's commercial layer.</p>
+
+          <h3 class="wp-h3">Card cashback</h3>
+          <p class="wp-p">Spending through the network's white-label payment card returns cashback to the user denominated in DYNK, linking everyday fiat spending to the ecosystem and extending the token's utility into real-world purchases.</p>
+
+          <h3 class="wp-h3">NKI AI agent</h3>
+          <p class="wp-p">Each user is accompanied by a personalised, on-device AI agent that turns the wallet into an interface driven by intent rather than menus. Through a simple message, the agent can carry out tasks on the user's behalf - initiating payments, completing transactions, and acting on instructions expressed in plain natural language, all settled across the network in DYNK. The token is the medium through which these agentic payments execute, making it the unit of value the agent transacts with whenever it acts for the user.</p>
+        </section>
+
+        <!-- TOKENOMICS -->
+        <section class="wp-section" id="s6">
+          <div class="wp-section-num">06</div>
+          <h2 class="wp-h2">Tokenomics</h2>
+          <p class="wp-p">DYNK is an SPL (Solana Program Library) utility token deployed on the Solana blockchain. The SPL standard is the Solana-native equivalent of Ethereum's ERC-20 standard, providing full compatibility with the Solana ecosystem including wallets, decentralised exchanges, liquidity pools, and DeFi protocols. The token is governed entirely by immutable smart contracts, ensuring that no single party, including the DYNK corporate group — can alter the core economic parameters of the token post-deployment.</p>
+
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr><th>Parameter</th><th>Specification</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Token Name</td><td>DYNK</td></tr>
+                <tr><td>Token Standard</td><td>SPL (Solana Program Library)</td></tr>
+                <tr><td>Token Type</td><td>Utility Token</td></tr>
+                <tr><td>Blockchain</td><td>Solana (Mainnet-Beta)</td></tr>
+                <tr><td>Total Supply</td><td>21,000,000 DYNK (hard-capped, immutable)</td></tr>
+                <tr><td>Decimal Places</td><td>9 (standard SPL)</td></tr>
+                <tr><td>Mintable</td><td>No — supply is fixed at genesis</td></tr>
+                <tr><td>Burnable</td><td>Yes</td></tr>
+                <tr><td>Pre-distribution Minimum Price</td><td>US$1.00 per DYNK</td></tr>
+                <tr><td>Governance</td><td>Eligible Founder Wallet Holders</td></tr>
+                <tr><td>Wallet Type</td><td>Non-Custodial</td></tr>
+                <tr><td>Smart Contract Audited</td><td>Yes</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="wp-h3">Token Supply Allocation</h3>
+          <p class="wp-p">The 21,000,000 DYNK total supply is allocated across four categories, each serving a distinct and essential function within the network's economic architecture. The allocation is fixed at the genesis and cannot be altered by any party.</p>
+
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr><th>Allocation Category</th><th>DYNK Tokens</th><th>% of Supply</th><th>Function</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Founders Distribution</td><td>10,502,500</td><td>~50%</td><td>Founder wallet issuance</td></tr>
+                <tr><td>Exchange</td><td>2,100,000</td><td>10%</td><td>Exchange liquidity</td></tr>
+                <tr><td>Distribution</td><td>5,250,000</td><td>25%</td><td>Distribution and Rewards Programme</td></tr>
+                <tr><td>Engagement</td><td>3,147,500</td><td>~15%</td><td>Agent Rewards</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>21,000,000</strong></td><td><strong>100%</strong></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr><th>Tier (Dynk/Wallet)</th><th>No. of Wallets</th><th>Total Dynk</th><th>Wallet #</th><th>Pricing Basis</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>10,000</td><td>800</td><td>8,000,000</td><td>1-800</td><td>Current DYNK market value ($10000 minimum)</td></tr>
+                <tr><td>6,500</td><td>65</td><td>422,500</td><td>801-865</td><td>Current DYNK market value</td></tr>
+                <tr><td>4,500</td><td>65</td><td>292,500</td><td>866-930</td><td>Current DYNK market value</td></tr>
+                <tr><td>3,000</td><td>130</td><td>390,000</td><td>931-1060</td><td>Current DYNK market value</td></tr>
+                <tr><td>2,000</td><td>195</td><td>390,000</td><td>1061-1255</td><td>Current DYNK market value</td></tr>
+                <tr><td>1,500</td><td>325</td><td>487,500</td><td>1256-1580</td><td>Current DYNK market value</td></tr>
+                <tr><td>1,000</td><td>520</td><td>520,000</td><td>1581-2100</td><td>Current DYNK market value</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>2100 Wallets</strong></td><td><strong>10,502,500 DYNK</strong></td><td></td><td><strong>50% TOTAL SUPPLY</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="wp-h3">Referral Distribution System</h3>
+          <p class="wp-p">The DYNK referral programme is the primary growth engine of the network. Converting every wallet holder into an active monetarily incentivised participant in the network. Creating a self-sustaining, viral growth mechanism that requires no centralised advertising expenditure and scales exponentially with network size. Every wallet holder is assigned a unique referral code, when a user is acquired using an existing users referral code, the referee is rewarded in DYNK tokens. The following chart shows the rewards in which a user will be paid out in $USD.</p>
+
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr><th>Referrer Type</th><th>Referral Reward</th><th>Onboarding Bonus (new user)</th><th>Total CPA</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Founders (Eligible)</td><td>$30</td><td>$10</td><td>$40</td></tr>
+                <tr><td>Transactional</td><td>$20</td><td>$10</td><td>$30</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="wp-h3">Holder Alignment</h3>
+          <p class="wp-p">Referral eligibility is contingent on a wallet maintaining its DYNK holdings throughout the distribution phase, ensuring that rewards accrue to committed, long-term participants who contribute to network growth. Selling DYNK before the initial network distribution is complete (5,250,000 tokens) reduces a wallet's potential rewards by 50%.</p>
+
+          <h3 class="wp-h3">Founder referrals</h3>
+          <p class="wp-p">In early stages of distribution participants who own a founder NFT wallet have the ability to earn 10% of a founder wallet sale if they themselves refer someone that purchases a founder wallet.</p>
+
+          <h3 class="wp-h3">Wallet Allocation</h3>
+          <p class="wp-p">DYNK's foundation is built on 2,100 Founder Wallets, the network's first members and the community from which distribution to the wider user base begins. These are not a team reserve or an insider grant set aside at no cost: every Founder Wallet is acquired at full value, at or above the pre-distribution floor of US$1.00 per DYNK, so the founding allocation represents committed capital paid into the network rather than supply taken from later participants. Entry is structured in two tiers within a single founding community - 800 wallets each holding 10,000 DYNK, acquired at a minimum of $10,000 US and a further 1,300 wallets holding between 1,000 and 6,500 DYNK, acquired at the prevailing market price at the time of issuance. Wallets that enter below the 10,000-DYNK threshold (the 1,300 Tier-2 Founder Wallets) must reach 10,000 DYNK to unlock full eligibility. A holder can top up at any time, either by purchasing additional DYNK or by accumulating it through referral and engagement rewards. Until the wallet reaches 10,000 DYNK the NFT isn't activated.</p>
+
+          <h4 class="wp-h4">Founder Wallet Purchases Come With:</h4>
+          <ul class="wp-perks-list">
+            <li>DYNK tokens</li>
+            <li>Exclusive NFT Wallet</li>
+            <li>Tangem Cold Wallet Card</li>
+            <li>Governance (10,000 Eligibility)</li>
+            <li>Equal Share in Transaction Fees (10,000 Eligibility)</li>
+            <li>Extended Referral Relationship (10,000 Eligibility)</li>
+          </ul>
+
+          <h4 class="wp-h4">Transaction fee split:</h4>
+          <p class="wp-p">Participants who hold and maintain a qualifying 10,000 Dynk tokens and an associated founder NFT wallet gain access to a share of transaction fees generated across the platform, distributed proportionally based on how many NFT's owned through a smart-contract-automated mechanism in which assets remain entirely within user-controlled Solana PDA wallets at all times.</p>
+          <div class="wp-highlight">
+            <p>Out of all transaction fees on the network: <strong>1% covers gas fees, 75% goes to eligible treasury, 24% NKI</strong></p>
+          </div>
+        </section>
+
+        <!-- PRODUCT ROADMAP -->
+        <section class="wp-section" id="s7">
+          <div class="wp-section-num">07</div>
+          <h2 class="wp-h2">Product Roadmap</h2>
+          <div class="wp-phases">
+            <div class="wp-phase">
+              <div class="wp-phase-label">Phase 1 (Current)</div>
+              <ul>
+                <li>Token Deployment</li>
+                <li>Swap Architecture</li>
+                <li>Founder Wallet Allocation</li>
+                <li>Tangem Integration</li>
+              </ul>
+            </div>
+            <div class="wp-phase">
+              <div class="wp-phase-label">Phase 2: September 2026</div>
+              <ul>
+                <li>Onramping Functionality</li>
+                <li>Distribution System Activates</li>
+                <li>UX / UI Enhancements</li>
+                <li>Governance</li>
+                <li>Username Abstracted Payments</li>
+                <li>Multichain</li>
+                <li>Phase 1 Ai Agent</li>
+              </ul>
+            </div>
+            <div class="wp-phase">
+              <div class="wp-phase-label">Phase 3: January 2027</div>
+              <ul>
+                <li>Lynk Payment Phone to Phone</li>
+                <li>Privacy Layer</li>
+                <li>White Label KYC Card</li>
+                <li>Phase 2 Ai Agent</li>
+              </ul>
+            </div>
+            <div class="wp-phase">
+              <div class="wp-phase-label">Phase 4: July 2027</div>
+              <ul>
+                <li>Phase 3 Agent Merchant Activation</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECURITY / RISK -->
+        <section class="wp-section" id="s8">
+          <div class="wp-section-num">08</div>
+          <h2 class="wp-h2">Security / Risks</h2>
+          <p class="wp-p">The DYNK token and its supporting network logic are governed entirely by immutable smart contracts deployed on the Solana blockchain, such that no party including the NKI corporate group can alter the parameters of the token following deployment. Each contract is published on-chain and independently verifiable. Prior to mainnet release, every contract undergoes independent third-party security auditing, and the network's application and supporting infrastructure are subject to penetration testing by qualified external firms.</p>
+
+          <h3 class="wp-h3">Risk and Mitigation</h3>
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr><th>Risk Category</th><th>Description</th><th>Mitigation</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Smart Contract Risk</td><td>Potential Undiscovered Vulnerabilities</td><td>Multiple audits, formal verification</td></tr>
+                <tr><td>Token Volatility</td><td>$DYNK value subjects to market condition</td><td>Core token foundations set prior to , no guaranteed returns disclosed</td></tr>
+                <tr><td>Regulatory Risk</td><td>Evolving legal regulations globally</td><td>Legal counsel engaged across key jurisdictions, compliance monitored continuously</td></tr>
+                <tr><td>Competitive Risks</td><td>Established projects and new entrants competing for market share</td><td>Continuous development, active community, and clear product differentiation</td></tr>
+                <tr><td>Liquidity Risks</td><td>Insufficient trading volume at launch</td><td>Liquidity pools seeded at launch, with market markets engaged early</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="wp-h3">Audits</h3>
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr><th>Report</th><th>Provider</th><th>Date</th><th>Scope</th><th>Outcome</th><th>URL</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Web App</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Mobile App</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Smart Contract</td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="wp-h3">Legal Disclaimer</h3>
+          <div class="wp-callout">
+            <div class="wp-callout-title">Legal Disclaimer</div>
+            <p style="font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; margin: 0;">The DYNK corporate group is structured to operate within recognised regulatory frameworks: a Panama foundation acts as the token-issuing entity, while a UAE entity holds the network's technology and operational functions, a separation adopted to provide legal clarity around digital-asset issuance and to align each function with an appropriate jurisdiction. DYNK is designed and intended to function as a utility token. It provides access to the functions of the network settlement, in-app exchange and swaps, governance participation, commerce within the in-house shop, and agentic payments. On this basis, DYNK is not offered or intended as a security or investment instrument. With reference to the United States <em>Howey</em> test, the token is structured to fall outside the definition of an investment contract: it is acquired for consumptive use within the network rather than for a passive return, no profit is promised or implied, and the network's value and governance derive from a decentralised base of independent participants rather than the managerial efforts of a central promoter. Notwithstanding the foregoing, the regulatory treatment of digital assets continues to evolve and differs materially between jurisdictions. No assurance can be given that any regulator or court will agree with this characterisation, and a determination that DYNK constitutes a security or other regulated instrument in one or more jurisdictions could adversely affect the network, its participants, and the availability or transferability of the token. Prospective participants should obtain their own independent legal, tax, and financial advice before acquiring or transacting in DYNK.</p>
+          </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="wp-section" id="s9">
+          <div class="wp-section-num">09</div>
+          <h2 class="wp-h2">Conclusion</h2>
+          <p class="wp-p">The problems DYNK addresses are not new. The cost of moving money, the exclusion of the unbanked, the complexity of self-custody, and the absence of a wallet built for ordinary people have been present since digital assets first emerged. What is new is that the infrastructure to solve these problems now exists. A blockchain capable of settling millions of transactions per second at sub-cent cost, hardware capable of running intelligence locally without a server, and a global base of smartphone users ready to participate.</p>
+          <p class="wp-p">DYNK is built on that infrastructure. A non-custodial wallet that restores true ownership without demanding technical fluency. A recovery system that makes self-custody survivable for anyone who has ever logged into an app. An on-device agent that turns financial interaction into a conversation. A card that carries that ownership into everyday spending. A fixed supply of 21,000,000 tokens, governed by immutable smart contracts, with no central party able to alter, freeze, or redirect what belongs to the user.</p>
+          <p class="wp-p">The foundation is being built by 2,100 committed participants whose capital funds development rather than enriching insiders.</p>
+          <p class="wp-p">DYNK does not promise a return. It offers something more durable: a financial instrument that works for the person holding it, not the institution between them and their money.</p>
+          <p class="wp-p">Globally an estimated 10-12 billion digital transactions are processed every single day. Roughly 90% of the world's current technology infrastructure was built and deployed in the past 2 years. For two decades now, the rails that move money everyday have been upgraded everywhere except where it matters most; cost, speed, access and control. Consumers still pay 2-3% on transaction fees, and 6% on crossborder transfer. An estimated 1.4 billion adults are underbanked and even fully banked individuals never truly hold custody of the money they work every day to earn.</p>
+          <p class="wp-p">Research indicates that usability considerations significantly impact cryptocurrency wallet adoption rates, particularly concerning the accessibility and user experience of private key management systems across different technical proficiency levels. DYNK is able to address these considerations through the implementation of a social recovery mechanism that utilizes familiar authentication paradigms from widely adopted consumer applications, thereby reducing the technical complexity associated with private key management while preserving non-custodial principles.</p>
+          <p class="wp-p">The opportunity is not speculative: It is the distance between the scale that already exists - billions of smartphones, hundreds of millions underbanked/underbanked adults, trillions transacted through digital currencies, and the cost, ownership offered to people globally.</p>
+          <p class="wp-p">Money should move instantly at the cost of almost nothing, reach anyone with a smartphone, and belong to the person who has earned it. Technology is constantly emerging, yet no one has solved the major issues listed above. The blueprint is drawn and the scaffolding is up. DYNK is how the rest of the world reacts.</p>
+        </section>
+
+      </article>
+    </div><!-- /.wp-layout -->
+  </div><!-- /.wp-body-inner -->
+</div><!-- /.wp-body -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand-logo"><img src="../assets/dynk-logo.png" alt="DYNK"></a>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="/#wallet">Digital Wallet</a>
+          <a href="/#data">Data Sovereignty</a>
+          <a href="/#foundation">Governance</a>
+          <a href="/founders">Founders</a>
+          <a href="/whitepaper">Whitepaper</a>
+        </div>
+        <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="mailto:contact@dynk.io">contact@dynk.io</a></div>
+        <div class="footer-col"><h5>Community</h5><a href="#">Twitter / X</a><a href="#">Telegram</a></div>
+        <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="../assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="../assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>
+      </div>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DYNK. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', function() {
+  document.getElementById('siteNav').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Mobile hamburger
+var ham = document.getElementById('navHamburger');
+var mob = document.getElementById('navMobileMenu');
+if (ham && mob) {
+  ham.addEventListener('click', function() {
+    var open = mob.classList.toggle('open');
+    ham.classList.toggle('open', open);
+  });
+}
+
+// TOC scroll-spy
+(function() {
+  var sections = document.querySelectorAll('.wp-section[id]');
+  var links = document.querySelectorAll('.wp-toc-list a');
+
+  function getActive() {
+    var scrollY = window.scrollY + 140;
+    var active = null;
+    sections.forEach(function(sec) {
+      if (sec.offsetTop <= scrollY) active = sec.id;
+    });
+    return active;
+  }
+
+  function update() {
+    var id = getActive();
+    links.forEach(function(a) {
+      var href = a.getAttribute('href').slice(1);
+      a.classList.toggle('wp-toc-active', href === id);
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+<script src="../scroll-anim.js"></script>
+<script src="../hero.js"></script>
+</body>
+</html>
