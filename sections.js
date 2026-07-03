@@ -86,8 +86,10 @@ function fetchMarketplace() {
 
   // Update counters (defaults; overwritten by live data when available)
   var takenEl = document.getElementById('boardTaken');
+  var listedEl = document.getElementById('boardListed');
   var openEl = document.getElementById('boardOpen');
   if (takenEl) takenEl.textContent = takenCount.toLocaleString();
+  if (listedEl) listedEl.textContent = listedCount.toLocaleString();
   if (openEl) openEl.textContent = (total - takenCount - listedCount).toLocaleString();
 
   // Human-readable label for each status
@@ -200,6 +202,7 @@ function fetchMarketplace() {
       // Animate counters — the board always totals 2,100 wallets, so the
       // remainder beyond claimed + listed is what's still available.
       if (takenEl) animateCounter(takenEl, takenCount);
+      if (listedEl) animateCounter(listedEl, listedCount);
       if (openEl) animateCounter(openEl, total - takenCount - listedCount);
     }
 
