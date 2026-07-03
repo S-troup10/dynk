@@ -468,11 +468,77 @@
   .wp-body-inner { padding: 0 20px; }
   .wp-hero { padding: 110px 0 60px; }
   .wp-hero-meta { grid-template-columns: 1fr; max-width: 100%; }
-  .wp-meta-row { grid-template-columns: 130px 1fr; }
+  .wp-meta-row { grid-template-columns: 150px 1fr; }
+  .wp-meta-key { white-space: normal; }
   .wp-meta-row--full { grid-column: 1; }
 }
 
 @media (max-width: 600px) {
-  .wp-hero-meta { display: flex; flex-direction: column; gap: 8px; }
   .wp-phases { gap: 16px; }
+}
+
+/* ── RESPONSIVE TABLES + META: stacked card layout ── */
+@media (max-width: 640px) {
+  /* Hero meta box: stack key above value so long labels/values never collide */
+  .wp-hero-meta { grid-template-columns: 1fr; }
+  .wp-meta-row { grid-template-columns: 1fr; }
+  .wp-meta-key {
+    white-space: normal;
+    border-right: none;
+    padding: 12px 16px 2px;
+  }
+  .wp-meta-val {
+    padding: 0 16px 12px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal !important;
+  }
+
+  .wp-table-wrap {
+    overflow-x: visible;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 24px;
+  }
+  .wp-table,
+  .wp-table tbody,
+  .wp-table tr,
+  .wp-table td {
+    display: block;
+    width: 100%;
+  }
+  .wp-table thead {
+    display: none;
+  }
+  .wp-table tr {
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+  }
+  .wp-table tr:last-child { margin-bottom: 0; }
+  .wp-table tr:nth-child(even) td { background: transparent; }
+  .wp-table td {
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .wp-table td:last-child { border-bottom: none; }
+  .wp-table td:empty { display: none; }
+  .wp-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    color: var(--orange);
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .wp-table td:first-child { color: rgba(255,255,255,0.9); font-weight: 600; }
 }
