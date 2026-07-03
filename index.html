@@ -16,14 +16,13 @@
 <!-- NAV -->
 <nav class="nav" id="siteNav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="assets/dynk-logo.png" alt="DYNK">
+    <a href="/" class="nav-logo">
+      <img src="/assets/dynk-logo.png" alt="DYNK">
     </a>
     <div class="nav-links">
-      <a href="#">Home</a>
+      <a href="/" style="color: var(--orange);">Home</a>
       <a href="/merchants">Merchants</a>
       <a href="/founders">Founders</a>
-      <a href="/whitepaper">Whitepaper</a>
     </div>
     <a href="#waitlist-section" class="nav-platform-btn">Join the Waitlist</a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
@@ -32,10 +31,9 @@
   </div>
 </nav>
 <div class="nav-mobile-menu" id="navMobileMenu">
-  <a href="#">Home</a>
+  <a href="/">Home</a>
   <a href="/merchants">Merchants</a>
   <a href="/founders">Founders</a>
-  <a href="/whitepaper">Whitepaper</a>
   <a href="#waitlist-section" class="nav-mobile-cta">Join the Waitlist</a>
 </div>
 
@@ -271,30 +269,32 @@
       </div>
     </div>
     <!-- LIVE MARKETPLACE STATS (populated by JS from /api/marketplace) -->
-    <div class="mkt-live-panel" id="mktLivePanel" style="display:none;">
-      <div class="mkt-stats-row">
-        <div class="mkt-stat-card mkt-stat-card--highlight" id="mktAvailableCard" style="display:none;">
-          <span class="mkt-stat-val" id="mktAvailable">0</span>
-          <span class="mkt-stat-label">Available NFTs</span>
+    <div class="mkt-live" id="mktLivePanel" style="display:none;">
+      <div class="mkt-live-head">
+        <span class="mkt-live-tag"><span class="mkt-live-pulse"></span>Live marketplace</span>
+        <span class="mkt-live-updated" id="mktLastUpdated"></span>
+      </div>
+      <div class="mkt-live-grid">
+        <div class="mkt-hero">
+          <span class="mkt-hero-num" id="mktAvailable">0</span>
+          <span class="mkt-hero-cap">Available now</span>
         </div>
-        <div class="mkt-stat-card mkt-stat-card--highlight" id="mktListedCard" style="display:none;">
-          <span class="mkt-stat-val" id="mktListed">0</span>
-          <span class="mkt-stat-label">On Marketplace</span>
-        </div>
-        <div class="mkt-stat-card" id="mktAssignedCard" style="display:none;">
-          <span class="mkt-stat-val" id="mktAssigned">0</span>
-          <span class="mkt-stat-label">Assigned</span>
-        </div>
-        <div class="mkt-stat-card" id="mktClaimedCard" style="display:none;">
-          <span class="mkt-stat-val" id="mktClaimed">0</span>
-          <span class="mkt-stat-label">Claimed</span>
-        </div>
-        <div class="mkt-stat-card" id="mktMintedCard" style="display:none;">
-          <span class="mkt-stat-val" id="mktMinted">0</span>
-          <span class="mkt-stat-label">Total Minted</span>
+        <div class="mkt-supply">
+          <div class="mkt-supply-head">
+            <span class="mkt-supply-title"><b id="mktMinted">0</b> of 2,100 Founder Wallets minted</span>
+          </div>
+          <div class="mkt-bar" role="img" aria-label="Supply breakdown">
+            <span class="mkt-bar-seg mkt-bar-seg--claimed" id="mktBarClaimed"></span>
+            <span class="mkt-bar-seg mkt-bar-seg--listed" id="mktBarListed"></span>
+            <span class="mkt-bar-seg mkt-bar-seg--open" id="mktBarOpen"></span>
+          </div>
+          <div class="mkt-supply-legend">
+            <span class="mkt-leg"><i class="mkt-sw mkt-sw--claimed"></i>Claimed<b id="mktClaimed">0</b></span>
+            <span class="mkt-leg"><i class="mkt-sw mkt-sw--listed"></i>Listed<b id="mktListed">0</b></span>
+            <span class="mkt-leg"><i class="mkt-sw mkt-sw--open"></i>Available<b id="mktAvailableLeg">0</b></span>
+          </div>
         </div>
       </div>
-      <p class="mkt-last-updated" id="mktLastUpdated"></p>
     </div>
 
     <div class="board-cta-row">
@@ -351,13 +351,13 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#" class="footer-brand-logo"><img src="assets/dynk-logo.png" alt="DYNK"></a>
+        <a href="/" class="footer-brand-logo"><img src="/assets/dynk-logo.png" alt="DYNK"></a>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h5>Product</h5><a href="#wallet">Digital Wallet</a><a href="#data">Data Sovereignty</a><a href="#foundation">Governance</a><a href="/founders">Founders</a><a href="/whitepaper">Whitepaper</a></div>
+        <div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/merchants">Merchants</a><a href="/founders">Founders</a><a href="/whitepaper">Whitepaper</a><a href="/support">Support</a></div>
         <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="mailto:contact@dynk.io">contact@dynk.io</a></div>
         <div class="footer-col"><h5>Community</h5><a href="#">Twitter / X</a><a href="#">Telegram</a></div>
-        <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>
+        <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="/assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="/assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>
       </div>
     </div>
     <div class="footer-rule"></div>

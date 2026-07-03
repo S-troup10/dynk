@@ -1,5 +1,7 @@
 {
   "functions": {
-    "api/waitlist.js": { "memory": 128, "maxDuration": 10 }
+    "api/waitlist.js": { "memory": 128, "maxDuration": 10 },
+    "api/marketplace.js": { "memory": 128, "maxDuration": 10 },
+    "api/support.js": { "memory": 128, "maxDuration": 10 }
   }
 }

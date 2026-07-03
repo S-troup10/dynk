@@ -1,0 +1,17 @@
+# Secrets & local environment — never commit (repo is public)
+.env
+.env.*
+
+# Files containing the hardcoded DYNK_ANALYTICS_SECRET
+de.py
+test.js
+
+# Decrypted wallet analytics output
+decrypted-analytics.json
+
+# OS junk
+.DS_Store
+
+# Internal tooling / prompts — keep out of the public repo
+tools/
+merchant-dashboard-prompt.txt

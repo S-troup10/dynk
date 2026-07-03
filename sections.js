@@ -7,6 +7,35 @@ window.addEventListener('scroll', function() {
   document.getElementById('siteNav').classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
+// ── MARKETPLACE DATA (30-min localStorage cache) ──
+var MKT_CACHE_KEY = 'dynk_mkt_cache';
+var MKT_TTL = 30 * 60 * 1000;
+
+function getCachedMarketplace() {
+  try {
+    var raw = localStorage.getItem(MKT_CACHE_KEY);
+    if (!raw) return null;
+    var entry = JSON.parse(raw);
+    if (Date.now() - entry.ts < MKT_TTL) return entry.payload;
+  } catch (e) {}
+  return null;
+}
+
+function fetchMarketplace() {
+  var cached = getCachedMarketplace();
+  if (cached) return Promise.resolve(cached);
+  return fetch('/api/marketplace')
+    .then(function(r) { return r.json(); })
+    .then(function(json) {
+      if (!json.ok) return null;
+      try {
+        localStorage.setItem(MKT_CACHE_KEY, JSON.stringify({ ts: Date.now(), payload: json }));
+      } catch (e) {}
+      return json;
+    })
+    .catch(function() { return null; });
+}
+
 // ── FOUNDER WALLET BOARD ──
 (function initBoard() {
   var board = document.getElementById('walletBoard');
@@ -38,7 +67,7 @@ window.addEventListener('scroll', function() {
     board.classList.add('board-grid--mobile');
   }
 
-  // Update counters
+  // Update counters (defaults; overwritten by live data when available)
   var takenEl = document.getElementById('boardTaken');
   var openEl = document.getElementById('boardOpen');
   if (takenEl) takenEl.textContent = takenCount.toLocaleString();
@@ -132,6 +161,72 @@ window.addEventListener('scroll', function() {
       openModal(String(n).padStart(4, '0'), n <= takenCount);
     });
   }
+
+  // ── Apply live marketplace data when available ──
+  function applyLiveData(json) {
+    if (!json || !json.ok || !json.data) return;
+    var d = json.data;
+
+    // Update claimed count from live data (activeWallets = status 'sold' = claimed)
+    var liveClaimed = typeof d.activeWallets === 'number' ? d.activeWallets : null;
+    var liveAvail   = typeof d.availableWallets === 'number' ? d.availableWallets : null;
+    var liveListed  = typeof d.listedWallets === 'number' ? d.listedWallets : null;
+
+    if (liveClaimed !== null) {
+      takenCount = liveClaimed;
+      // Re-flag cells
+      var cells = board.querySelectorAll('.board-cell');
+      cells.forEach(function(cell) {
+        var n = parseInt(cell.dataset.wallet, 10);
+        var taken = isMobile ? ((n - 1) * walletsPerGroup < takenCount) : (n <= takenCount);
+        cell.classList.toggle('taken', taken);
+        cell.dataset.taken = taken ? '1' : '0';
+      });
+      // Animate counters
+      if (takenEl) animateCounter(takenEl, liveClaimed);
+      var openCount = (liveAvail !== null ? liveAvail : 0) + (liveListed !== null ? liveListed : 0);
+      if (openEl) animateCounter(openEl, openCount);
+    }
+
+    // Populate the live supply panel
+    var panel = document.getElementById('mktLivePanel');
+    if (!panel) return;
+
+    var minted  = typeof d.totalWalletsMinted === 'number' ? d.totalWalletsMinted : 0;
+    var claimed = liveClaimed !== null ? liveClaimed : 0;
+    var listed  = liveListed  !== null ? liveListed  : 0;
+    var avail   = liveAvail   !== null ? liveAvail   : 0;
+
+    function setNum(id, val) {
+      var el = document.getElementById(id);
+      if (el) animateCounter(el, val);
+    }
+    setNum('mktAvailable',    avail);
+    setNum('mktAvailableLeg', avail);
+    setNum('mktMinted',       minted);
+    setNum('mktClaimed',      claimed);
+    setNum('mktListed',       listed);
+
+    // Segmented supply bar — widths as a share of total minted
+    if (minted > 0) {
+      var pct = function(n) { return (Math.max(0, n) / minted * 100).toFixed(2) + '%'; };
+      var seg;
+      if ((seg = document.getElementById('mktBarClaimed'))) seg.style.width = pct(claimed);
+      if ((seg = document.getElementById('mktBarListed')))  seg.style.width = pct(listed);
+      if ((seg = document.getElementById('mktBarOpen')))    seg.style.width = pct(avail);
+    }
+
+    // Last updated timestamp
+    var updatedEl = document.getElementById('mktLastUpdated');
+    if (updatedEl && json.generatedAt) {
+      var dt = new Date(json.generatedAt);
+      updatedEl.textContent = 'Updated ' + dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    panel.style.display = '';
+  }
+
+  fetchMarketplace().then(applyLiveData);
 })();
 
 // Counter animation

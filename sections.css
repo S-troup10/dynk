@@ -1002,7 +1002,7 @@
 }
 .board-counter {
   display: flex; align-items: center; justify-content: center; gap: 0;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 .board-counter-stat {
   text-align: center; padding: 0 40px;
@@ -1022,6 +1022,105 @@
 }
 .board-cta-row {
   display: flex; justify-content: center;
+}
+
+/* ── LIVE MARKETPLACE PANEL ── */
+.mkt-live {
+  margin: 8px 0 44px;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012));
+  backdrop-filter: blur(6px);
+}
+.mkt-live-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.mkt-live-tag {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--font-heading);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-1);
+}
+.mkt-live-pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #34D07F; flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(52,208,127,0.6);
+  animation: mktPulse 2.2s infinite;
+}
+@keyframes mktPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(52,208,127,0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(52,208,127,0); }
+  100% { box-shadow: 0 0 0 0 rgba(52,208,127,0); }
+}
+.mkt-live-updated {
+  font-size: 12px; color: var(--text-2); letter-spacing: 0.02em;
+}
+.mkt-live-grid {
+  display: grid;
+  grid-template-columns: minmax(150px, 210px) 1fr;
+  gap: 30px;
+  align-items: center;
+}
+/* Hero — Available now */
+.mkt-hero {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 22px 26px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,122,26,0.28);
+  background: radial-gradient(130% 130% at 0% 0%, rgba(255,122,26,0.16), rgba(255,122,26,0.02));
+}
+.mkt-hero-num {
+  font-family: var(--font-heading);
+  font-size: clamp(46px, 6vw, 62px); font-weight: 800; line-height: 0.9;
+  color: var(--orange);
+}
+.mkt-hero-cap {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-1);
+}
+/* Supply bar + legend */
+.mkt-supply { display: flex; flex-direction: column; gap: 14px; }
+.mkt-supply-title { font-size: 14px; color: var(--text-2); }
+.mkt-supply-title b {
+  color: var(--text-1); font-weight: 700; font-family: var(--font-heading);
+}
+.mkt-bar {
+  display: flex; height: 12px;
+  border-radius: 99px; overflow: hidden;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+}
+.mkt-bar-seg { height: 100%; width: 0; transition: width 1s cubic-bezier(.4,0,.2,1); }
+.mkt-bar-seg--claimed { background: linear-gradient(90deg, var(--orange-deep), var(--orange)); }
+.mkt-bar-seg--listed  { background: var(--orange-soft); }
+.mkt-bar-seg--open    { background: rgba(255,255,255,0.22); }
+.mkt-supply-legend { display: flex; flex-wrap: wrap; gap: 22px; }
+.mkt-leg {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--text-2);
+}
+.mkt-leg b {
+  color: var(--text-1); font-weight: 700;
+  font-family: var(--font-heading); font-size: 15px; margin-left: 2px;
+}
+.mkt-sw { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.mkt-sw--claimed { background: var(--orange); }
+.mkt-sw--listed  { background: var(--orange-soft); }
+.mkt-sw--open    { background: rgba(255,255,255,0.35); }
+
+@media (max-width: 768px) {
+  .mkt-live { padding: 18px; }
+  .mkt-live-grid { grid-template-columns: 1fr; gap: 22px; }
+  .mkt-hero {
+    flex-direction: row; align-items: baseline;
+    justify-content: space-between; padding: 18px 20px;
+  }
+  .mkt-supply-legend { gap: 16px; }
 }
 
 /* ── CTA (warm gradient) ── */

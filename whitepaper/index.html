@@ -18,13 +18,12 @@
 <nav class="nav" id="siteNav">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <img src="../assets/dynk-logo.png" alt="DYNK">
+      <img src="/assets/dynk-logo.png" alt="DYNK">
     </a>
     <div class="nav-links">
       <a href="/">Home</a>
       <a href="/merchants">Merchants</a>
       <a href="/founders">Founders</a>
-      <a href="#" style="color: var(--orange);">Whitepaper</a>
     </div>
     <a href="/#waitlist-section" class="nav-platform-btn">Join the Waitlist</a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
@@ -36,7 +35,6 @@
   <a href="/">Home</a>
   <a href="/merchants">Merchants</a>
   <a href="/founders">Founders</a>
-  <a href="#" style="color: var(--orange);">Whitepaper</a>
   <a href="/#waitlist-section" class="nav-mobile-cta">Join the Waitlist</a>
 </div>
 
@@ -445,20 +443,20 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="/" class="footer-brand-logo"><img src="../assets/dynk-logo.png" alt="DYNK"></a>
+        <a href="/" class="footer-brand-logo"><img src="/assets/dynk-logo.png" alt="DYNK"></a>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h5>Product</h5>
-          <a href="/#wallet">Digital Wallet</a>
-          <a href="/#data">Data Sovereignty</a>
-          <a href="/#foundation">Governance</a>
+          <h5>Pages</h5>
+          <a href="/">Home</a>
+          <a href="/merchants">Merchants</a>
           <a href="/founders">Founders</a>
           <a href="/whitepaper">Whitepaper</a>
+          <a href="/support">Support</a>
         </div>
         <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="mailto:contact@dynk.io">contact@dynk.io</a></div>
         <div class="footer-col"><h5>Community</h5><a href="#">Twitter / X</a><a href="#">Telegram</a></div>
-        <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="../assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="../assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>
+        <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="/assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="/assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>
       </div>
     </div>
     <div class="footer-rule"></div>
@@ -473,16 +471,7 @@
 window.addEventListener('scroll', function() {
   document.getElementById('siteNav').classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
-
-// Mobile hamburger
-var ham = document.getElementById('navHamburger');
-var mob = document.getElementById('navMobileMenu');
-if (ham && mob) {
-  ham.addEventListener('click', function() {
-    var open = mob.classList.toggle('open');
-    ham.classList.toggle('open', open);
-  });
-}
+// Mobile hamburger is handled by hero.js (initMobileNav)
 
 // TOC scroll-spy
 (function() {

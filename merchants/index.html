@@ -119,17 +119,25 @@
 <nav class="nav" id="siteNav">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <img src="assets/dynk-logo.png" alt="DYNK">
+      <img src="/assets/dynk-logo.png" alt="DYNK">
     </a>
     <div class="nav-links">
       <a href="/">Home</a>
-      <a href="#" style="color: #FF7A1A;">Merchants</a>
+      <a href="/merchants" style="color: var(--orange);">Merchants</a>
       <a href="/founders">Founders</a>
-      <a href="/whitepaper">Whitepaper</a>
     </div>
     <a href="#waitlist" class="nav-platform-btn">Join the Waitlist</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="/">Home</a>
+  <a href="/merchants">Merchants</a>
+  <a href="/founders">Founders</a>
+  <a href="#waitlist" class="nav-mobile-cta">Join the Waitlist</a>
+</div>
 
 <!-- ═══════════════════════════════════════
      HERO — light warm gradient, centered
@@ -615,50 +623,23 @@
 <!-- ═══════════════════════════════════════
      FOOTER (dark)
      ═══════════════════════════════════════ -->
-<footer style="background:#141416; border-top:1px solid rgba(255,255,255,0.07);">
-  <div class="m-inner" style="max-width:1200px; margin:0 auto; padding:0 40px;">
-    <div class="m-ftr-top" style="display:flex; justify-content:space-between; align-items:flex-start; padding:64px 0 48px; gap:60px;">
-      <div>
-        <a href="/">
-          <img src="assets/dynk-logo.png" alt="DYNK" style="width:100px; height:auto;">
-        </a>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand-logo"><img src="/assets/dynk-logo.png" alt="DYNK"></a>
       </div>
-      <div class="m-ftr-cols" style="display:flex; gap:64px;">
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Product</h5>
-          <a href="/#wallet" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Digital Wallet</a>
-          <a href="/#data"   class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Data Sovereignty</a>
-          <a href="/founders"     class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Founders</a>
-          <a href="/whitepaper"   class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Whitepaper</a>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Merchants</h5>
-          <a href="#fees"     class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Fee Comparison</a>
-          <a href="#how"      class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">How It Works</a>
-          <a href="#platform" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">The Platform</a>
-          <a href="#compare"  class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Comparison</a>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Company</h5>
-          <a href="#"                    class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">About</a>
-          <a href="mailto:contact@dynk.io" class="m-flink" style="font-size:14px; color:rgba(255,255,255,0.28); transition:color 0.25s;">contact@dynk.io</a>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <h5 style="font-family:'Chakra Petch',system-ui; font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Get the App</h5>
-          <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
-            <a href="#"><img src="assets/apple.png"   alt="App Store"    style="width:140px; height:auto; display:block;"></a>
-            <a href="#"><img src="assets/android.png" alt="Google Play"  style="width:140px; height:auto; display:block;"></a>
-          </div>
-        </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/merchants">Merchants</a><a href="/founders">Founders</a><a href="/whitepaper">Whitepaper</a><a href="/support">Support</a></div>
+        <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="mailto:contact@dynk.io">contact@dynk.io</a></div>
+        <div class="footer-col"><h5>Community</h5><a href="#">Twitter / X</a><a href="#">Telegram</a></div>
+        <div class="footer-col footer-col-app"><h5>Get the App</h5><div class="footer-app-badges"><a href="#" class="footer-badge"><img src="/assets/apple.png" alt="Download on the App Store" class="footer-badge-img"></a><a href="#" class="footer-badge"><img src="/assets/android.png" alt="Get it on Google Play" class="footer-badge-img"></a></div></div>
       </div>
     </div>
-    <div style="height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);"></div>
-    <div class="m-ftr-bottom" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; gap:20px;">
-      <span style="font-size:13px; color:rgba(255,255,255,0.28);">© 2026 DYNK. All rights reserved.</span>
-      <div style="display:flex; gap:24px;">
-        <a href="#" class="m-flegal" style="font-size:13px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Privacy Policy</a>
-        <a href="#" class="m-flegal" style="font-size:13px; color:rgba(255,255,255,0.28); transition:color 0.25s;">Terms of Service</a>
-      </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DYNK. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
     </div>
   </div>
 </footer>
