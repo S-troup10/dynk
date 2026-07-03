@@ -41,24 +41,41 @@ function fetchMarketplace() {
   var board = document.getElementById('walletBoard');
   if (!board) return;
 
+  // The board always represents a fixed supply of 2,100 Founder Wallets.
   var total = 2100;
-  var takenCount = 100;
+  var takenCount = 100; // claimed — placeholder until live data loads
+  var listedCount = 0;  // listed on the marketplace (shown in orange)
   var isMobile = window.innerWidth <= 768;
   var MOBILE_GROUPS = 210;
   var walletsPerGroup = total / MOBILE_GROUPS; // 10
+
+  // The wallet number a cell represents (its first wallet on mobile groups)
+  function cellWallet(i) {
+    return isMobile ? (i * walletsPerGroup + 1) : (i + 1);
+  }
+  // Status of a wallet number: claimed cells first, then listed, then available
+  function walletStatus(n) {
+    if (n <= takenCount) return 'claimed';
+    if (n <= takenCount + listedCount) return 'listed';
+    return 'available';
+  }
+  // Apply the current status to a cell element
+  function flagCell(cell) {
+    var status = walletStatus(parseInt(cell.dataset.wallet, 10));
+    cell.classList.toggle('taken', status === 'claimed');
+    cell.classList.toggle('listed', status === 'listed');
+    cell.dataset.status = status;
+  }
 
   // Build grid — on mobile render 210 macro-cells to avoid lag
   var frag = document.createDocumentFragment();
   var cellCount = isMobile ? MOBILE_GROUPS : total;
 
   for (var i = 0; i < cellCount; i++) {
-    var walletNum = isMobile ? (i * walletsPerGroup + 1) : (i + 1);
-    var taken = isMobile ? (i * walletsPerGroup < takenCount) : (i < takenCount);
     var cell = document.createElement('div');
-    var num = String(walletNum).padStart(4, '0');
-    cell.className = 'board-cell' + (taken ? ' taken' : '');
-    cell.dataset.wallet = num;
-    cell.dataset.taken = taken ? '1' : '0';
+    cell.className = 'board-cell';
+    cell.dataset.wallet = String(cellWallet(i)).padStart(4, '0');
+    flagCell(cell);
     frag.appendChild(cell);
   }
   board.appendChild(frag);
@@ -71,7 +88,10 @@ function fetchMarketplace() {
   var takenEl = document.getElementById('boardTaken');
   var openEl = document.getElementById('boardOpen');
   if (takenEl) takenEl.textContent = takenCount.toLocaleString();
-  if (openEl) openEl.textContent = (total - takenCount).toLocaleString();
+  if (openEl) openEl.textContent = (total - takenCount - listedCount).toLocaleString();
+
+  // Human-readable label for each status
+  var STATUS_LABEL = { claimed: 'Claimed', listed: 'Listed', available: 'Available' };
 
   // ── Tooltip (desktop only) ──
   var tooltip = document.getElementById('boardTooltip');
@@ -79,7 +99,7 @@ function fetchMarketplace() {
     board.addEventListener('mouseover', function(e) {
       var cell = e.target.closest('.board-cell');
       if (!cell) return;
-      tooltip.textContent = '#' + cell.dataset.wallet + (cell.dataset.taken === '1' ? ' · Claimed' : ' · Available');
+      tooltip.textContent = '#' + cell.dataset.wallet + ' · ' + STATUS_LABEL[cell.dataset.status];
       tooltip.classList.add('visible');
     });
     board.addEventListener('mousemove', function(e) {
@@ -109,14 +129,14 @@ function fetchMarketplace() {
   var wcTokens = document.getElementById('wcTokensVal');
   var closeBtn = document.getElementById('walletModalClose');
 
-  function openModal(num, taken) {
+  function openModal(num, status) {
     if (!modal || !wcNum) return;
     var n = parseInt(num, 10);
     wcNum.textContent = '#' + String(n).padStart(4, '0');
     if (wcTokens) wcTokens.textContent = getTokens(n);
     if (wcStatus) {
-      wcStatus.textContent = taken ? 'Claimed' : 'Available';
-      wcStatus.className = 'wc-status ' + (taken ? 'wc-status--claimed' : 'wc-status--available');
+      wcStatus.textContent = STATUS_LABEL[status];
+      wcStatus.className = 'wc-status wc-status--' + status;
     }
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -129,7 +149,7 @@ function fetchMarketplace() {
 
   board.addEventListener('click', function(e) {
     var cell = e.target.closest('.board-cell');
-    if (cell) openModal(cell.dataset.wallet, cell.dataset.taken === '1');
+    if (cell) openModal(cell.dataset.wallet, cell.dataset.status);
   });
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (modal) modal.addEventListener('click', function(e) {
@@ -148,7 +168,7 @@ function fetchMarketplace() {
     pickerBtn.addEventListener('click', function() {
       var n = parseInt(pickerInput.value, 10);
       if (n >= 1 && n <= 2100) {
-        openModal(String(n).padStart(4, '0'), n <= takenCount);
+        openModal(String(n).padStart(4, '0'), walletStatus(n));
       }
     });
     pickerInput.addEventListener('keydown', function(e) {
@@ -158,7 +178,7 @@ function fetchMarketplace() {
   if (pickerRand) {
     pickerRand.addEventListener('click', function() {
       var n = Math.floor(Math.random() * 2100) + 1;
-      openModal(String(n).padStart(4, '0'), n <= takenCount);
+      openModal(String(n).padStart(4, '0'), walletStatus(n));
     });
   }
 
@@ -174,18 +194,13 @@ function fetchMarketplace() {
 
     if (liveClaimed !== null) {
       takenCount = liveClaimed;
-      // Re-flag cells
-      var cells = board.querySelectorAll('.board-cell');
-      cells.forEach(function(cell) {
-        var n = parseInt(cell.dataset.wallet, 10);
-        var taken = isMobile ? ((n - 1) * walletsPerGroup < takenCount) : (n <= takenCount);
-        cell.classList.toggle('taken', taken);
-        cell.dataset.taken = taken ? '1' : '0';
-      });
-      // Animate counters
-      if (takenEl) animateCounter(takenEl, liveClaimed);
-      var openCount = (liveAvail !== null ? liveAvail : 0) + (liveListed !== null ? liveListed : 0);
-      if (openEl) animateCounter(openEl, openCount);
+      listedCount = liveListed !== null ? liveListed : 0;
+      // Re-flag every cell against the live claimed/listed counts
+      board.querySelectorAll('.board-cell').forEach(flagCell);
+      // Animate counters — the board always totals 2,100 wallets, so the
+      // remainder beyond claimed + listed is what's still available.
+      if (takenEl) animateCounter(takenEl, takenCount);
+      if (openEl) animateCounter(openEl, total - takenCount - listedCount);
     }
 
     // Populate the live supply panel

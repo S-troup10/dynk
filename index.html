@@ -241,10 +241,11 @@
     <div class="board-header">
       <div class="board-header-text">
         <h2 class="sec-title sec-title--light">2,100 Founder Wallets</h2>
-        <p class="sec-desc sec-desc--light">Each cell represents a unique Founder Wallet (#001–#2100). Claimed wallets are lit — the rest are waiting for their owner.</p>
+        <p class="sec-desc sec-desc--light">Each cell represents a unique Founder Wallet (#001–#2100). Claimed wallets are lit, orange wallets are listed on the marketplace — the rest are waiting for their owner.</p>
       </div>
       <div class="board-legend">
         <span class="board-legend-item"><span class="board-legend-dot board-legend-dot--taken"></span>Claimed</span>
+        <span class="board-legend-item"><span class="board-legend-dot board-legend-dot--listed"></span>Listed</span>
         <span class="board-legend-item"><span class="board-legend-dot board-legend-dot--open"></span>Available</span>
       </div>
     </div>
@@ -256,17 +257,6 @@
         <button class="board-mobile-picker-btn" id="boardPickerBtn">View</button>
       </div>
       <button class="board-mobile-picker-random" id="boardPickerRandom">Pick Random Wallet</button>
-    </div>
-    <div class="board-counter">
-      <div class="board-counter-stat">
-        <span class="board-counter-val" id="boardTaken">—</span>
-        <span class="board-counter-label">Claimed</span>
-      </div>
-      <div class="board-counter-div"></div>
-      <div class="board-counter-stat">
-        <span class="board-counter-val" id="boardOpen">—</span>
-        <span class="board-counter-label">Available</span>
-      </div>
     </div>
     <!-- LIVE MARKETPLACE STATS (populated by JS from /api/marketplace) -->
     <div class="mkt-live" id="mktLivePanel" style="display:none;">
@@ -294,6 +284,17 @@
             <span class="mkt-leg"><i class="mkt-sw mkt-sw--open"></i>Available<b id="mktAvailableLeg">0</b></span>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="board-counter">
+      <div class="board-counter-stat">
+        <span class="board-counter-val" id="boardTaken">—</span>
+        <span class="board-counter-label">Claimed</span>
+      </div>
+      <div class="board-counter-div"></div>
+      <div class="board-counter-stat">
+        <span class="board-counter-val" id="boardOpen">—</span>
+        <span class="board-counter-label">Available</span>
       </div>
     </div>
 
